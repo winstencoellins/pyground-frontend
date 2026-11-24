@@ -42,7 +42,14 @@ export function SiteHeader() {
             names={{ id: common("languageNames.id"), en: common("languageNames.en") }}
           />
           <ThemeToggle label={common("themeToggle")} />
-          <HeaderAuth labels={{ signIn: t("signIn"), start: t("start"), signOut: account("signOut") }} />
+          <HeaderAuth
+            labels={{
+              signIn: t("signIn"),
+              start: t("start"),
+              signOut: account("signOut"),
+              dashboard: account("dashboard"),
+            }}
+          />
         </div>
       </Container>
     </header>

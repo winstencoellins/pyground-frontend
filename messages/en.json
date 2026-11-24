@@ -334,6 +334,21 @@
   },
   "Account": {
     "signOut": "Sign out",
-    "menu": "Account"
+    "menu": "Account",
+    "dashboard": "Dashboard"
+  },
+  "App": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "curriculum": "Curriculum"
+    },
+    "navLabel": "App navigation",
+    "loading": "Loading…",
+    "dashboard": {
+      "title": "Dashboard",
+      "greeting": "Hi, {name}!",
+      "body": "This is your learning space. Progress per stage and a continue-learning button will appear here soon.",
+      "browse": "See the curriculum"
+    }
   }
 }

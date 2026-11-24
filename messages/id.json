@@ -334,6 +334,21 @@
   },
   "Account": {
     "signOut": "Keluar",
-    "menu": "Akun"
+    "menu": "Akun",
+    "dashboard": "Dashboard"
+  },
+  "App": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "curriculum": "Kurikulum"
+    },
+    "navLabel": "Navigasi aplikasi",
+    "loading": "Memuat…",
+    "dashboard": {
+      "title": "Dashboard",
+      "greeting": "Halo, {name}!",
+      "body": "Ini ruang belajarmu. Progres per tahap dan tombol lanjutkan belajar segera muncul di sini.",
+      "browse": "Lihat kurikulum"
+    }
   }
 }

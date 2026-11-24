@@ -1,5 +1,5 @@
-/** Where to go after signing in. shortcut: the landing page until the dashboard (#19) exists. */
-export const AFTER_AUTH_PATH = "/";
+/** Where to go after signing in. */
+export const AFTER_AUTH_PATH = "/dashboard";
 
 /**
  * Post-login destination from a `?next=` value: a locale-less, same-site path like "/lessons/variables"

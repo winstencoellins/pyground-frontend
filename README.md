@@ -50,6 +50,18 @@ required; links land on `/{locale}/verify-email?verified=1` (signed in) or with 
 returns there afterwards (same-site paths only, see `src/lib/safe-next.ts`). To try it locally the API must run with
 `WEB_URL` set to this site's origin.
 
+## Signed-in area
+
+Pages in `src/app/[locale]/(app)` share the app header (nav, language, theme, sign out) and are protected twice:
+
+1. `src/proxy.ts` sends visitors without a session cookie on a protected path (`src/config/routes.ts`) to
+   `/{locale}/sign-in?next=...` before anything renders.
+2. The `(app)` layout's `AuthGate` asks the API (`getMe()` in `src/lib/session.ts`) and redirects expired or forged
+   sessions to sign-in. Use `getMe()` in pages for the current user; it is deduped per request.
+
+Free lessons stay public; the API decides which lessons need a pass. New protected sections: add their prefix to
+`PROTECTED_PREFIXES`.
+
 ## Environment
 
 | Variable               | Purpose                                                                                       |
