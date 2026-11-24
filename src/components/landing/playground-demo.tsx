@@ -1,133 +1,63 @@
-"use client";
+import { useTranslations } from "next-intl";
+import { PlaygroundView, type Tok } from "./playground-view";
 
-import { useEffect, useRef, useState } from "react";
-import { Play } from "lucide-react";
+const prices = [14000, 28000, 17500];
 
-// What the program below really prints (checked with Python 3.11).
-const OUTPUT = ["beras  Rp 14,000", "telur  Rp 28,000", "gula   Rp 17,500", "Total  Rp 59,500"];
-
-// Each line is a list of [token type, text]; plain strings keep the indentation safe from formatting.
-type Tok = ["k" | "s" | "n" | "c" | "f" | "t", string];
-const CODE: Tok[][] = [
-  [["c", "# Hitung total belanja di warung"]],
-  [["t", "belanjaan = {"]],
-  [
-    ["t", "    "],
-    ["s", '"beras"'],
-    ["t", ": "],
-    ["n", "14000"],
-    ["t", ","],
-  ],
-  [
-    ["t", "    "],
-    ["s", '"telur"'],
-    ["t", ": "],
-    ["n", "28000"],
-    ["t", ","],
-  ],
-  [
-    ["t", "    "],
-    ["s", '"gula"'],
-    ["t", ": "],
-    ["n", "17500"],
-    ["t", ","],
-  ],
-  [["t", "}"]],
-  [
-    ["t", "total = "],
-    ["n", "0"],
-  ],
-  [
-    ["k", "for"],
-    ["t", " barang, harga "],
-    ["k", "in"],
-    ["t", " belanjaan.items():"],
-  ],
-  [
-    ["t", "    "],
-    ["f", "print"],
-    ["t", "("],
-    ["s", 'f"{barang:<6} Rp{harga:>7,}"'],
-    ["t", ")"],
-  ],
-  [["t", "    total += harga"]],
-  [
-    ["f", "print"],
-    ["t", "("],
-    ["s", 'f"Total  Rp{total:>7,}"'],
-    ["t", ")"],
-  ],
-];
-const tokClass: Record<Tok[0], string> = {
-  k: "text-code-keyword font-semibold",
-  s: "text-code-string",
-  n: "text-code-number",
-  c: "text-code-comment italic",
-  f: "font-semibold",
-  t: "",
-};
-
-/** Landing-page demo: replays the real output line by line. The real Pyodide playground is #14. */
+/** Builds the sample program in the page's language; identifiers and output follow the translation. */
 export function PlaygroundDemo() {
-  const [shown, setShown] = useState(OUTPUT.length); // complete at rest
-  const timer = useRef<ReturnType<typeof setInterval>>(undefined);
-  useEffect(() => () => clearInterval(timer.current), []);
+  const t = useTranslations("Playground");
+  const [list, item, price] = [t("items"), t("item"), t("price")];
+  const names = [t("rice"), t("eggs"), t("sugar")];
 
-  const run = () => {
-    clearInterval(timer.current);
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return setShown(OUTPUT.length);
-    setShown(0);
-    timer.current = setInterval(() => {
-      setShown((n) => {
-        if (n + 1 >= OUTPUT.length) clearInterval(timer.current);
-        return n + 1;
-      });
-    }, 380);
-  };
+  const code: Tok[][] = [
+    [["c", t("comment")]],
+    [["t", `${list} = {`]],
+    ...names.map((n, i): Tok[] => [
+      ["t", "    "],
+      ["s", `"${n}"`],
+      ["t", ": "],
+      ["n", String(prices[i])],
+      ["t", ","],
+    ]),
+    [["t", "}"]],
+    [
+      ["t", "total = "],
+      ["n", "0"],
+    ],
+    [
+      ["k", "for"],
+      ["t", ` ${item}, ${price} `],
+      ["k", "in"],
+      ["t", ` ${list}.items():`],
+    ],
+    [
+      ["t", "    "],
+      ["f", "print"],
+      ["t", "("],
+      ["s", `f"{${item}:<6} Rp{${price}:>7,}"`],
+      ["t", ")"],
+    ],
+    [["t", `    total += ${price}`]],
+    [
+      ["f", "print"],
+      ["t", "("],
+      ["s", 'f"Total  Rp{total:>7,}"'],
+      ["t", ")"],
+    ],
+  ];
+
+  // What Python prints for this program: `:<6` pads names, `:>7,` right-aligns with comma grouping.
+  const fmt = (n: number) => n.toLocaleString("en-US").padStart(7);
+  const output = [
+    ...names.map((n, i) => `${n.padEnd(6)} Rp${fmt(prices[i]!)}`),
+    `Total  Rp${fmt(prices.reduce((a, b) => a + b, 0))}`,
+  ];
 
   return (
-    <div
-      aria-label="Contoh playground"
-      className="min-w-0 overflow-hidden rounded-[22px] border bg-card shadow-[0_40px_80px_-40px_rgb(27_29_58/0.5)]"
-    >
-      <div className="flex items-center justify-between gap-2.5 border-b py-2.5 pr-3 pl-4">
-        <span className="flex items-center gap-2 font-mono text-[0.8rem] text-muted-foreground">
-          <span className="font-sans text-[0.82rem] font-bold text-foreground">Dictionary dan Set</span>· main.py
-        </span>
-        <button
-          type="button"
-          onClick={run}
-          className="inline-flex h-9 items-center gap-1.5 rounded-full bg-foreground px-4 text-[0.82rem] font-semibold text-background outline-none focus-visible:ring-4 focus-visible:ring-ring/50"
-        >
-          <Play className="size-3.5" aria-hidden /> Jalankan
-        </button>
-      </div>
-      <pre className="overflow-x-auto px-[18px] py-4 font-mono text-[0.8rem] leading-[1.75]">
-        {CODE.map((line, i) => (
-          <div key={i}>
-            <span className="inline-block w-[1.6em] text-code-comment opacity-70 select-none">{i + 1}</span>
-            {line.map(([type, text], j) => (
-              <span key={j} className={tokClass[type]}>
-                {text}
-              </span>
-            ))}
-          </div>
-        ))}
-      </pre>
-      <div
-        aria-live="polite"
-        className="min-h-28 border-t border-dashed bg-muted px-[18px] pt-3 pb-3.5 font-mono text-[0.82rem]"
-      >
-        <span className="mb-1 block font-sans text-[0.72rem] font-bold tracking-[0.08em] text-muted-foreground uppercase">
-          Output
-        </span>
-        <div className="whitespace-pre">
-          {OUTPUT.slice(0, shown).join("\n")}
-          {shown < OUTPUT.length && (
-            <span className="inline-block h-[1em] w-[0.55em] animate-pulse bg-primary align-[-2px]" />
-          )}
-        </div>
-      </div>
-    </div>
+    <PlaygroundView
+      code={code}
+      output={output}
+      labels={{ region: t("label"), lesson: t("lesson"), run: t("run"), output: t("output") }}
+    />
   );
 }

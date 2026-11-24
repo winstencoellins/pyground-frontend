@@ -1,0 +1,240 @@
+{
+  "Metadata": {
+    "title": "Pyground: Learn Python from scratch, right in your browser",
+    "description": "Interactive Python course for Indonesian beginners. Write and run code right in your browser, no installation needed."
+  },
+  "Common": {
+    "supportedBy": "Supported by {name}",
+    "tagline": "Learn Python from scratch, right in your browser.",
+    "themeToggle": "Switch light/dark mode",
+    "language": "Language",
+    "languageNames": { "id": "Bahasa Indonesia", "en": "English" }
+  },
+  "Header": {
+    "nav": { "why": "Why Pyground", "curriculum": "Curriculum", "pricing": "Pricing", "faq": "FAQ" },
+    "navLabel": "Main",
+    "signIn": "Sign in",
+    "start": "Start free"
+  },
+  "Hero": {
+    "chipTag": "Free",
+    "chip": "Stage 1 for everyone",
+    "title": "Learn Python from scratch",
+    "body": "Short lessons you can practise right away, in English or Indonesian. Write code, run it, and see the result on the same page.",
+    "cta": "Start learning free",
+    "points": ["First 14 lessons free", "Nothing to install, works on your phone"],
+    "progressLabel": "Stage 1 progress",
+    "streak": "{days}-day streak",
+    "statement": "Your code runs. Nothing to install."
+  },
+  "Ticker": {
+    "label": "On Pyground you learn",
+    "items": [
+      "Building a corner-shop cashier",
+      "Keeping a shopping list in a list",
+      "Writing your first function",
+      "Reading error messages calmly",
+      "Working with CSV and JSON files",
+      "Creating classes with OOP",
+      "Testing code with pytest"
+    ]
+  },
+  "Playground": {
+    "label": "Playground example",
+    "lesson": "Dictionaries and Sets",
+    "run": "Run",
+    "output": "Output",
+    "comment": "# Add up a shopping trip at the warung",
+    "items": "groceries",
+    "item": "item",
+    "price": "price",
+    "rice": "rice",
+    "eggs": "eggs",
+    "sugar": "sugar"
+  },
+  "Topics": {
+    "label": "What you'll master",
+    "items": ["Python 3", "Conditionals", "Functions", "OOP", "Files & JSON", "pytest", "Flask"]
+  },
+  "Why": {
+    "tag": "Why",
+    "label": "Why Pyground",
+    "title1": "Not just watching.",
+    "title2": "You actually write code.",
+    "body": "Every lesson has a short explanation, examples you can run, and a small quiz. Learn by doing, a little at a time.",
+    "features": [
+      {
+        "title": "Runs in your browser",
+        "body": "Python runs right on the lesson page. Nothing to install to get started."
+      },
+      {
+        "title": "Indonesian and English",
+        "body": "Familiar examples: the warung, a kos room, ojek fares, report-card grades."
+      },
+      {
+        "title": "A quiz in every lesson",
+        "body": "Three quick questions to make sure you've got it before moving on."
+      },
+      {
+        "title": "Progress and streaks",
+        "body": "Your progress is saved, and a daily streak helps you keep a routine."
+      }
+    ]
+  },
+  "Overview": {
+    "tag": "Dashboard",
+    "label": "Your learning space",
+    "title": "All your progress, in one place",
+    "body": "Pick up your last lesson in one click, see your progress in every stage, and keep your daily streak going.",
+    "cta": "Try it free now",
+    "points": ["Continue where you left off", "Progress per stage", "Daily streak"]
+  },
+  "Dashboard": {
+    "label": "Example dashboard view",
+    "tabs": ["Home", "Curriculum", "Progress"],
+    "greeting": "Good morning, Citra",
+    "yesterday": "You finished 2 lessons yesterday.",
+    "continue": "Continue learning",
+    "module": "Dictionaries and Sets",
+    "lesson": "Loops and Nested Data",
+    "resume": "Continue",
+    "streak": "Streak",
+    "days": "days",
+    "week": ["M", "T", "W", "T", "F", "S", "S"],
+    "progress": "Progress per stage",
+    "stages": ["Stage 1 · Foundations", "Stage 2 · Beginner Core", "Stage 3 · Intermediate"]
+  },
+  "Stages": {
+    "tag": "Curriculum",
+    "label": "Four stages",
+    "title": "From your first print to building for the web",
+    "body": "Lessons build on each other, so you always know what comes next.",
+    "stage": "Stage {number}",
+    "status": { "free": "Free", "paid": "Full access", "soon": "Coming soon" },
+    "items": [
+      {
+        "title": "Foundations",
+        "summary": "Variables, input, strings, conditionals, and a cashier project.",
+        "meta": "14 lessons · ~3 hours"
+      },
+      {
+        "title": "Beginner Core",
+        "summary": "Loops, lists, dictionaries, functions, and debugging.",
+        "meta": "19 lessons · ~5 hours"
+      },
+      {
+        "title": "Intermediate",
+        "summary": "Files, OOP, decorators, generators, type hints, and pytest.",
+        "meta": "27 lessons · ~8 hours"
+      },
+      {
+        "title": "Web with Flask",
+        "summary": "Routing, templates, forms, databases, login, and deployment.",
+        "meta": "First lesson available now"
+      }
+    ]
+  },
+  "Showcase": {
+    "terminalLabel": "Stage 3 project",
+    "terminal": [
+      "$ python expenses.py",
+      "+ 2026-11-20  food      Rp 25,000",
+      "+ 2026-11-21  transport Rp 18,000",
+      "+ 2026-11-22  kos       Rp 850,000",
+      "",
+      "Total this month: Rp 893,000",
+      "Saved to expenses.json"
+    ],
+    "tag": "Projects",
+    "label": "Learn by building",
+    "statement": "Every stage ends with a real project: a corner-shop cashier, a student grade book, and an expense tracker that saves data to a file and is tested with pytest.",
+    "projects": "Cashier · Grade Book · Expense Tracker",
+    "stats": [
+      { "value": "61", "label": "interactive lessons" },
+      { "value": "15+ hrs", "label": "of material" },
+      { "value": "ID · EN", "label": "two languages" }
+    ]
+  },
+  "Pricing": {
+    "tag": "Pricing",
+    "label": "No auto-renewal",
+    "title": "Start free, pay when you're sure",
+    "body": "Buy 30 days of access and extend it yourself if you want to keep learning.",
+    "methods": "QRIS · GoPay · ShopeePay · Bank transfer · Credit card",
+    "free": {
+      "name": "Free",
+      "price": "Rp0",
+      "period": "forever",
+      "body": "To try how learning on Pyground works.",
+      "features": ["All of Stage 1 (14 lessons)", "Playground and quizzes", "Progress and streaks saved"],
+      "cta": "Create a free account"
+    },
+    "pass": {
+      "badge": "Most complete",
+      "name": "30-day access",
+      "period": "/ 30 days",
+      "body": "Every stage, every project.",
+      "features": [
+        "All 61 lessons, plus new ones",
+        "Every project and quiz",
+        "Extend early, unused days carry over",
+        "Email reminder before access ends"
+      ],
+      "cta": "Buy access"
+    }
+  },
+  "Faq": {
+    "tag": "FAQ",
+    "label": "Questions",
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "q": "I've never coded before. Can I join?",
+        "a": "Yes. Stage 1 starts from \"what is a program\" and uses everyday examples. You don't need a maths or IT background."
+      },
+      {
+        "q": "Do I need to install Python?",
+        "a": "No. Python runs right in your browser. You only install Python in Stage 3, when you learn pip and virtual environments, and there's a guide for it."
+      },
+      {
+        "q": "Can I learn on my phone?",
+        "a": "Yes. Every page is designed for phone screens. For longer code, a laptop is still more comfortable."
+      },
+      {
+        "q": "Does access renew automatically?",
+        "a": "No. Access lasts 30 days from payment. We email you 3 days before and on the day it ends. If you extend early, 30 days are added to the access you have left."
+      },
+      {
+        "q": "What happens to my progress when access ends?",
+        "a": "Your progress stays saved. Stage 1 stays open, and the other lessons unlock again as soon as you extend."
+      },
+      {
+        "q": "Is there an English version?",
+        "a": "Yes. Every lesson is available in Indonesian and English, and you can switch language at any time."
+      }
+    ]
+  },
+  "Cta": {
+    "tag": "Start",
+    "label": "Today",
+    "title": "Ready to write your first line of Python?",
+    "body": "The first 14 lessons are free. Sign up with just your email.",
+    "primary": "Start free",
+    "secondary": "See the curriculum",
+    "ran": "main.py · 0.2 s",
+    "quizDone": "Quiz complete",
+    "quizBody": "3 out of 3 correct. On to the next lesson.",
+    "streak": "6-day streak"
+  },
+  "Footer": {
+    "learn": "Learn",
+    "account": "Account",
+    "links": {
+      "curriculum": "Curriculum",
+      "pricing": "Pricing",
+      "faq": "FAQ",
+      "signIn": "Sign in",
+      "signUp": "Sign up free"
+    }
+  }
+}

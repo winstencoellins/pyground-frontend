@@ -19,6 +19,19 @@ bun run typecheck && bun run lint && bun run format:check
 bun run build
 ```
 
+## Languages
+
+Every page lives under `/id/...` (default) or `/en/...` (next-intl, `src/i18n/`). Visiting `/` redirects by the
+`NEXT_LOCALE` cookie (set by the ID/EN switch), then the browser's `Accept-Language`, then Indonesian. All UI text is
+in `messages/id.json` (source of truth, type-checked) and `messages/en.json`; never hardcode copy in components.
+Language detection runs in `src/proxy.ts` (Next 16's renamed middleware).
+
+## Environment
+
+| Variable               | Purpose                                                                          |
+| ---------------------- | -------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL` | Public origin for canonical and hreflang URLs (default `http://localhost:3000`). |
+
 ## Design
 
 - **Palette "Nila & Merah"**: every color is a CSS variable in `src/app/globals.css` (light in `:root`, dark in

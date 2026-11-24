@@ -1,18 +1,18 @@
 import { Flame, Play } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 // Illustration of the learner dashboard (#19) with example data; it is not live.
-const stageBars = [
-  { label: "Tahap 1 · Dasar-Dasar", pct: 100 },
-  { label: "Tahap 2 · Inti Pemula", pct: 42 },
-  { label: "Tahap 3 · Menengah", pct: 0 },
-];
-const week = ["S", "S", "R", "K", "J", "S", "M"];
+const stagePct = [100, 42, 0];
 const doneDays = 6;
 
 export function DashboardMock() {
+  const t = useTranslations("Dashboard");
+  const tabs = t.raw("tabs") as string[];
+  const week = t.raw("week") as string[];
+  const stages = t.raw("stages") as string[];
   return (
     <div
-      aria-label="Contoh tampilan dashboard"
+      aria-label={t("label")}
       className="w-[760px] max-w-none rounded-[22px] border bg-card p-5 shadow-[0_40px_80px_-40px_rgb(27_29_58/0.45)]"
     >
       <div className="flex items-center justify-between gap-4">
@@ -23,40 +23,40 @@ export function DashboardMock() {
           Pyground
         </span>
         <div className="flex gap-1.5 text-[0.72rem] font-medium">
-          <span className="rounded-full bg-foreground px-3 py-1 text-background">Beranda</span>
-          <span className="rounded-full border px-3 py-1">Kurikulum</span>
-          <span className="rounded-full border px-3 py-1">Progres</span>
+          <span className="rounded-full bg-foreground px-3 py-1 text-background">{tabs[0]}</span>
+          <span className="rounded-full border px-3 py-1">{tabs[1]}</span>
+          <span className="rounded-full border px-3 py-1">{tabs[2]}</span>
         </div>
       </div>
 
       <div className="mt-6">
-        <p className="text-[1.35rem] font-semibold tracking-tight">Selamat pagi, Citra</p>
-        <p className="text-[0.85rem] text-muted-foreground">Kemarin kamu menyelesaikan 2 pelajaran.</p>
+        <p className="text-[1.35rem] font-semibold tracking-tight">{t("greeting")}</p>
+        <p className="text-[0.85rem] text-muted-foreground">{t("yesterday")}</p>
       </div>
 
       <div className="mt-4 grid grid-cols-[1.35fr_1fr] gap-3">
         <div className="grid gap-3 rounded-2xl border bg-background p-4">
           <p className="text-[0.72rem] font-semibold tracking-[0.06em] text-muted-foreground uppercase">
-            Lanjutkan belajar
+            {t("continue")}
           </p>
           <div>
-            <p className="text-[0.78rem] text-muted-foreground">Dictionary dan Set</p>
-            <p className="font-semibold">Loop dan Data Bersarang</p>
+            <p className="text-[0.78rem] text-muted-foreground">{t("module")}</p>
+            <p className="font-semibold">{t("lesson")}</p>
           </div>
           <div className="h-2 overflow-hidden rounded-full bg-muted">
             <div className="h-full w-[42%] rounded-full bg-primary" />
           </div>
           <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-foreground px-3 py-1.5 text-[0.75rem] font-semibold text-background">
-            <Play className="size-3" aria-hidden /> Lanjutkan
+            <Play className="size-3" aria-hidden /> {t("resume")}
           </span>
         </div>
 
         <div className="grid content-start gap-3 rounded-2xl border bg-background p-4">
           <p className="flex items-center gap-1.5 text-[0.72rem] font-semibold tracking-[0.06em] text-muted-foreground uppercase">
-            <Flame className="size-3.5 text-highlight" aria-hidden /> Streak
+            <Flame className="size-3.5 text-highlight" aria-hidden /> {t("streak")}
           </p>
           <p className="text-[1.8rem] leading-none font-semibold tracking-tight">
-            6 <span className="text-[0.9rem] font-medium text-muted-foreground">hari</span>
+            6 <span className="text-[0.9rem] font-medium text-muted-foreground">{t("days")}</span>
           </p>
           <div className="flex gap-1.5">
             {week.map((d, i) => (
@@ -76,15 +76,15 @@ export function DashboardMock() {
 
         <div className="col-span-2 grid gap-3 rounded-2xl border bg-background p-4">
           <p className="text-[0.72rem] font-semibold tracking-[0.06em] text-muted-foreground uppercase">
-            Progres per tahap
+            {t("progress")}
           </p>
-          {stageBars.map((s) => (
-            <div key={s.label} className="grid grid-cols-[170px_1fr_40px] items-center gap-3 text-[0.8rem]">
-              <span>{s.label}</span>
+          {stages.map((label, i) => (
+            <div key={label} className="grid grid-cols-[170px_1fr_40px] items-center gap-3 text-[0.8rem]">
+              <span>{label}</span>
               <span className="h-2 overflow-hidden rounded-full bg-muted">
-                <span className="block h-full rounded-full bg-primary" style={{ width: `${s.pct}%` }} />
+                <span className="block h-full rounded-full bg-primary" style={{ width: `${stagePct[i]}%` }} />
               </span>
-              <span className="text-right text-muted-foreground tabular-nums">{s.pct}%</span>
+              <span className="text-right text-muted-foreground tabular-nums">{stagePct[i]}%</span>
             </div>
           ))}
         </div>

@@ -1,0 +1,234 @@
+{
+  "Metadata": {
+    "title": "Pyground: Belajar Python dari nol, langsung di browser",
+    "description": "Kursus Python interaktif berbahasa Indonesia untuk pemula. Tulis dan jalankan kode langsung di browser, tanpa instalasi."
+  },
+  "Common": {
+    "supportedBy": "Didukung oleh {name}",
+    "tagline": "Belajar Python dari nol, langsung di browser.",
+    "themeToggle": "Ganti mode terang/gelap",
+    "language": "Bahasa",
+    "languageNames": { "id": "Bahasa Indonesia", "en": "English" }
+  },
+  "Header": {
+    "nav": { "why": "Kenapa Pyground", "curriculum": "Kurikulum", "pricing": "Harga", "faq": "FAQ" },
+    "navLabel": "Utama",
+    "signIn": "Masuk",
+    "start": "Mulai gratis"
+  },
+  "Hero": {
+    "chipTag": "Gratis",
+    "chip": "Tahap 1 untuk semua",
+    "title": "Belajar Python dari nol",
+    "body": "Pelajaran singkat berbahasa Indonesia yang bisa langsung kamu praktikkan. Tulis kode, jalankan, dan lihat hasilnya di halaman yang sama.",
+    "cta": "Mulai belajar gratis",
+    "points": ["14 pelajaran pertama gratis", "Tanpa instalasi, bisa di HP"],
+    "progressLabel": "Progres Tahap 1",
+    "streak": "Streak {days} hari",
+    "statement": "Kodemu jalan. Tanpa install."
+  },
+  "Ticker": {
+    "label": "Di Pyground kamu belajar",
+    "items": [
+      "Membuat program kasir warung",
+      "Menyimpan daftar belanja di list",
+      "Menulis fungsi pertamamu",
+      "Membaca pesan error tanpa panik",
+      "Mengolah file CSV dan JSON",
+      "Membuat class dengan OOP",
+      "Menguji kode dengan pytest"
+    ]
+  },
+  "Playground": {
+    "label": "Contoh playground",
+    "lesson": "Dictionary dan Set",
+    "run": "Jalankan",
+    "output": "Output",
+    "comment": "# Hitung total belanja di warung",
+    "items": "belanjaan",
+    "item": "barang",
+    "price": "harga",
+    "rice": "beras",
+    "eggs": "telur",
+    "sugar": "gula"
+  },
+  "Topics": {
+    "label": "Yang akan kamu kuasai",
+    "items": ["Python 3", "Percabangan", "Fungsi", "OOP", "File & JSON", "pytest", "Flask"]
+  },
+  "Why": {
+    "tag": "Kenapa",
+    "label": "Kenapa Pyground",
+    "title1": "Bukan sekadar nonton.",
+    "title2": "Kamu benar-benar ngoding.",
+    "body": "Setiap pelajaran berisi penjelasan singkat, contoh yang bisa kamu jalankan, dan kuis kecil. Belajar sambil praktik, sedikit demi sedikit.",
+    "features": [
+      {
+        "title": "Langsung jalan di browser",
+        "body": "Python berjalan di halaman pelajaran. Tidak perlu install apa pun untuk mulai."
+      },
+      { "title": "Bahasa Indonesia", "body": "Penjelasan dan contoh yang dekat: warung, kos, ojek, nilai rapor." },
+      {
+        "title": "Kuis di setiap pelajaran",
+        "body": "Tiga pertanyaan singkat untuk memastikan kamu paham sebelum lanjut."
+      },
+      { "title": "Progres dan streak", "body": "Progresmu tersimpan, dan streak harian membantumu belajar rutin." }
+    ]
+  },
+  "Overview": {
+    "tag": "Dashboard",
+    "label": "Ruang belajarmu",
+    "title": "Semua progresmu, di satu tempat",
+    "body": "Lanjutkan pelajaran terakhir dengan satu klik, lihat progres setiap tahap, dan jaga streak harianmu.",
+    "cta": "Coba gratis sekarang",
+    "points": ["Lanjutkan dari terakhir", "Progres per tahap", "Streak harian"]
+  },
+  "Dashboard": {
+    "label": "Contoh tampilan dashboard",
+    "tabs": ["Beranda", "Kurikulum", "Progres"],
+    "greeting": "Selamat pagi, Citra",
+    "yesterday": "Kemarin kamu menyelesaikan 2 pelajaran.",
+    "continue": "Lanjutkan belajar",
+    "module": "Dictionary dan Set",
+    "lesson": "Loop dan Data Bersarang",
+    "resume": "Lanjutkan",
+    "streak": "Streak",
+    "days": "hari",
+    "week": ["S", "S", "R", "K", "J", "S", "M"],
+    "progress": "Progres per tahap",
+    "stages": ["Tahap 1 · Dasar-Dasar", "Tahap 2 · Inti Pemula", "Tahap 3 · Menengah"]
+  },
+  "Stages": {
+    "tag": "Kurikulum",
+    "label": "Empat tahap",
+    "title": "Dari print pertama sampai membangun web",
+    "body": "Materi tersusun berurutan. Kamu tahu persis apa yang dipelajari selanjutnya.",
+    "stage": "Tahap {number}",
+    "status": { "free": "Gratis", "paid": "Akses penuh", "soon": "Segera hadir" },
+    "items": [
+      {
+        "title": "Dasar-Dasar",
+        "summary": "Variabel, input, string, percabangan, dan proyek kasir warung.",
+        "meta": "14 pelajaran · ±3 jam"
+      },
+      {
+        "title": "Inti Pemula",
+        "summary": "Perulangan, list, dictionary, fungsi, dan debugging.",
+        "meta": "19 pelajaran · ±5 jam"
+      },
+      {
+        "title": "Menengah",
+        "summary": "File, OOP, decorator, generator, type hint, dan pytest.",
+        "meta": "27 pelajaran · ±8 jam"
+      },
+      {
+        "title": "Web dengan Flask",
+        "summary": "Routing, template, form, database, login, dan deploy.",
+        "meta": "Pelajaran pertama sudah tersedia"
+      }
+    ]
+  },
+  "Showcase": {
+    "terminalLabel": "Proyek Tahap 3",
+    "terminal": [
+      "$ python pengeluaran.py",
+      "+ 2026-11-20  makan     Rp 25.000",
+      "+ 2026-11-21  transport Rp 18.000",
+      "+ 2026-11-22  kos       Rp 850.000",
+      "",
+      "Total bulan ini: Rp 893.000",
+      "Tersimpan ke pengeluaran.json"
+    ],
+    "tag": "Proyek",
+    "label": "Belajar dengan membangun",
+    "statement": "Setiap tahap ditutup dengan proyek nyata: program kasir warung, buku nilai siswa, sampai pencatat pengeluaran yang menyimpan data ke file dan diuji dengan pytest.",
+    "projects": "Kasir Warung · Buku Nilai Siswa · Pencatat Pengeluaran",
+    "stats": [
+      { "value": "61", "label": "pelajaran interaktif" },
+      { "value": "15+ jam", "label": "materi belajar" },
+      { "value": "ID · EN", "label": "dua bahasa" }
+    ]
+  },
+  "Pricing": {
+    "tag": "Harga",
+    "label": "Tanpa langganan otomatis",
+    "title": "Mulai gratis, bayar kalau sudah yakin",
+    "body": "Beli akses 30 hari dan perpanjang sendiri kalau masih mau belajar.",
+    "methods": "QRIS · GoPay · ShopeePay · Transfer bank · Kartu kredit",
+    "free": {
+      "name": "Gratis",
+      "price": "Rp0",
+      "period": "selamanya",
+      "body": "Untuk mencoba cara belajar di Pyground.",
+      "features": ["Seluruh Tahap 1 (14 pelajaran)", "Playground dan kuis", "Progres dan streak tersimpan"],
+      "cta": "Buat akun gratis"
+    },
+    "pass": {
+      "badge": "Paling lengkap",
+      "name": "Akses 30 hari",
+      "period": "/ 30 hari",
+      "body": "Semua tahap, semua proyek.",
+      "features": [
+        "Semua 61 pelajaran dan pelajaran baru",
+        "Semua proyek dan kuis",
+        "Perpanjang lebih awal, sisa hari tidak hangus",
+        "Pengingat email sebelum akses berakhir"
+      ],
+      "cta": "Beli akses"
+    }
+  },
+  "Faq": {
+    "tag": "FAQ",
+    "label": "Tanya jawab",
+    "title": "Pertanyaan yang sering muncul",
+    "items": [
+      {
+        "q": "Saya belum pernah coding sama sekali. Bisa ikut?",
+        "a": "Bisa. Tahap 1 dimulai dari \"apa itu program\" dan memakai contoh sehari-hari. Kamu tidak perlu latar belakang matematika atau IT."
+      },
+      {
+        "q": "Perlu install Python di komputer?",
+        "a": "Tidak. Python berjalan langsung di browser. Kamu baru perlu install Python di Tahap 3, saat belajar pip dan virtual environment, dan ada panduannya."
+      },
+      {
+        "q": "Bisa belajar dari HP?",
+        "a": "Bisa. Semua halaman dirancang untuk layar HP. Untuk menulis kode yang panjang, laptop tetap lebih nyaman."
+      },
+      {
+        "q": "Apakah akses diperpanjang otomatis?",
+        "a": "Tidak. Akses berlaku 30 hari sejak pembayaran. Kami mengirim email 3 hari sebelum dan di hari akses berakhir. Kalau kamu memperpanjang lebih awal, 30 hari ditambahkan ke sisa akses yang masih ada."
+      },
+      {
+        "q": "Apa yang terjadi dengan progres saya kalau akses berakhir?",
+        "a": "Progresmu tetap tersimpan. Tahap 1 tetap bisa dibuka, dan pelajaran lain terbuka lagi begitu kamu memperpanjang."
+      },
+      {
+        "q": "Ada versi bahasa Inggris?",
+        "a": "Ada. Semua pelajaran tersedia dalam Bahasa Indonesia dan Inggris, dan kamu bisa mengganti bahasa kapan saja."
+      }
+    ]
+  },
+  "Cta": {
+    "tag": "Mulai",
+    "label": "Hari ini",
+    "title": "Siap menulis baris Python pertamamu?",
+    "body": "14 pelajaran pertama gratis. Daftar cukup dengan email.",
+    "primary": "Mulai gratis",
+    "secondary": "Lihat kurikulum",
+    "ran": "main.py · 0,2 detik",
+    "quizDone": "Kuis selesai",
+    "quizBody": "3 dari 3 jawaban benar. Lanjut ke pelajaran berikutnya.",
+    "streak": "Streak 6 hari"
+  },
+  "Footer": {
+    "learn": "Belajar",
+    "account": "Akun",
+    "links": {
+      "curriculum": "Kurikulum",
+      "pricing": "Harga",
+      "faq": "FAQ",
+      "signIn": "Masuk",
+      "signUp": "Daftar gratis"
+    }
+  }
+}
