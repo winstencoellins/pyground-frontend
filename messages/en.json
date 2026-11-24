@@ -8,10 +8,18 @@
     "tagline": "Learn Python from scratch, right in your browser.",
     "themeToggle": "Switch light/dark mode",
     "language": "Language",
-    "languageNames": { "id": "Bahasa Indonesia", "en": "English" }
+    "languageNames": {
+      "id": "Bahasa Indonesia",
+      "en": "English"
+    }
   },
   "Header": {
-    "nav": { "why": "Why Pyground", "curriculum": "Curriculum", "pricing": "Pricing", "faq": "FAQ" },
+    "nav": {
+      "why": "Why Pyground",
+      "curriculum": "Curriculum",
+      "pricing": "Pricing",
+      "faq": "FAQ"
+    },
     "navLabel": "Main",
     "signIn": "Sign in",
     "start": "Start free"
@@ -110,7 +118,11 @@
     "title": "From your first print to building for the web",
     "body": "Lessons build on each other, so you always know what comes next.",
     "stage": "Stage {number}",
-    "status": { "free": "Free", "paid": "Full access", "soon": "Coming soon" },
+    "status": {
+      "free": "Free",
+      "paid": "Full access",
+      "soon": "Coming soon"
+    },
     "items": [
       {
         "title": "Foundations",
@@ -150,9 +162,18 @@
     "statement": "Every stage ends with a real project: a corner-shop cashier, a student grade book, and an expense tracker that saves data to a file and is tested with pytest.",
     "projects": "Cashier · Grade Book · Expense Tracker",
     "stats": [
-      { "value": "61", "label": "interactive lessons" },
-      { "value": "15+ hrs", "label": "of material" },
-      { "value": "ID · EN", "label": "two languages" }
+      {
+        "value": "61",
+        "label": "interactive lessons"
+      },
+      {
+        "value": "15+ hrs",
+        "label": "of material"
+      },
+      {
+        "value": "ID · EN",
+        "label": "two languages"
+      }
     ]
   },
   "Pricing": {
@@ -236,5 +257,83 @@
       "signIn": "Sign in",
       "signUp": "Sign up free"
     }
+  },
+  "Auth": {
+    "asideTitle": "Learn Python a little at a time, every day.",
+    "asideBody": "Write code, run it, and see the result right in your browser.",
+    "backHome": "Back to home",
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "newPassword": "New password",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "passwordHint": "At least 8 characters."
+    },
+    "signUp": {
+      "title": "Create a free account",
+      "body": "Start Stage 1 now. All you need is an email.",
+      "submit": "Create account",
+      "haveAccount": "Already have an account?",
+      "signInLink": "Sign in",
+      "terms": "By signing up, you agree to receive emails about your account."
+    },
+    "signIn": {
+      "title": "Sign in to Pyground",
+      "body": "Pick up where you left off.",
+      "submit": "Sign in",
+      "forgot": "Forgot password?",
+      "noAccount": "No account yet?",
+      "signUpLink": "Sign up free",
+      "unverified": "Your email isn't verified yet. We just sent a new verification link to {email}."
+    },
+    "verify": {
+      "title": "Check your email",
+      "body": "We sent a verification link to {email}. Click it to activate your account.",
+      "bodyNoEmail": "We sent a verification link to your email. Click it to activate your account.",
+      "spam": "Not in your inbox? Check your spam folder, or send it again.",
+      "resend": "Resend link",
+      "resent": "A new link is on its way.",
+      "doneTitle": "Email verified",
+      "doneBody": "Your account is active and you're signed in.",
+      "continue": "Start learning",
+      "errorTitle": "This link doesn't work",
+      "errorBody": "This verification link has expired or was already used. Enter your email to get a new one."
+    },
+    "forgot": {
+      "title": "Forgot your password",
+      "body": "Enter your account email and we'll send you a link to set a new password.",
+      "submit": "Send link",
+      "sentTitle": "Check your email",
+      "sent": "If {email} has an account, a password reset link is on its way. The link works for 1 hour.",
+      "back": "Back to sign in"
+    },
+    "reset": {
+      "title": "Set a new password",
+      "body": "A new password signs you out on all other devices.",
+      "submit": "Save password",
+      "doneTitle": "Password updated",
+      "doneBody": "Sign in with your new password.",
+      "signIn": "Sign in",
+      "invalidTitle": "This link doesn't work",
+      "invalidBody": "This link has expired or was already used. Request a new one from the forgot-password page.",
+      "requestNew": "Request a new link"
+    },
+    "errors": {
+      "INVALID_EMAIL_OR_PASSWORD": "Wrong email or password.",
+      "USER_ALREADY_EXISTS": "This email already has an account. Try signing in, or use another email.",
+      "INVALID_EMAIL": "That email address doesn't look right.",
+      "PASSWORD_TOO_SHORT": "Use at least 8 characters.",
+      "PASSWORD_TOO_LONG": "That password is too long.",
+      "INVALID_TOKEN": "This link has expired or isn't valid.",
+      "RATE_LIMITED": "Too many attempts. Wait a moment, then try again.",
+      "NETWORK": "Can't reach the server. Check your connection and try again.",
+      "UNKNOWN": "Something went wrong. Try again in a moment."
+    }
+  },
+  "Account": {
+    "signOut": "Sign out",
+    "menu": "Account"
   }
 }

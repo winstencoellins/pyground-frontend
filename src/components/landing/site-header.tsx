@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { HeaderAuth } from "@/components/header-auth";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { brand } from "@/config/brand";
@@ -15,6 +16,7 @@ const anchors = [
 export function SiteHeader() {
   const t = useTranslations("Header");
   const common = useTranslations("Common");
+  const account = useTranslations("Account");
   return (
     <header className="sticky top-0 z-20 bg-background/85 backdrop-blur">
       <Container className="grid h-[72px] grid-cols-[1fr_auto] items-center gap-4 md:grid-cols-[1fr_auto_1fr]">
@@ -40,16 +42,7 @@ export function SiteHeader() {
             names={{ id: common("languageNames.id"), en: common("languageNames.en") }}
           />
           <ThemeToggle label={common("themeToggle")} />
-          {/* shortcut: auth routes arrive with #11; these point at the page until then. */}
-          <a href="#harga" className="hidden px-1.5 text-[0.9rem] font-semibold lg:block">
-            {t("signIn")}
-          </a>
-          <a
-            href="#harga"
-            className="hidden h-10 items-center rounded-full bg-foreground px-4 text-[0.88rem] font-semibold text-background outline-none focus-visible:ring-4 focus-visible:ring-ring/50 sm:inline-flex"
-          >
-            {t("start")}
-          </a>
+          <HeaderAuth labels={{ signIn: t("signIn"), start: t("start"), signOut: account("signOut") }} />
         </div>
       </Container>
     </header>

@@ -1,6 +1,7 @@
 import { Check, Flame, Languages, ListChecks, Play, Terminal } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { brand } from "@/config/brand";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { DashboardMock } from "./dashboard-mock";
 import { passPrice, stageVisuals, type StageShape, type StageStatus } from "./data";
@@ -29,7 +30,7 @@ export function Hero() {
             {t("title")}
           </h1>
           <p className="max-w-[30em] text-[1.05rem] leading-relaxed text-muted-foreground">{t("body")}</p>
-          <PillLink href="#harga">{t("cta")}</PillLink>
+          <PillLink href="/sign-up">{t("cta")}</PillLink>
           <ul className="mt-4 grid gap-1.5 text-sm text-muted-foreground">
             {points.map((p) => (
               <li key={p} className="flex items-center gap-2">
@@ -162,7 +163,7 @@ export function Overview() {
           <SectionTitle tag={t("tag")} label={t("label")} title={t("title")}>
             {t("body")}
           </SectionTitle>
-          <PillLink href="#harga">{t("cta")}</PillLink>
+          <PillLink href="/sign-up">{t("cta")}</PillLink>
           <ul className="flex flex-wrap gap-x-5 gap-y-2 text-[0.88rem]">
             {(t.raw("points") as string[]).map((p) => (
               <li key={p} className="flex items-center gap-2">
@@ -362,7 +363,7 @@ export function Pricing() {
                 <CheckItem key={f}>{f}</CheckItem>
               ))}
             </ul>
-            <OutlinePill href="#top">{t("free.cta")}</OutlinePill>
+            <OutlinePill href="/sign-up">{t("free.cta")}</OutlinePill>
           </div>
 
           <div className="overflow-hidden rounded-[22px] border-2 border-highlight">
@@ -383,7 +384,7 @@ export function Pricing() {
                   <CheckItem key={f}>{f}</CheckItem>
                 ))}
               </ul>
-              <PillLink href="#top">{t("pass.cta")}</PillLink>
+              <PillLink href="/sign-up">{t("pass.cta")}</PillLink>
             </div>
           </div>
         </div>
@@ -440,7 +441,7 @@ export function FinalCta() {
             </h2>
             <p className="text-white/70">{t("body")}</p>
             <div className="flex flex-wrap gap-3">
-              <PillLink href="#top" tone="light">
+              <PillLink href="/sign-up" tone="light">
                 {t("primary")}
               </PillLink>
               <a
@@ -495,8 +496,8 @@ export function SiteFooter() {
     {
       title: t("account"),
       links: [
-        [t("links.signIn"), "#top"],
-        [t("links.signUp"), "#top"],
+        [t("links.signIn"), "/sign-in"],
+        [t("links.signUp"), "/sign-up"],
       ],
     },
   ];
@@ -516,11 +517,17 @@ export function SiteFooter() {
         {cols.map((c) => (
           <nav key={c.title} aria-label={c.title} className="grid content-start gap-2.5 text-sm">
             <p className="font-semibold">{c.title}</p>
-            {c.links.map(([label, href]) => (
-              <a key={label} href={href} className="w-fit text-muted-foreground hover:text-foreground">
-                {label}
-              </a>
-            ))}
+            {c.links.map(([label, href]) =>
+              href.startsWith("#") ? (
+                <a key={label} href={href} className="w-fit text-muted-foreground hover:text-foreground">
+                  {label}
+                </a>
+              ) : (
+                <Link key={label} href={href} className="w-fit text-muted-foreground hover:text-foreground">
+                  {label}
+                </Link>
+              ),
+            )}
           </nav>
         ))}
       </Container>

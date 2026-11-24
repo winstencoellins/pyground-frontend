@@ -8,10 +8,18 @@
     "tagline": "Belajar Python dari nol, langsung di browser.",
     "themeToggle": "Ganti mode terang/gelap",
     "language": "Bahasa",
-    "languageNames": { "id": "Bahasa Indonesia", "en": "English" }
+    "languageNames": {
+      "id": "Bahasa Indonesia",
+      "en": "English"
+    }
   },
   "Header": {
-    "nav": { "why": "Kenapa Pyground", "curriculum": "Kurikulum", "pricing": "Harga", "faq": "FAQ" },
+    "nav": {
+      "why": "Kenapa Pyground",
+      "curriculum": "Kurikulum",
+      "pricing": "Harga",
+      "faq": "FAQ"
+    },
     "navLabel": "Utama",
     "signIn": "Masuk",
     "start": "Mulai gratis"
@@ -67,12 +75,18 @@
         "title": "Langsung jalan di browser",
         "body": "Python berjalan di halaman pelajaran. Tidak perlu install apa pun untuk mulai."
       },
-      { "title": "Bahasa Indonesia", "body": "Penjelasan dan contoh yang dekat: warung, kos, ojek, nilai rapor." },
+      {
+        "title": "Bahasa Indonesia",
+        "body": "Penjelasan dan contoh yang dekat: warung, kos, ojek, nilai rapor."
+      },
       {
         "title": "Kuis di setiap pelajaran",
         "body": "Tiga pertanyaan singkat untuk memastikan kamu paham sebelum lanjut."
       },
-      { "title": "Progres dan streak", "body": "Progresmu tersimpan, dan streak harian membantumu belajar rutin." }
+      {
+        "title": "Progres dan streak",
+        "body": "Progresmu tersimpan, dan streak harian membantumu belajar rutin."
+      }
     ]
   },
   "Overview": {
@@ -104,7 +118,11 @@
     "title": "Dari print pertama sampai membangun web",
     "body": "Materi tersusun berurutan. Kamu tahu persis apa yang dipelajari selanjutnya.",
     "stage": "Tahap {number}",
-    "status": { "free": "Gratis", "paid": "Akses penuh", "soon": "Segera hadir" },
+    "status": {
+      "free": "Gratis",
+      "paid": "Akses penuh",
+      "soon": "Segera hadir"
+    },
     "items": [
       {
         "title": "Dasar-Dasar",
@@ -144,9 +162,18 @@
     "statement": "Setiap tahap ditutup dengan proyek nyata: program kasir warung, buku nilai siswa, sampai pencatat pengeluaran yang menyimpan data ke file dan diuji dengan pytest.",
     "projects": "Kasir Warung · Buku Nilai Siswa · Pencatat Pengeluaran",
     "stats": [
-      { "value": "61", "label": "pelajaran interaktif" },
-      { "value": "15+ jam", "label": "materi belajar" },
-      { "value": "ID · EN", "label": "dua bahasa" }
+      {
+        "value": "61",
+        "label": "pelajaran interaktif"
+      },
+      {
+        "value": "15+ jam",
+        "label": "materi belajar"
+      },
+      {
+        "value": "ID · EN",
+        "label": "dua bahasa"
+      }
     ]
   },
   "Pricing": {
@@ -230,5 +257,83 @@
       "signIn": "Masuk",
       "signUp": "Daftar gratis"
     }
+  },
+  "Auth": {
+    "asideTitle": "Belajar Python sedikit demi sedikit, setiap hari.",
+    "asideBody": "Tulis kode, jalankan, dan lihat hasilnya langsung di browser.",
+    "backHome": "Kembali ke beranda",
+    "fields": {
+      "name": "Nama",
+      "email": "Email",
+      "password": "Kata sandi",
+      "newPassword": "Kata sandi baru",
+      "showPassword": "Tampilkan kata sandi",
+      "hidePassword": "Sembunyikan kata sandi",
+      "passwordHint": "Minimal 8 karakter."
+    },
+    "signUp": {
+      "title": "Buat akun gratis",
+      "body": "Mulai Tahap 1 sekarang. Kamu hanya perlu email.",
+      "submit": "Buat akun",
+      "haveAccount": "Sudah punya akun?",
+      "signInLink": "Masuk",
+      "terms": "Dengan mendaftar, kamu setuju menerima email terkait akunmu."
+    },
+    "signIn": {
+      "title": "Masuk ke Pyground",
+      "body": "Lanjutkan belajar dari terakhir kali.",
+      "submit": "Masuk",
+      "forgot": "Lupa kata sandi?",
+      "noAccount": "Belum punya akun?",
+      "signUpLink": "Daftar gratis",
+      "unverified": "Email kamu belum diverifikasi. Kami baru saja mengirim link verifikasi baru ke {email}."
+    },
+    "verify": {
+      "title": "Cek email kamu",
+      "body": "Kami mengirim link verifikasi ke {email}. Klik link itu untuk mengaktifkan akunmu.",
+      "bodyNoEmail": "Kami mengirim link verifikasi ke email kamu. Klik link itu untuk mengaktifkan akunmu.",
+      "spam": "Tidak ada di kotak masuk? Cek folder spam, atau kirim ulang.",
+      "resend": "Kirim ulang link",
+      "resent": "Link baru sudah dikirim.",
+      "doneTitle": "Email terverifikasi",
+      "doneBody": "Akunmu sudah aktif dan kamu sudah masuk.",
+      "continue": "Mulai belajar",
+      "errorTitle": "Link tidak berlaku",
+      "errorBody": "Link verifikasi ini sudah kedaluwarsa atau pernah dipakai. Masukkan email kamu untuk menerima link baru."
+    },
+    "forgot": {
+      "title": "Lupa kata sandi",
+      "body": "Masukkan email akunmu. Kami akan mengirim link untuk membuat kata sandi baru.",
+      "submit": "Kirim link",
+      "sentTitle": "Cek email kamu",
+      "sent": "Kalau {email} terdaftar, link untuk mengatur ulang kata sandi sudah dikirim. Link berlaku selama 1 jam.",
+      "back": "Kembali ke halaman masuk"
+    },
+    "reset": {
+      "title": "Buat kata sandi baru",
+      "body": "Kata sandi baru akan mengeluarkanmu dari semua perangkat lain.",
+      "submit": "Simpan kata sandi",
+      "doneTitle": "Kata sandi diperbarui",
+      "doneBody": "Silakan masuk dengan kata sandi barumu.",
+      "signIn": "Masuk",
+      "invalidTitle": "Link tidak berlaku",
+      "invalidBody": "Link ini sudah kedaluwarsa atau pernah dipakai. Minta link baru dari halaman lupa kata sandi.",
+      "requestNew": "Minta link baru"
+    },
+    "errors": {
+      "INVALID_EMAIL_OR_PASSWORD": "Email atau kata sandi salah.",
+      "USER_ALREADY_EXISTS": "Email ini sudah terdaftar. Coba masuk, atau pakai email lain.",
+      "INVALID_EMAIL": "Format email tidak valid.",
+      "PASSWORD_TOO_SHORT": "Kata sandi minimal 8 karakter.",
+      "PASSWORD_TOO_LONG": "Kata sandi terlalu panjang.",
+      "INVALID_TOKEN": "Link sudah kedaluwarsa atau tidak valid.",
+      "RATE_LIMITED": "Terlalu banyak percobaan. Tunggu sebentar, lalu coba lagi.",
+      "NETWORK": "Tidak bisa terhubung ke server. Periksa koneksimu, lalu coba lagi.",
+      "UNKNOWN": "Terjadi kesalahan. Coba lagi sebentar lagi."
+    }
+  },
+  "Account": {
+    "signOut": "Keluar",
+    "menu": "Akun"
   }
 }

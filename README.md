@@ -16,6 +16,7 @@ backend running: in `pyground-backend/`, `docker compose up -d --wait` then `bun
 
 ```bash
 bun run typecheck && bun run lint && bun run format:check
+bun run test               # unit tests (bun test)
 bun run build
 ```
 
@@ -40,6 +41,14 @@ sibling backend checkout (`file:../pyground-backend/types-package`); after API c
 backend, then `bun install --force` here. To switch to the published package, add an `.npmrc` with
 `@winstencoellins:registry=https://npm.pkg.github.com` and a `read:packages` token, and set the dependency to its version.
 `tsconfig.json` has `preserveSymlinks` so the linked types use this app's `elysia`.
+
+## Sign-in
+
+Better Auth's React client (`src/lib/auth-client.ts`) talks to `/api/auth/*` on this origin. Pages live in
+`src/app/[locale]/(auth)`: sign-up, sign-in, verify-email, forgot-password, reset-password. Email verification is
+required; links land on `/{locale}/verify-email?verified=1` (signed in) or with `?error=`. `?next=/path` on sign-in
+returns there afterwards (same-site paths only, see `src/lib/safe-next.ts`). To try it locally the API must run with
+`WEB_URL` set to this site's origin.
 
 ## Environment
 

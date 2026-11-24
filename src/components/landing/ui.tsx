@@ -1,5 +1,11 @@
 import { ArrowRight } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+
+/** In-page anchors (#harga) stay plain links; paths go through the locale-aware Link. */
+function Anchor({ href, ...props }: React.ComponentProps<"a"> & { href: string }) {
+  return href.startsWith("#") ? <a href={href} {...props} /> : <Link href={href} {...props} />;
+}
 
 export function Container({ className, ...props }: React.ComponentProps<"div">) {
   return <div className={cn("mx-auto w-full max-w-[1200px] px-4 sm:px-6", className)} {...props} />;
@@ -33,7 +39,7 @@ export function PillLink({
   className?: string;
 }) {
   return (
-    <a
+    <Anchor
       href={href}
       className={cn(
         "group inline-flex h-12 w-fit items-center gap-3 rounded-full py-1.5 pr-1.5 pl-5 text-[0.95rem] font-semibold shadow-[0_12px_24px_-12px_rgb(0_0_0/0.35)] transition-transform outline-none hover:-translate-y-0.5 focus-visible:ring-4 focus-visible:ring-ring/50",
@@ -45,18 +51,18 @@ export function PillLink({
       <span className="grid size-9 place-items-center rounded-full bg-highlight text-highlight-foreground transition-transform group-hover:translate-x-0.5">
         <ArrowRight className="size-4" aria-hidden />
       </span>
-    </a>
+    </Anchor>
   );
 }
 
 export function OutlinePill({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <a
+    <Anchor
       href={href}
       className="inline-flex h-11 w-fit items-center rounded-full border bg-card px-5 text-[0.92rem] font-semibold outline-none hover:border-foreground/40 focus-visible:ring-4 focus-visible:ring-ring/50"
     >
       {children}
-    </a>
+    </Anchor>
   );
 }
 
