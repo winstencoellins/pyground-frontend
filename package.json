@@ -12,6 +12,7 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@elysiajs/eden": "1.4.9",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.2",
     "lucide-react": "^1.79.0",
@@ -29,6 +30,8 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@winstencoellins/pyground-api-types": "file:../pyground-backend/types-package",
+    "elysia": "1.4.32",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
     "prettier": "3.6.2",
