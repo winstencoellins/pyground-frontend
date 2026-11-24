@@ -1,10 +1,11 @@
 import { useTranslations } from "next-intl";
+import { Suspense } from "react";
 import { HeaderAuth } from "@/components/header-auth";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { brand } from "@/config/brand";
 import { Link } from "@/i18n/navigation";
-import { AppNav } from "./app-nav";
+import { AppNav, NavLinks } from "./app-nav";
 
 export function AppHeader() {
   const t = useTranslations("App");
@@ -13,7 +14,7 @@ export function AppHeader() {
   const account = useTranslations("Account");
   const items = [
     { href: "/dashboard", label: t("nav.dashboard") },
-    { href: "/#kurikulum", label: t("nav.curriculum") },
+    { href: "/lessons", label: t("nav.curriculum") },
   ];
   return (
     <header className="sticky top-0 z-20 border-b bg-background/85 backdrop-blur">
@@ -25,13 +26,18 @@ export function AppHeader() {
             </span>
             <span className="hidden sm:inline">{brand.name}</span>
           </Link>
-          <AppNav label={t("navLabel")} items={items} className="hidden md:flex" />
+          <Suspense fallback={<NavLinks label={t("navLabel")} items={items} className="hidden md:flex" />}>
+            <AppNav label={t("navLabel")} items={items} className="hidden md:flex" />
+          </Suspense>
         </div>
         <div className="flex items-center gap-2">
-          <LocaleSwitcher
-            label={common("language")}
-            names={{ id: common("languageNames.id"), en: common("languageNames.en") }}
-          />
+          {/* Reads the current path; on per-request pages (lessons) that resolves after the static shell. */}
+          <Suspense fallback={<div className="h-9 w-[76px] rounded-full border" />}>
+            <LocaleSwitcher
+              label={common("language")}
+              names={{ id: common("languageNames.id"), en: common("languageNames.en") }}
+            />
+          </Suspense>
           <ThemeToggle label={common("themeToggle")} />
           <HeaderAuth
             labels={{
@@ -46,7 +52,9 @@ export function AppHeader() {
       </div>
       {/* Phones: the nav gets its own row so the top bar never overflows. */}
       <div className="border-t px-4 py-1.5 md:hidden">
-        <AppNav label={t("navLabel")} items={items} />
+        <Suspense fallback={<NavLinks label={t("navLabel")} items={items} />}>
+          <AppNav label={t("navLabel")} items={items} />
+        </Suspense>
       </div>
     </header>
   );

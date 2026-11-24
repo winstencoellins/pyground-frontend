@@ -62,6 +62,14 @@ Pages in `src/app/[locale]/(app)` share the app header (nav, language, theme, si
 Free lessons stay public; the API decides which lessons need a pass. New protected sections: add their prefix to
 `PROTECTED_PREFIXES`.
 
+## Lessons
+
+`/{locale}/lessons` lists the curriculum and `/{locale}/lessons/[slug]` renders one lesson. The API serves the MDX
+source (`src/lib/lessons.ts`); `src/components/lesson/lesson-content.tsx` compiles it on the server with MDX 3 + GFM and
+maps elements to Pyground typography. Lesson components live in `src/components/lesson/blocks.tsx`. Playground, Quiz,
+AnimatedDiagram and VideoEmbed are read-only stand-ins until #14, #15 and #16. Free lessons are public; locked ones
+show a sign-in / pricing panel.
+
 ## Environment
 
 | Variable               | Purpose                                                                                       |

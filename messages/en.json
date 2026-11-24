@@ -350,5 +350,23 @@
       "body": "This is your learning space. Progress per stage and a continue-learning button will appear here soon.",
       "browse": "See the curriculum"
     }
+  },
+  "Lessons": {
+    "title": "Curriculum",
+    "body": "Every Pyground lesson, in order from the basics. Stage 1 is free.",
+    "stage": "Stage {number}",
+    "minutes": "{count} min",
+    "free": "Free",
+    "locked": "Locked",
+    "lessonsCount": "{count} lessons",
+    "back": "All lessons",
+    "fallback": "This lesson isn't translated yet, so it's shown in Indonesian.",
+    "lockedTitle": "This lesson needs full access",
+    "lockedBody": "Stage 1 is free for everyone. To open this lesson, sign in and get 30-day access.",
+    "signIn": "Sign in",
+    "seePricing": "See pricing",
+    "notFoundTitle": "Lesson not found",
+    "notFoundBody": "Its name may have changed. Find it in the lesson list.",
+    "loading": "Loading lesson…"
   }
 }

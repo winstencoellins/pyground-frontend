@@ -24,7 +24,7 @@ export function SiteHeader() {
           <span className="grid size-9 place-items-center rounded-full bg-foreground font-mono text-[0.78rem] font-semibold text-background">
             py
           </span>
-          {brand.name}
+          <span className="max-[400px]:sr-only">{brand.name}</span>
         </Link>
         <nav
           aria-label={t("navLabel")}

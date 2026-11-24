@@ -18,7 +18,7 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/das
         {t("dashboard.greeting", { name: me?.name.split(" ")[0] ?? "" })}
       </h1>
       <p className="text-[1.05rem] leading-relaxed text-muted-foreground">{t("dashboard.body")}</p>
-      <PillLink href="/#kurikulum">{t("dashboard.browse")}</PillLink>
+      <PillLink href="/lessons">{t("dashboard.browse")}</PillLink>
     </div>
   );
 }

@@ -51,7 +51,7 @@ export function HeaderAuth({ labels, inApp = false }: { labels: Labels; inApp?: 
       </Link>
       <Link
         href="/sign-up"
-        className="hidden h-10 items-center rounded-full bg-foreground px-4 text-[0.88rem] font-semibold text-background outline-none focus-visible:ring-4 focus-visible:ring-ring/50 sm:inline-flex"
+        className="inline-flex h-10 items-center rounded-full bg-foreground px-4 text-[0.88rem] font-semibold whitespace-nowrap text-background outline-none focus-visible:ring-4 focus-visible:ring-ring/50"
       >
         {labels.start}
       </Link>

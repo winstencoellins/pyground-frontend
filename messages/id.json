@@ -350,5 +350,23 @@
       "body": "Ini ruang belajarmu. Progres per tahap dan tombol lanjutkan belajar segera muncul di sini.",
       "browse": "Lihat kurikulum"
     }
+  },
+  "Lessons": {
+    "title": "Kurikulum",
+    "body": "Semua pelajaran Pyground, berurutan dari dasar. Tahap 1 gratis.",
+    "stage": "Tahap {number}",
+    "minutes": "{count} menit",
+    "free": "Gratis",
+    "locked": "Terkunci",
+    "lessonsCount": "{count} pelajaran",
+    "back": "Semua pelajaran",
+    "fallback": "Pelajaran ini belum diterjemahkan, jadi ditampilkan dalam Bahasa Indonesia.",
+    "lockedTitle": "Pelajaran ini butuh akses penuh",
+    "lockedBody": "Tahap 1 gratis untuk semua. Untuk membuka pelajaran ini, masuk dan aktifkan akses 30 hari.",
+    "signIn": "Masuk",
+    "seePricing": "Lihat harga",
+    "notFoundTitle": "Pelajaran tidak ditemukan",
+    "notFoundBody": "Mungkin namanya berubah. Cari dari daftar pelajaran.",
+    "loading": "Memuat pelajaran…"
   }
 }
