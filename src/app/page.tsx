@@ -1,5 +1,16 @@
 import { SiteHeader } from "@/components/landing/site-header";
-import { Curriculum, Facts, Faq, FinalCta, Hero, HowItWorks, Pricing, SiteFooter } from "@/components/landing/sections";
+import {
+  Faq,
+  FinalCta,
+  Hero,
+  Overview,
+  Pricing,
+  Showcase,
+  SiteFooter,
+  Stages,
+  TopicStrip,
+  Why,
+} from "@/components/landing/sections";
 
 export default function Home() {
   return (
@@ -7,9 +18,11 @@ export default function Home() {
       <SiteHeader />
       <main id="top" className="flex-1">
         <Hero />
-        <Facts />
-        <HowItWorks />
-        <Curriculum />
+        <TopicStrip />
+        <Why />
+        <Overview />
+        <Stages />
+        <Showcase />
         <Pricing />
         <Faq />
         <FinalCta />

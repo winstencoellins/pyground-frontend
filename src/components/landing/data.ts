@@ -1,81 +1,84 @@
-// Landing copy that comes in lists. Numbers match the lessons in pyground-backend/content.
+// Landing copy that comes in lists. Numbers and titles match the lessons in pyground-backend/content.
 // shortcut: Indonesian only; moves into next-intl messages with #40 (bilingual routes).
 
-export const facts = [
-  { value: "61", label: "pelajaran interaktif" },
-  { value: "15+ jam", label: "materi, dari nol sampai OOP" },
-  { value: "3", label: "proyek nyata untuk portofolio" },
-  { value: "ID · EN", label: "Bahasa Indonesia dan Inggris" },
+/** Hero ticker: real lesson topics, in course order. */
+export const learnables = [
+  "Membuat program kasir warung",
+  "Menyimpan daftar belanja di list",
+  "Menulis fungsi pertamamu",
+  "Membaca pesan error tanpa panik",
+  "Mengolah file CSV dan JSON",
+  "Membuat class dengan OOP",
+  "Menguji kode dengan pytest",
 ];
 
-export const steps = [
+/** Topic strip under the hero. */
+export const topics = ["Python 3", "Percabangan", "Fungsi", "OOP", "File & JSON", "pytest", "Flask"];
+
+export const features = [
   {
-    title: "Baca",
-    body: "Penjelasan pendek dengan contoh sehari-hari: belanja di warung, bayar kos, hitung nilai rapor. Tanpa istilah yang bikin pusing.",
+    icon: "play",
+    title: "Langsung jalan di browser",
+    body: "Python berjalan di halaman pelajaran. Tidak perlu install apa pun untuk mulai.",
   },
   {
-    title: "Coba",
-    body: "Setiap contoh bisa kamu ubah dan jalankan di browser. Salah ketik? Lihat pesan error-nya dan perbaiki sendiri.",
+    icon: "languages",
+    title: "Bahasa Indonesia",
+    body: "Penjelasan dan contoh yang dekat: warung, kos, ojek, nilai rapor.",
   },
   {
-    title: "Kuis",
-    body: "Tiga pertanyaan di akhir pelajaran. Progres dan streak harianmu tersimpan, jadi kamu bisa lanjut kapan saja.",
+    icon: "list-checks",
+    title: "Kuis di setiap pelajaran",
+    body: "Tiga pertanyaan singkat untuk memastikan kamu paham sebelum lanjut.",
   },
-];
+  {
+    icon: "flame",
+    title: "Progres dan streak",
+    body: "Progresmu tersimpan, dan streak harian membantumu belajar rutin.",
+  },
+] as const;
 
 export type Stage = {
   number: number;
   title: string;
+  summary: string;
   meta: string;
   status: "free" | "paid" | "soon";
-  modules: string[];
+  shape: "sphere" | "ring" | "blocks" | "pyramid";
 };
 
 export const stages: Stage[] = [
   {
     number: 1,
     title: "Dasar-Dasar",
-    meta: "14 pelajaran · sekitar 3 jam",
+    summary: "Variabel, input, string, percabangan, dan proyek kasir warung.",
+    meta: "14 pelajaran · ±3 jam",
     status: "free",
-    modules: [
-      "Apa Itu Pemrograman",
-      "Variabel dan Tipe Data",
-      "Input dan Operator",
-      "String",
-      "Percabangan",
-      "Proyek Mini: Kasir Warung",
-    ],
+    shape: "sphere",
   },
   {
     number: 2,
     title: "Inti Pemula",
-    meta: "19 pelajaran · sekitar 5 jam",
+    summary: "Perulangan, list, dictionary, fungsi, dan debugging.",
+    meta: "19 pelajaran · ±5 jam",
     status: "paid",
-    modules: ["Perulangan", "List dan Tuple", "Dictionary dan Set", "Fungsi", "Debugging", "Proyek: Buku Nilai Siswa"],
+    shape: "ring",
   },
   {
     number: 3,
     title: "Menengah",
-    meta: "27 pelajaran · sekitar 8 jam",
+    summary: "File, OOP, decorator, generator, type hint, dan pytest.",
+    meta: "27 pelajaran · ±8 jam",
     status: "paid",
-    modules: [
-      "Penanganan Error",
-      "File, CSV, JSON",
-      "Modul, pip, dan venv",
-      "Comprehension",
-      "OOP",
-      "Decorator",
-      "Generator",
-      "Type Hint dan pytest",
-      "Proyek: Pencatat Pengeluaran",
-    ],
+    shape: "blocks",
   },
   {
     number: 4,
-    title: "Pengembangan Web dengan Flask",
+    title: "Web dengan Flask",
+    summary: "Routing, template, form, database, login, dan deploy.",
     meta: "Pelajaran pertama sudah tersedia",
     status: "soon",
-    modules: ["Bagaimana Web Bekerja", "Routing", "Template Jinja2", "Form", "Database", "Login", "REST API", "Deploy"],
+    shape: "pyramid",
   },
 ];
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Play } from "lucide-react";
 
 // What the program below really prints (checked with Python 3.11).
 const OUTPUT = ["beras  Rp 14,000", "telur  Rp 28,000", "gula   Rp 17,500", "Total  Rp 59,500"];
@@ -88,17 +88,21 @@ export function PlaygroundDemo() {
   return (
     <div
       aria-label="Contoh playground"
-      className="min-w-0 overflow-hidden rounded-[18px] border bg-card shadow-[0_24px_48px_-28px_color-mix(in_srgb,var(--primary)_45%,transparent)]"
+      className="min-w-0 overflow-hidden rounded-[22px] border bg-card shadow-[0_40px_80px_-40px_rgb(27_29_58/0.5)]"
     >
       <div className="flex items-center justify-between gap-2.5 border-b py-2.5 pr-3 pl-4">
         <span className="flex items-center gap-2 font-mono text-[0.8rem] text-muted-foreground">
           <span className="font-sans text-[0.82rem] font-bold text-foreground">Dictionary dan Set</span>· main.py
         </span>
-        <Button size="lg" className="px-4 font-bold" onClick={run}>
-          Jalankan
-        </Button>
+        <button
+          type="button"
+          onClick={run}
+          className="inline-flex h-9 items-center gap-1.5 rounded-full bg-foreground px-4 text-[0.82rem] font-semibold text-background outline-none focus-visible:ring-4 focus-visible:ring-ring/50"
+        >
+          <Play className="size-3.5" aria-hidden /> Jalankan
+        </button>
       </div>
-      <pre className="overflow-x-auto px-[18px] py-4 font-mono text-[0.86rem] leading-[1.75]">
+      <pre className="overflow-x-auto px-[18px] py-4 font-mono text-[0.8rem] leading-[1.75]">
         {CODE.map((line, i) => (
           <div key={i}>
             <span className="inline-block w-[1.6em] text-code-comment opacity-70 select-none">{i + 1}</span>
