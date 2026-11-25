@@ -387,5 +387,16 @@
     "stopped": "Program stopped.",
     "crash": "Python stopped unexpectedly (maybe recursion went too deep). Try running it again.",
     "offline": "Python couldn't load. Check your internet connection and try again."
+  },
+  "Quiz": {
+    "progress": "{answered} of {total} answered",
+    "correct": "Correct!",
+    "wrong": "Not quite.",
+    "score": "{correct} of {total} correct.",
+    "perfect": "Perfect!",
+    "retry": "Retry quiz",
+    "saved": "Quiz result saved.",
+    "saveFailed": "Quiz result wasn't saved. Try again later.",
+    "signInToSave": "Sign in to save your quiz results"
   }
 }

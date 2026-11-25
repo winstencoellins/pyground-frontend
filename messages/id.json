@@ -387,5 +387,16 @@
     "stopped": "Program dihentikan.",
     "crash": "Python berhenti mendadak (mungkin rekursi terlalu dalam). Coba jalankan lagi.",
     "offline": "Python gagal dimuat. Periksa koneksi internet, lalu coba lagi."
+  },
+  "Quiz": {
+    "progress": "{answered} dari {total} terjawab",
+    "correct": "Benar!",
+    "wrong": "Belum tepat.",
+    "score": "{correct} dari {total} benar.",
+    "perfect": "Sempurna!",
+    "retry": "Ulangi kuis",
+    "saved": "Hasil kuis tersimpan.",
+    "saveFailed": "Hasil kuis belum tersimpan. Coba lagi nanti.",
+    "signInToSave": "Masuk untuk menyimpan hasil kuis"
   }
 }

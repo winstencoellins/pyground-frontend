@@ -1,8 +1,8 @@
 import { AlertTriangle, Info, Lightbulb, Terminal } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/* Lesson components from content/README.md. Quiz, AnimatedDiagram and VideoEmbed are
-   simple read-only versions here; #15 and #16 replace them with the interactive ones. */
+/* Lesson components from content/README.md. AnimatedDiagram and VideoEmbed are
+   simple versions here; #16 replace them with the interactive ones. */
 
 const calloutStyle = {
   tip: { icon: Lightbulb, className: "border-primary/25 bg-primary/5", iconClass: "text-primary-text" },
@@ -40,30 +40,6 @@ export function FileTree({ children }: { children: React.ReactNode }) {
     <pre className="my-6 overflow-x-auto rounded-2xl border bg-muted px-4 py-3 font-mono text-[0.85rem] leading-relaxed">
       {children}
     </pre>
-  );
-}
-
-type Question = { question: string; options: string[]; answer: number; explanation?: string };
-
-/** Static list until the interactive quiz (#15); answers are not shown. */
-export function Quiz({ questions }: { questions: Question[] }) {
-  return (
-    <ol className="my-6 grid list-none gap-4 p-0">
-      {questions.map((q, i) => (
-        <li key={i} data-quiz-question className="rounded-2xl border bg-card p-4">
-          <p className="my-0 font-semibold">
-            {i + 1}. {q.question}
-          </p>
-          <ul className="mt-3 mb-0 grid list-none gap-2 p-0">
-            {q.options.map((o, j) => (
-              <li key={j} className="rounded-xl border px-3 py-2 text-[0.92rem]">
-                {o}
-              </li>
-            ))}
-          </ul>
-        </li>
-      ))}
-    </ol>
   );
 }
 

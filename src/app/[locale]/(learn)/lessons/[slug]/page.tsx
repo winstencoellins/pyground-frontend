@@ -86,7 +86,7 @@ async function Lesson({ params }: { params: Params }) {
         )}
       </header>
       <div lang={fallbackLocale ?? locale}>
-        <LessonContent source={source} locale={locale as Locale} />
+        <LessonContent source={source} locale={locale as Locale} slug={slug} />
       </div>
     </>
   );

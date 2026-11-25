@@ -4,8 +4,9 @@ import { getMessages } from "next-intl/server";
 import remarkGfm from "remark-gfm";
 import type { Locale } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
-import { AnimatedDiagram, Callout, FileTree, Quiz, TerminalBlock, VideoEmbed } from "./blocks";
+import { AnimatedDiagram, Callout, FileTree, TerminalBlock, VideoEmbed } from "./blocks";
 import { Playground, type PlaygroundLabels } from "./playground";
+import { Quiz, type QuizLabels, type QuizQuestion } from "./quiz";
 
 type Props<T extends keyof React.JSX.IntrinsicElements> = React.ComponentProps<T>;
 
@@ -44,7 +45,6 @@ const components = {
   Callout,
   TerminalBlock,
   FileTree,
-  Quiz,
   AnimatedDiagram,
   VideoEmbed,
 };
@@ -53,7 +53,7 @@ const components = {
  * Compiles a lesson's MDX on the server. The source is our own /content served by pyground-api, so running
  * its expressions is trusted (it is code we review in the backend repo, never user input).
  */
-export async function LessonContent({ source, locale }: { source: string; locale: Locale }) {
+export async function LessonContent({ source, locale, slug }: { source: string; locale: Locale; slug: string }) {
   // Every lesson opens with "# <title>"; the page header already shows the title, so drop that first line.
   const body = source.replace(/^\s*# [^\n]*\n/, "");
   const [{ default: Content }, messages] = await Promise.all([
@@ -61,13 +61,17 @@ export async function LessonContent({ source, locale }: { source: string; locale
     getMessages({ locale }),
   ]);
   // The UI follows the site locale even when the lesson text falls back to Indonesian.
-  const labels: PlaygroundLabels = messages.Runner;
+  const runnerLabels: PlaygroundLabels = messages.Runner;
+  const quizLabels: QuizLabels = messages.Quiz;
   return (
     <div className="text-[1.02rem] [overflow-wrap:anywhere] [&>*:first-child]:mt-0">
       <Content
         components={{
           ...components,
-          Playground: (p: { initialCode: string; expectError?: boolean }) => <Playground {...p} labels={labels} />,
+          Playground: (p: { initialCode: string; expectError?: boolean }) => (
+            <Playground {...p} labels={runnerLabels} />
+          ),
+          Quiz: (p: { questions: QuizQuestion[] }) => <Quiz {...p} slug={slug} labels={quizLabels} />,
         }}
       />
     </div>

@@ -218,7 +218,7 @@ export function Playground({
                 {out.length > 0 ? (
                   <pre className="m-0 max-h-80 overflow-auto whitespace-pre-wrap">
                     {out.map(([kind, text], i) => (
-                      <span key={i} className={cn(kind === "err" && "text-highlight")}>
+                      <span key={i} className={cn(kind === "err" && "text-destructive")}>
                         {text}
                       </span>
                     ))}
@@ -227,7 +227,7 @@ export function Playground({
                   !notice &&
                   phase === "done" && <p className="my-0 font-sans text-muted-foreground">{labels.noOutput}</p>
                 )}
-                {notice && <p className="mt-2 mb-0 font-sans text-[0.88rem] text-highlight">{labels[notice]}</p>}
+                {notice && <p className="mt-2 mb-0 font-sans text-[0.88rem] text-destructive">{labels[notice]}</p>}
               </>
             )}
           </div>
