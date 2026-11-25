@@ -18,9 +18,10 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/dashboar
 
 export default async function DashboardPage({ params }: PageProps<"/[locale]/dashboard">) {
   const locale = (await params).locale as Locale;
-  const [t, tl, format, me, index, progress] = await Promise.all([
+  const [t, tl, tAdmin, format, me, index, progress] = await Promise.all([
     getTranslations({ locale, namespace: "App.dashboard" }),
     getTranslations({ locale, namespace: "Lessons" }),
+    getTranslations({ locale, namespace: "Admin" }),
     getFormatter({ locale }),
     getMe(),
     getLessonIndex(locale),
@@ -40,6 +41,14 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/das
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] gap-10">
       <header className="grid gap-2">
+        {me?.role === "ADMIN" && (
+          <Link
+            href="/admin"
+            className="w-fit rounded-full border bg-card px-3 py-1 text-[0.82rem] font-semibold hover:border-foreground/40"
+          >
+            {tAdmin("open")} →
+          </Link>
+        )}
         <h1 className="text-[clamp(2rem,4vw,2.6rem)] leading-tight font-semibold tracking-[-0.035em]">
           {t("greeting", { name: me?.name.split(" ")[0] ?? "" })}
         </h1>

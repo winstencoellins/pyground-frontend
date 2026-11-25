@@ -9,7 +9,7 @@ export function AppNav({
   className,
 }: {
   label: string;
-  items: { href: string; label: string }[];
+  items: { href: string; label: string; exact?: boolean }[];
   className?: string;
 }) {
   const pathname = usePathname();
@@ -24,14 +24,15 @@ export function NavLinks({
   active,
 }: {
   label: string;
-  items: { href: string; label: string }[];
+  items: { href: string; label: string; exact?: boolean }[];
   className?: string;
   active?: string;
 }) {
   return (
     <nav aria-label={label} className={cn("flex items-center gap-1 text-[0.9rem] font-medium", className)}>
       {items.map((item) => {
-        const current = active !== undefined && (active === item.href || active.startsWith(`${item.href}/`));
+        const current =
+          active !== undefined && (active === item.href || (!item.exact && active.startsWith(`${item.href}/`)));
         return (
           <Link
             key={item.href}

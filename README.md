@@ -90,6 +90,14 @@ the result) and polls while the order is pending. The query string Snap appends 
 
 Sandbox test card: `4811 1111 1111 1114`, any future expiry, CVV `123`, 3-D Secure OTP `112233`.
 
+## Admin
+
+`/{locale}/admin` (role ADMIN; anyone else gets a 404, and the API answers 403 regardless): overview with revenue and
+user tiles, a daily revenue chart for 7 / 30 / 90 days (`GET /api/admin/stats`, table view under the chart) and
+per-lesson completions and quiz scores; `/admin/users` (search, grant N days or revoke with a required reason, logged
+by the API); `/admin/orders` (status filter, search by order number or email). Admins see an "Open admin" link on
+their dashboard.
+
 ## Dashboard
 
 `/{locale}/dashboard` (signed in): greeting and access status, a "continue learning" card (the first unfinished lesson
