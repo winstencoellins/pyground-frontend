@@ -398,5 +398,68 @@
     "saved": "Quiz result saved.",
     "saveFailed": "Quiz result wasn't saved. Try again later.",
     "signInToSave": "Sign in to save your quiz results"
+  },
+  "Diagrams": {
+    "play": "Play animation",
+    "pause": "Pause animation",
+    "prev": "Previous step",
+    "next": "Next step",
+    "step": "{n}/{total}",
+    "output": "Output",
+    "instructions": {
+      "lines": [
+        "Heat the oil.",
+        "Add the garlic and shallots, stir until fragrant.",
+        "Add the rice and mix.",
+        "Add sweet soy sauce and salt."
+      ],
+      "start": "The computer starts at the top instruction.",
+      "running": "Running instruction {n}.",
+      "done": "Done! Every instruction ran in order, so the fried rice turned out right."
+    },
+    "forLoop": {
+      "code": ["for number in range(1, 6):", "    print(number)"],
+      "name": "number",
+      "values": "range(1, 6)",
+      "start": "range(1, 6) lines up the numbers 1 to 5.",
+      "pass": "Pass {n}: number = {n}, then print(number) shows {n}.",
+      "done": "No numbers left, so the loop ends."
+    },
+    "tryExcept": {
+      "code": [
+        "text = \"twenty\"",
+        "try:",
+        "    age = int(text)",
+        "    print(\"You are\", age)",
+        "except ValueError:",
+        "    print(\"Please enter your age as a number!\")"
+      ],
+      "printed": "Please enter your age as a number!",
+      "skipped": "skipped",
+      "say": [
+        "text holds \"twenty\".",
+        "Python enters the try block.",
+        "int(text) fails because \"twenty\" isn't a number: a ValueError is raised.",
+        "The rest of the try block is skipped. Python jumps to except ValueError.",
+        "The except block prints a friendly message.",
+        "The program doesn't crash; it carries on as normal."
+      ]
+    },
+    "requestResponse": {
+      "browser": "Browser",
+      "server": "Server",
+      "url": "pyground.id/classes",
+      "request": "GET /classes",
+      "response": "200 OK · HTML",
+      "page": "Python Classes",
+      "working": "Preparing the page…",
+      "say": [
+        "You type an address and press Enter.",
+        "The browser sends a request to the server: GET /classes.",
+        "The server (later: your Flask app) prepares the page.",
+        "The server replies with a response: status 200 OK with HTML.",
+        "The browser shows the page from that HTML."
+      ]
+    }
   }
 }

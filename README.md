@@ -67,12 +67,17 @@ Free lessons stay public; the API decides which lessons need a pass. New protect
 `/{locale}/lessons` lists the curriculum and `/{locale}/lessons/[slug]` renders one lesson. The API serves the MDX
 source (`src/lib/lessons.ts`); `src/components/lesson/lesson-content.tsx` compiles it on the server with MDX 3 + GFM and
 maps elements to Pyground typography. Lesson components live in `src/components/lesson/` (`blocks.tsx`,
-`playground.tsx`, `quiz.tsx`). AnimatedDiagram and VideoEmbed are simple stand-ins until #16. Free lessons are public;
-locked ones show a sign-in / pricing panel.
+`playground.tsx`, `quiz.tsx`, `diagrams.tsx`). Free lessons are public; locked ones show a sign-in / pricing panel.
+Lessons use animations, not videos.
 
 The quiz gives feedback right after each answer (answers lock), shows the score when every question is answered, and
 then posts `{ score, answers }` to `POST /api/quiz/:slug/attempts` for signed-in learners (visitors get a sign-in link).
 A question with `code` is a "predict the output" question: the snippet shows above the options.
+
+`<AnimatedDiagram name="…" />` picks a diagram from `diagrams.tsx` (`instructions-flow`, `for-loop`, `try-except-flow`,
+`request-response`); an unknown name shows just the caption. Each is a few steps on a shared player that autoplays only
+while on screen, never with reduced motion, and can be paused or stepped by hand. Diagram text lives in the `Diagrams`
+messages; to add one, write a component there and add its name to the `diagrams` map.
 
 ### Playground (Python in the browser)
 

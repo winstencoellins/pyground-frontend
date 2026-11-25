@@ -1,8 +1,7 @@
 import { AlertTriangle, Info, Lightbulb, Terminal } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/* Lesson components from content/README.md. AnimatedDiagram and VideoEmbed are
-   simple versions here; #16 replace them with the interactive ones. */
+/* Small lesson components from content/README.md (Playground, Quiz and AnimatedDiagram have their own files). */
 
 const calloutStyle = {
   tip: { icon: Lightbulb, className: "border-primary/25 bg-primary/5", iconClass: "text-primary-text" },
@@ -40,32 +39,5 @@ export function FileTree({ children }: { children: React.ReactNode }) {
     <pre className="my-6 overflow-x-auto rounded-2xl border bg-muted px-4 py-3 font-mono text-[0.85rem] leading-relaxed">
       {children}
     </pre>
-  );
-}
-
-/** Caption-only placeholder until the animated diagrams (#16). */
-export function AnimatedDiagram({ caption }: { name: string; caption?: string }) {
-  if (!caption) return null;
-  return (
-    <figure className="my-6 rounded-2xl border bg-muted px-4 py-6 text-center">
-      <figcaption className="text-[0.9rem] text-muted-foreground">{caption}</figcaption>
-    </figure>
-  );
-}
-
-/** Videos still have placeholder IDs in the content; render nothing until real ones exist (#16). */
-export function VideoEmbed({ url, title }: { url: string; title: string }) {
-  if (!url.startsWith("https://www.youtube.com/embed/") || url.includes("VIDEO_ID")) return null;
-  return (
-    <div className="my-6 aspect-video overflow-hidden rounded-2xl border">
-      <iframe
-        src={url.replace("www.youtube.com", "www.youtube-nocookie.com")}
-        title={title}
-        className="size-full"
-        loading="lazy"
-        allow="accelerometer; encrypted-media; picture-in-picture"
-        allowFullScreen
-      />
-    </div>
   );
 }

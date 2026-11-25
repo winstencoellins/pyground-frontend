@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { api } from "@/lib/api";
 import { useSession } from "@/lib/auth-client";
-import { cn } from "@/lib/utils";
+import { cn, fill } from "@/lib/utils";
 
 /** `code` turns a question into "predict the output": the snippet is shown above the options. */
 export type QuizQuestion = { question: string; code?: string; options: string[]; answer: number; explanation?: string };
@@ -21,8 +21,6 @@ export type QuizLabels = {
   saveFailed: string;
   signInToSave: string;
 };
-
-const fill = (s: string, values: Record<string, number>) => s.replace(/\{(\w+)\}/g, (_, k) => String(values[k]));
 
 export function Quiz({ questions, slug, labels }: { questions: QuizQuestion[]; slug: string; labels: QuizLabels }) {
   const { data: session } = useSession();

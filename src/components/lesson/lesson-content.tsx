@@ -4,7 +4,8 @@ import { getMessages } from "next-intl/server";
 import remarkGfm from "remark-gfm";
 import type { Locale } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
-import { AnimatedDiagram, Callout, FileTree, TerminalBlock, VideoEmbed } from "./blocks";
+import { Callout, FileTree, TerminalBlock } from "./blocks";
+import { AnimatedDiagram, type DiagramLabels } from "./diagrams";
 import { Playground, type PlaygroundLabels } from "./playground";
 import { Quiz, type QuizLabels, type QuizQuestion } from "./quiz";
 
@@ -45,8 +46,6 @@ const components = {
   Callout,
   TerminalBlock,
   FileTree,
-  AnimatedDiagram,
-  VideoEmbed,
 };
 
 /**
@@ -63,6 +62,7 @@ export async function LessonContent({ source, locale, slug }: { source: string; 
   // The UI follows the site locale even when the lesson text falls back to Indonesian.
   const runnerLabels: PlaygroundLabels = messages.Runner;
   const quizLabels: QuizLabels = messages.Quiz;
+  const diagramLabels: DiagramLabels = messages.Diagrams;
   return (
     <div className="text-[1.02rem] [overflow-wrap:anywhere] [&>*:first-child]:mt-0">
       <Content
@@ -72,6 +72,7 @@ export async function LessonContent({ source, locale, slug }: { source: string; 
             <Playground {...p} labels={runnerLabels} />
           ),
           Quiz: (p: { questions: QuizQuestion[] }) => <Quiz {...p} slug={slug} labels={quizLabels} />,
+          AnimatedDiagram: (p: { name: string; caption?: string }) => <AnimatedDiagram {...p} labels={diagramLabels} />,
         }}
       />
     </div>

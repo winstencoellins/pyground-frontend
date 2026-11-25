@@ -398,5 +398,68 @@
     "saved": "Hasil kuis tersimpan.",
     "saveFailed": "Hasil kuis belum tersimpan. Coba lagi nanti.",
     "signInToSave": "Masuk untuk menyimpan hasil kuis"
+  },
+  "Diagrams": {
+    "play": "Putar animasi",
+    "pause": "Jeda animasi",
+    "prev": "Langkah sebelumnya",
+    "next": "Langkah berikutnya",
+    "step": "{n}/{total}",
+    "output": "Output",
+    "instructions": {
+      "lines": [
+        "Panaskan minyak.",
+        "Masukkan bawang, tumis sampai harum.",
+        "Masukkan nasi, aduk.",
+        "Tambahkan kecap dan garam."
+      ],
+      "start": "Komputer mulai dari instruksi paling atas.",
+      "running": "Menjalankan instruksi {n}.",
+      "done": "Selesai! Semua instruksi dijalankan berurutan, jadi nasi gorengnya jadi."
+    },
+    "forLoop": {
+      "code": ["for angka in range(1, 6):", "    print(angka)"],
+      "name": "angka",
+      "values": "range(1, 6)",
+      "start": "range(1, 6) menyiapkan angka 1 sampai 5.",
+      "pass": "Putaran {n}: angka = {n}, lalu print(angka) menampilkan {n}.",
+      "done": "Angkanya sudah habis, jadi loop selesai."
+    },
+    "tryExcept": {
+      "code": [
+        "teks = \"dua puluh\"",
+        "try:",
+        "    umur = int(teks)",
+        "    print(\"Umurmu\", umur)",
+        "except ValueError:",
+        "    print(\"Masukkan umur dalam bentuk angka, ya!\")"
+      ],
+      "printed": "Masukkan umur dalam bentuk angka, ya!",
+      "skipped": "dilewati",
+      "say": [
+        "teks berisi \"dua puluh\".",
+        "Python masuk ke blok try.",
+        "int(teks) gagal karena \"dua puluh\" bukan angka: muncul ValueError.",
+        "Sisa blok try dilewati. Python melompat ke except ValueError.",
+        "Blok except menampilkan pesan yang ramah.",
+        "Program tidak berhenti dan tetap lanjut seperti biasa."
+      ]
+    },
+    "requestResponse": {
+      "browser": "Browser",
+      "server": "Server",
+      "url": "pyground.id/kelas",
+      "request": "GET /kelas",
+      "response": "200 OK · HTML",
+      "page": "Kelas Python",
+      "working": "Menyiapkan halaman…",
+      "say": [
+        "Kamu mengetik alamat dan menekan Enter.",
+        "Browser mengirim request ke server: GET /kelas.",
+        "Server (nanti: aplikasi Flask-mu) menyiapkan halamannya.",
+        "Server membalas dengan response: status 200 OK berisi HTML.",
+        "Browser menampilkan halaman dari HTML itu."
+      ]
+    }
   }
 }
