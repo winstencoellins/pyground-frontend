@@ -62,6 +62,12 @@ Pages in `src/app/[locale]/(app)` share the app header (nav, language, theme, si
 Free lessons stay public; the API decides which lessons need a pass. New protected sections: add their prefix to
 `PROTECTED_PREFIXES`.
 
+## Dashboard
+
+`/{locale}/dashboard` (signed in): greeting and access status, a "continue learning" card (the first unfinished lesson
+after the most recently completed one, `src/lib/continue.ts`), the learning streak from `GET /api/progress`, and
+progress per stage with links into each stage.
+
 ## Lessons
 
 `/{locale}/lessons` lists the curriculum and `/{locale}/lessons/[slug]` renders one lesson. The API serves the MDX

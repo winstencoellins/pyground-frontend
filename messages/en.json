@@ -347,8 +347,26 @@
     "dashboard": {
       "title": "Dashboard",
       "greeting": "Hi, {name}!",
-      "body": "This is your learning space. Progress per stage and a continue-learning button will appear here soon.",
-      "browse": "See the curriculum"
+      "continueLabel": "Continue learning",
+      "startLabel": "Start learning",
+      "continueCta": "Continue",
+      "startCta": "Start",
+      "allDone": "You've finished every lesson. Amazing!",
+      "lockedHint": "The next lesson needs full access.",
+      "seePricing": "See pricing",
+      "stagesTitle": "Progress by stage",
+      "overall": "{percent}% of the whole curriculum",
+      "stageCount": "{done}/{total} lessons",
+      "streakTitle": "Learning streak",
+      "streakDays": "{count, plural, one {# day} other {# days}}",
+      "streakLongest": "Longest: {count, plural, one {# day} other {# days}}",
+      "streakToday": "You've learned today. See you tomorrow!",
+      "streakKeep": "Finish 1 lesson today to keep your streak going.",
+      "streakStart": "Finish 1 lesson to start a streak.",
+      "accessUntil": "Full access is active until {date}.",
+      "accessFree": "You're on free access: Stage 1 is open.",
+      "getAccess": "Unlock all stages",
+      "browse": "Browse the curriculum"
     }
   },
   "Lessons": {
