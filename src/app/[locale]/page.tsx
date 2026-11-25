@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ScrollReveal } from "@/components/landing/scroll-reveal";
 import { SiteHeader } from "@/components/landing/site-header";
 import {
   Faq,
@@ -48,6 +49,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
         <FinalCta />
       </main>
       <SiteFooter />
+      <ScrollReveal />
     </>
   );
 }

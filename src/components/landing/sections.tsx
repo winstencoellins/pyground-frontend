@@ -173,7 +173,7 @@ export function Why() {
 export function Overview() {
   const t = useTranslations("Overview");
   return (
-    <section className="motion-overview overflow-x-clip py-16">
+    <section className="overflow-x-clip py-16">
       <Container className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
         <div className="grid gap-7">
           <SectionTitle tag={t("tag")} label={t("label")} title={t("title")}>
@@ -426,7 +426,7 @@ export function Faq() {
         <SectionTitle tag={t("tag")} label={t("label")} title={t("title")} />
         <div className="border-t">
           {(t.raw("items") as { q: string; a: string }[]).map((f, i) => (
-            <details key={f.q} open={i === 0} className="group border-b">
+            <details key={f.q} open={i === 0} style={order(i)} className="motion-reveal group border-b">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-[1rem] font-semibold [&::-webkit-details-marker]:hidden">
                 {f.q}
                 <span

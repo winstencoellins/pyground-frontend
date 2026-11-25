@@ -44,7 +44,7 @@ export function DashboardMock() {
             <p className="font-semibold">{t("lesson")}</p>
           </div>
           <div className="h-2 overflow-hidden rounded-full bg-muted">
-            <div className="motion-grow-overview h-full w-[42%] rounded-full bg-primary" />
+            <div className="motion-bar h-full w-[42%] rounded-full bg-primary" />
           </div>
           <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-foreground px-3 py-1.5 text-[0.75rem] font-semibold text-background">
             <Play className="size-3" aria-hidden /> {t("resume")}
@@ -83,7 +83,7 @@ export function DashboardMock() {
               <span>{label}</span>
               <span className="h-2 overflow-hidden rounded-full bg-muted">
                 <span
-                  className="motion-grow-overview block h-full rounded-full bg-primary"
+                  className="motion-bar block h-full rounded-full bg-primary"
                   style={{ width: `${stagePct[i]}%`, "--i": i + 1 } as React.CSSProperties}
                 />
               </span>
