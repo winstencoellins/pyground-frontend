@@ -141,6 +141,24 @@ messages; to add one, write a component there and add its name to the `diagrams`
   Tracebacks only show the learner's `main.py` lines. Ctrl/⌘ + Enter runs; Reset restores the lesson's code.
 - To upgrade Pyodide, change the version in `public/python-worker.mjs` (both URLs) and `src/lib/python/config.ts`.
 
+## Security headers
+
+Set in `next.config.ts` for every page (the proxied `/api/*` keeps the API's own `default-src 'none'`):
+
+- **CSP**, static rather than nonce-based (nonces would force every page to render per request and disable the
+  prerendered shells): `script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net/pyodide/`.
+  Next's bootstrap is inline, hence `'unsafe-inline'`; scripts from any other origin, plugins, framing (`frame-ancestors
+'none'`), foreign `<base>` and form posts are blocked. Pyodide needs `'wasm-unsafe-eval'` (not `'unsafe-eval'`), and
+  jsDelivr's `/pyodide/` path in `script-src`, `connect-src` **and the page's `worker-src`**: Chrome checks a module
+  worker's imports against the page's `worker-src`. Development adds `'unsafe-eval'` (React dev tooling).
+- `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`,
+  `Permissions-Policy` (camera, microphone, geolocation, payment, usb off), `Cross-Origin-Opener-Policy: same-origin`,
+  no `X-Powered-By`.
+- Behind HTTPS only (`NEXT_PUBLIC_SITE_URL` starts with `https://`): `Strict-Transport-Security` and
+  `upgrade-insecure-requests`.
+- Midtrans Snap is a full-page redirect, so it needs no CSP entry. Adding a third-party script or embed later means
+  adding its origin here.
+
 ## Environment
 
 | Variable               | Purpose                                                                                                                                                        |
