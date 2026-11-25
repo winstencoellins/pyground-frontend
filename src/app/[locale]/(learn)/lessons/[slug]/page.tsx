@@ -9,6 +9,7 @@ import { PrevNext, StageNav, stageOf } from "@/components/lesson/lesson-nav";
 import { OutlinePill, PillLink } from "@/components/landing/ui";
 import { Link } from "@/i18n/navigation";
 import { getLesson, getLessonIndex, getProgress } from "@/lib/lessons";
+import { pageMeta } from "@/lib/seo";
 
 type Locale = "id" | "en";
 type Params = PageProps<"/[locale]/lessons/[slug]">["params"];
@@ -16,8 +17,17 @@ type Params = PageProps<"/[locale]/lessons/[slug]">["params"];
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { locale, slug } = await params;
   const result = await getLesson(slug, locale as Locale);
+  // Locked (paid) lessons aren't indexed: crawlers are signed out and would only see the paywall.
   if (!result.ok) return { robots: { index: false } };
-  return { title: result.lesson.frontmatter.title, description: result.lesson.frontmatter.description };
+  const { frontmatter: fm, fallbackLocale } = result.lesson;
+  return pageMeta({
+    locale,
+    path: `/lessons/${slug}`,
+    title: fm.title,
+    description: fm.description,
+    // An English URL showing the Indonesian fallback text is a duplicate of the Indonesian page.
+    canonicalLocale: fallbackLocale ?? locale,
+  });
 }
 
 export default async function LessonPage({ params }: { params: Params }) {

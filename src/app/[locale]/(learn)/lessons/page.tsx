@@ -4,12 +4,14 @@ import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
 import { Link } from "@/i18n/navigation";
 import { getLessonIndex } from "@/lib/lessons";
+import { pageMeta } from "@/lib/seo";
 
 type Locale = "id" | "en";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/lessons">): Promise<Metadata> {
-  const t = await getTranslations({ locale: (await params).locale as Locale, namespace: "Lessons" });
-  return { title: t("title"), description: t("body") };
+  const locale = (await params).locale as Locale;
+  const t = await getTranslations({ locale, namespace: "Lessons" });
+  return pageMeta({ locale, path: "/lessons", title: t("title"), description: t("body") });
 }
 
 export default async function LessonsPage({ params }: PageProps<"/[locale]/lessons">) {

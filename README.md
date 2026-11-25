@@ -69,6 +69,17 @@ charges), cached for hours. It renders per request inside `<Suspense>` (`src/com
 because the API isn't reachable while the web app builds; if the API is down the card says the price is shown at
 checkout, and the next request tries again.
 
+## SEO
+
+- Each indexable page calls `pageMeta()` (`src/lib/seo.ts`): its own canonical, `id`/`en`/`x-default` hreflang and
+  Open Graph text. Don't put a canonical in a layout: every child page would inherit it. An English lesson URL that
+  falls back to Indonesian text is canonical to the Indonesian page.
+- Not indexed: sign-in/up and other auth pages, the signed-in area, and locked lessons (crawlers only see the paywall).
+- `src/app/robots.ts` keeps crawlers out of `/api/` and the signed-in prefixes; `src/app/sitemap.ts` lists home, the
+  curriculum and the free lessons in both languages, fetched from the API per request (cached for hours).
+- `src/app/[locale]/opengraph-image.tsx` renders the share card per language.
+- `NEXT_PUBLIC_SITE_URL` must be the public origin in production: canonical, hreflang, sitemap and share-card URLs use it.
+
 ## Dashboard
 
 `/{locale}/dashboard` (signed in): greeting and access status, a "continue learning" card (the first unfinished lesson
