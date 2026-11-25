@@ -367,7 +367,17 @@
     "seePricing": "Lihat harga",
     "notFoundTitle": "Pelajaran tidak ditemukan",
     "notFoundBody": "Mungkin namanya berubah. Cari dari daftar pelajaran.",
-    "loading": "Memuat pelajaran…"
+    "loading": "Memuat pelajaran…",
+    "contents": "Daftar pelajaran",
+    "stageProgress": "{done} dari {total} pelajaran selesai",
+    "prev": "Sebelumnya",
+    "next": "Berikutnya",
+    "markComplete": "Tandai selesai",
+    "completed": "Selesai",
+    "saving": "Menyimpan…",
+    "completeFailed": "Progres belum tersimpan. Coba lagi.",
+    "signInToTrack": "Masuk untuk menyimpan progres belajarmu",
+    "doneLabel": "selesai"
   },
   "Runner": {
     "run": "Jalankan",

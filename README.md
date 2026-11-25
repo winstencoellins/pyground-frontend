@@ -70,6 +70,11 @@ maps elements to Pyground typography. Lesson components live in `src/components/
 `playground.tsx`, `quiz.tsx`, `diagrams.tsx`). Free lessons are public; locked ones show a sign-in / pricing panel.
 Lessons use animations, not videos.
 
+Lesson pages have the current stage's lessons beside them (`lesson-nav.tsx`: a sticky sidebar on large screens, a
+collapsible list on small ones), with ticks and a stage progress bar from `GET /api/progress` for signed-in learners.
+Under each lesson: "Mark as complete" (`complete-button.tsx`, `POST /api/progress/:slug/complete`, then a refresh so
+the ticks update) or a sign-in link, and previous / next links in curriculum order.
+
 The quiz gives feedback right after each answer (answers lock), shows the score when every question is answered, and
 then posts `{ score, answers }` to `POST /api/quiz/:slug/attempts` for signed-in learners (visitors get a sign-in link).
 A question with `code` is a "predict the output" question: the snippet shows above the options.

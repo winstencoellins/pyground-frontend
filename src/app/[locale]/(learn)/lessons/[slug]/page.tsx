@@ -3,10 +3,12 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { locale as rootLocale } from "next/root-params";
 import { Suspense } from "react";
+import { CompleteButton } from "@/components/lesson/complete-button";
 import { LessonContent } from "@/components/lesson/lesson-content";
+import { PrevNext, StageNav, stageOf } from "@/components/lesson/lesson-nav";
 import { OutlinePill, PillLink } from "@/components/landing/ui";
 import { Link } from "@/i18n/navigation";
-import { getLesson } from "@/lib/lessons";
+import { getLesson, getLessonIndex, getProgress } from "@/lib/lessons";
 
 type Locale = "id" | "en";
 type Params = PageProps<"/[locale]/lessons/[slug]">["params"];
@@ -23,7 +25,7 @@ export default async function LessonPage({ params }: { params: Params }) {
   const t = await getTranslations({ locale: (await rootLocale()) as Locale, namespace: "Lessons" });
   // minmax(0,1fr): wide code blocks scroll inside themselves instead of widening the page.
   return (
-    <article className="mx-auto grid w-full max-w-[720px] grid-cols-[minmax(0,1fr)] gap-8">
+    <div className="mx-auto grid w-full max-w-[1080px] grid-cols-[minmax(0,1fr)] gap-8">
       <Link
         href="/lessons"
         className="flex w-fit items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground"
@@ -34,16 +36,27 @@ export default async function LessonPage({ params }: { params: Params }) {
       <Suspense fallback={<p className="text-muted-foreground">{t("loading")}</p>}>
         <Lesson params={params} />
       </Suspense>
-    </article>
+    </div>
   );
 }
 
 async function Lesson({ params }: { params: Params }) {
   const { locale, slug } = await params;
-  const [t, result] = await Promise.all([
+  const [t, result, index, progress] = await Promise.all([
     getTranslations({ locale: locale as Locale, namespace: "Lessons" }),
     getLesson(slug, locale as Locale),
+    getLessonIndex(locale as Locale),
+    getProgress(),
   ]);
+  const stage = stageOf(index, slug);
+  const completed = progress ? new Set(progress.completed.map((c) => c.slug)) : null;
+  // Sidebar (stage lessons) next to the lesson column; the lesson text keeps a readable width.
+  const withNav = (body: React.ReactNode) => (
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-12">
+      {stage && <StageNav locale={locale as Locale} stage={stage} slug={slug} completed={completed} />}
+      <article className="grid max-w-[720px] grid-cols-[minmax(0,1fr)] gap-8">{body}</article>
+    </div>
+  );
 
   if (!result.ok && result.reason === "not-found") {
     return (
@@ -55,7 +68,7 @@ async function Lesson({ params }: { params: Params }) {
     );
   }
   if (!result.ok) {
-    return (
+    return withNav(
       <div className="grid gap-4 rounded-[22px] border bg-card p-7">
         <Lock className="size-6 text-highlight" aria-hidden />
         <h1 className="text-[1.6rem] font-semibold tracking-[-0.02em]">{t("lockedTitle")}</h1>
@@ -64,12 +77,12 @@ async function Lesson({ params }: { params: Params }) {
           <PillLink href={`/sign-in?next=${encodeURIComponent(`/lessons/${slug}`)}`}>{t("signIn")}</PillLink>
           <OutlinePill href="/#harga">{t("seePricing")}</OutlinePill>
         </div>
-      </div>
+      </div>,
     );
   }
 
   const { frontmatter: fm, source, fallbackLocale } = result.lesson;
-  return (
+  return withNav(
     <>
       <header className="grid gap-3">
         <p className="text-[0.78rem] font-semibold tracking-[0.06em] text-muted-foreground uppercase">
@@ -88,6 +101,28 @@ async function Lesson({ params }: { params: Params }) {
       <div lang={fallbackLocale ?? locale}>
         <LessonContent source={source} locale={locale as Locale} slug={slug} />
       </div>
-    </>
+      <footer className="grid gap-6 border-t pt-8">
+        {completed ? (
+          <CompleteButton
+            slug={slug}
+            initiallyDone={completed.has(slug)}
+            labels={{
+              markComplete: t("markComplete"),
+              completed: t("completed"),
+              saving: t("saving"),
+              completeFailed: t("completeFailed"),
+            }}
+          />
+        ) : (
+          <Link
+            href={`/sign-in?next=${encodeURIComponent(`/lessons/${slug}`)}`}
+            className="w-fit text-[0.92rem] font-semibold text-primary-text underline underline-offset-4"
+          >
+            {t("signInToTrack")}
+          </Link>
+        )}
+        <PrevNext locale={locale as Locale} index={index} slug={slug} />
+      </footer>
+    </>,
   );
 }

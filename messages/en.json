@@ -367,7 +367,17 @@
     "seePricing": "See pricing",
     "notFoundTitle": "Lesson not found",
     "notFoundBody": "Its name may have changed. Find it in the lesson list.",
-    "loading": "Loading lesson…"
+    "loading": "Loading lesson…",
+    "contents": "Lessons in this stage",
+    "stageProgress": "{done} of {total} lessons done",
+    "prev": "Previous",
+    "next": "Next",
+    "markComplete": "Mark as complete",
+    "completed": "Completed",
+    "saving": "Saving…",
+    "completeFailed": "Progress wasn't saved. Try again.",
+    "signInToTrack": "Sign in to save your progress",
+    "doneLabel": "done"
   },
   "Runner": {
     "run": "Run",

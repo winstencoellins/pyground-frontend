@@ -29,3 +29,9 @@ export const getLesson = cache(async (slug: string, locale: Locale): Promise<Les
   if (status === 404 || status === 422) return { ok: false, reason: "not-found" };
   throw new Error(`lesson ${slug} failed: ${status}`);
 });
+
+/** The visitor's progress (completed slugs, per-stage counts), or null when signed out. Deduped per request. */
+export const getProgress = cache(async () => {
+  const { data, error } = await (await serverApi()).api.progress.get();
+  return error ? null : data;
+});
