@@ -201,7 +201,8 @@
         "Perpanjang lebih awal, sisa hari tidak hangus",
         "Pengingat email sebelum akses berakhir"
       ],
-      "cta": "Beli akses"
+      "cta": "Beli akses",
+      "priceFallback": "Harga di halaman pembayaran"
     }
   },
   "Faq": {

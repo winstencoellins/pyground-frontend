@@ -1,11 +1,13 @@
 import { Check, Flame, Languages, ListChecks, Play, Terminal } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { Suspense } from "react";
 import { brand } from "@/config/brand";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { DashboardMock } from "./dashboard-mock";
-import { passPrice, stageVisuals, type StageShape, type StageStatus } from "./data";
+import { stageVisuals, type StageShape, type StageStatus } from "./data";
 import { LearnTicker } from "./learn-ticker";
+import { PassPrice } from "./pass-price";
 import { PlaygroundDemo } from "./playground-demo";
 import { Chip, Container, OutlinePill, PillLink, SectionTitle } from "./ui";
 
@@ -338,7 +340,6 @@ function CheckItem({ children }: { children: React.ReactNode }) {
 export function Pricing() {
   const t = useTranslations("Pricing");
   const locale = useLocale();
-  const price = `Rp${passPrice.toLocaleString(locale === "id" ? "id-ID" : "en-US")}`;
   return (
     <section id="harga" className="scroll-mt-20 py-16">
       <Container>
@@ -374,7 +375,13 @@ export function Pricing() {
               <div>
                 <h3 className="font-semibold text-highlight">{t("pass.name")}</h3>
                 <p className="mt-3 flex items-baseline gap-1.5">
-                  <b className="text-[2.6rem] leading-none font-semibold tracking-tight tabular-nums">{price}</b>
+                  <b className="text-[2.6rem] leading-none font-semibold tracking-tight tabular-nums">
+                    <Suspense
+                      fallback={<span className="inline-block h-[0.8em] w-[4.5em] animate-pulse rounded-lg bg-muted" />}
+                    >
+                      <PassPrice locale={locale} fallback={t("pass.priceFallback")} />
+                    </Suspense>
+                  </b>
                   <span className="text-sm text-muted-foreground">{t("pass.period")}</span>
                 </p>
                 <p className="mt-3 text-[0.9rem] text-muted-foreground">{t("pass.body")}</p>

@@ -62,6 +62,13 @@ Pages in `src/app/[locale]/(app)` share the app header (nav, language, theme, si
 Free lessons stay public; the API decides which lessons need a pass. New protected sections: add their prefix to
 `PROTECTED_PREFIXES`.
 
+## Landing price
+
+The access pass price on the landing page comes from the API (`GET /api/payments/pass`, the same config checkout
+charges), cached for hours. It renders per request inside `<Suspense>` (`src/components/landing/pass-price.tsx`)
+because the API isn't reachable while the web app builds; if the API is down the card says the price is shown at
+checkout, and the next request tries again.
+
 ## Dashboard
 
 `/{locale}/dashboard` (signed in): greeting and access status, a "continue learning" card (the first unfinished lesson
@@ -107,10 +114,10 @@ messages; to add one, write a component there and add its name to the `diagrams`
 
 ## Environment
 
-| Variable               | Purpose                                                                                       |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| `API_URL`              | pyground-api origin (default `http://localhost:3001`). Read at **build** time by the rewrite. |
-| `NEXT_PUBLIC_SITE_URL` | Public origin for canonical and hreflang URLs (default `http://localhost:3000`).              |
+| Variable               | Purpose                                                                                                                                                        |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `API_URL`              | pyground-api origin (default `http://localhost:3001`). Needed at **build** time (the rewrite) and at **run** time (server-side calls, e.g. the landing price). |
+| `NEXT_PUBLIC_SITE_URL` | Public origin for canonical and hreflang URLs (default `http://localhost:3000`).                                                                               |
 
 ## Design
 

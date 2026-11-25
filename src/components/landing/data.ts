@@ -9,6 +9,3 @@ export const stageVisuals = [
 
 export type StageStatus = (typeof stageVisuals)[number]["status"];
 export type StageShape = (typeof stageVisuals)[number]["shape"];
-
-// shortcut: price mirrors ACCESS_PASS_PRICE_IDR in the API's .env.example; read it from the API once #10 lands.
-export const passPrice = 49000;

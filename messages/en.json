@@ -201,7 +201,8 @@
         "Extend early, unused days carry over",
         "Email reminder before access ends"
       ],
-      "cta": "Buy access"
+      "cta": "Buy access",
+      "priceFallback": "Price shown at checkout"
     }
   },
   "Faq": {
