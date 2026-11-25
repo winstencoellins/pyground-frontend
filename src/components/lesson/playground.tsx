@@ -7,10 +7,11 @@ import { bracketMatching, HighlightStyle, indentOnInput, indentUnit, syntaxHighl
 import { EditorState } from "@codemirror/state";
 import { drawSelection, EditorView, highlightActiveLine, keymap, lineNumbers } from "@codemirror/view";
 import { tags } from "@lezer/highlight";
-import { AlertTriangle, Loader2, Play, RotateCcw, Square } from "lucide-react";
+import { AlertTriangle, Check, CircleCheck, Loader2, Play, RotateCcw, Square, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { grade, type ExerciseTest, type Verdict } from "@/lib/python/grade";
 import { runPython, stopPython, warmUp, type OutputChunk, type RunStatus } from "@/lib/python/runner";
-import { cn } from "@/lib/utils";
+import { cn, fill } from "@/lib/utils";
 
 export type PlaygroundLabels = {
   run: string;
@@ -30,6 +31,21 @@ export type PlaygroundLabels = {
   stopped: string;
   crash: string;
   offline: string;
+};
+
+/** Labels for exercise checking; {n} {passed} {total} are filled with fill(). */
+export type CheckLabels = {
+  check: string;
+  checking: string;
+  allPassed: string;
+  someFailed: string;
+  test: string;
+  input: string;
+  noInput: string;
+  expected: string;
+  got: string;
+  nothingPrinted: string;
+  needsInput: string;
 };
 
 type Phase = "idle" | "loading" | "running" | "input" | "done";
@@ -69,10 +85,17 @@ export function Playground({
   initialCode,
   expectError,
   labels,
+  tests,
+  checkLabels,
+  onChecked,
 }: {
   initialCode: string;
   expectError?: boolean;
   labels: PlaygroundLabels;
+  /** Exercise mode: adds "Check" which runs the code once per test. */
+  tests?: ExerciseTest[];
+  checkLabels?: CheckLabels;
+  onChecked?: (passed: boolean) => void;
 }) {
   const code = initialCode.trim();
   const host = useRef<HTMLDivElement>(null);
@@ -82,6 +105,8 @@ export function Playground({
   const [out, setOut] = useState<OutputChunk[]>([]);
   const [notice, setNotice] = useState<keyof PlaygroundLabels | null>(null);
   const [answer, setAnswer] = useState("");
+  const [verdicts, setVerdicts] = useState<Verdict[] | null>(null);
+  const [checking, setChecking] = useState(false); // the panel shows check results, not a run's output
   // The answers given to input() so far, and the random seed, for replaying the current run.
   const session = useRef({ inputs: [] as string[], seed: 0 });
 
@@ -138,11 +163,36 @@ export function Playground({
     if (phase === "loading" || phase === "running") return;
     session.current.seed = Math.floor(Math.random() * 2 ** 31);
     setOut([]);
+    setVerdicts(null);
+    setChecking(false);
     void execute([]);
   }
   useEffect(() => {
     runRef.current = run;
   });
+
+  async function check() {
+    if (!tests || phase === "loading" || phase === "running") return;
+    const source = view.current!.state.doc.toString();
+    setOut([]);
+    setNotice(null);
+    setVerdicts(null);
+    setChecking(true);
+    const results: Verdict[] = [];
+    for (const test of tests) {
+      const result = await runPython(source, test.input ?? [], 0, setPhase, false);
+      // Stop or no Python: not the learner's fault, so no verdicts.
+      if (result.status === "stopped" || result.status === "offline") {
+        setNotice(result.status);
+        setPhase("done");
+        return;
+      }
+      results.push(grade(test, result));
+    }
+    setVerdicts(results);
+    setPhase("done");
+    onChecked?.(results.every((v) => v.pass));
+  }
 
   function reset() {
     if (phase === "loading" || phase === "running") stopPython();
@@ -150,6 +200,7 @@ export function Playground({
     v.dispatch({ changes: { from: 0, to: v.state.doc.length, insert: code } });
     setOut([]);
     setNotice(null);
+    setVerdicts(null);
     setPhase("idle");
   }
 
@@ -171,27 +222,41 @@ export function Playground({
           <button
             type="button"
             onClick={reset}
-            className="inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-[0.82rem] font-semibold text-muted-foreground outline-none hover:text-foreground focus-visible:ring-4 focus-visible:ring-ring/50"
+            className="inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-[0.82rem] font-semibold whitespace-nowrap text-muted-foreground outline-none hover:text-foreground focus-visible:ring-4 focus-visible:ring-ring/50"
           >
-            <RotateCcw className="size-3.5" aria-hidden /> {labels.reset}
+            <RotateCcw className="size-3.5" aria-hidden /> <span className="max-sm:sr-only">{labels.reset}</span>
           </button>
           {busy ? (
             <button
               type="button"
               onClick={stopPython}
-              className="inline-flex h-9 items-center gap-1.5 rounded-full border px-4 text-[0.82rem] font-semibold outline-none focus-visible:ring-4 focus-visible:ring-ring/50"
+              className="inline-flex h-9 items-center gap-1.5 rounded-full border px-4 text-[0.82rem] font-semibold whitespace-nowrap outline-none focus-visible:ring-4 focus-visible:ring-ring/50"
             >
               <Square className="size-3 fill-current" aria-hidden /> {labels.stop}
             </button>
           ) : (
-            <button
-              type="button"
-              onClick={run}
-              title={labels.hint}
-              className="inline-flex h-9 items-center gap-1.5 rounded-full bg-primary px-4 text-[0.82rem] font-semibold text-primary-foreground outline-none focus-visible:ring-4 focus-visible:ring-ring/50"
-            >
-              <Play className="size-3.5 fill-current" aria-hidden /> {labels.run}
-            </button>
+            <>
+              <button
+                type="button"
+                onClick={run}
+                title={labels.hint}
+                className={cn(
+                  "inline-flex h-9 items-center gap-1.5 rounded-full px-4 text-[0.82rem] font-semibold whitespace-nowrap outline-none focus-visible:ring-4 focus-visible:ring-ring/50",
+                  tests ? "border" : "bg-primary text-primary-foreground",
+                )}
+              >
+                <Play className="size-3.5 fill-current" aria-hidden /> {labels.run}
+              </button>
+              {tests && checkLabels && (
+                <button
+                  type="button"
+                  onClick={check}
+                  className="inline-flex h-9 items-center gap-1.5 rounded-full bg-primary px-4 text-[0.82rem] font-semibold whitespace-nowrap text-primary-foreground outline-none focus-visible:ring-4 focus-visible:ring-ring/50"
+                >
+                  <Check className="size-3.5" strokeWidth={3} aria-hidden /> {checkLabels.check}
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>
@@ -205,14 +270,16 @@ export function Playground({
       {phase !== "idle" && (
         <div className="border-t bg-muted/40 px-4 py-3">
           <p className="mt-0 mb-1.5 text-[0.72rem] font-semibold tracking-[0.08em] text-muted-foreground uppercase">
-            {labels.output}
+            {checking ? checkLabels?.check : labels.output}
           </p>
           <div aria-live="polite" className="font-mono text-[0.85rem] leading-relaxed">
             {busy ? (
               <p className="my-0 flex items-center gap-2 font-sans text-muted-foreground">
                 <Loader2 className="size-4 animate-spin" aria-hidden />
-                {phase === "loading" ? labels.loading : labels.running}
+                {phase === "loading" ? labels.loading : checking ? checkLabels?.checking : labels.running}
               </p>
+            ) : verdicts && tests && checkLabels ? (
+              <CheckResults tests={tests} verdicts={verdicts} labels={checkLabels} runnerLabels={labels} />
             ) : (
               <>
                 {out.length > 0 ? (
@@ -257,6 +324,77 @@ export function Playground({
               </button>
             </form>
           )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function CheckResults({
+  tests,
+  verdicts,
+  labels,
+  runnerLabels,
+}: {
+  tests: ExerciseTest[];
+  verdicts: Verdict[];
+  labels: CheckLabels;
+  runnerLabels: PlaygroundLabels;
+}) {
+  const passed = verdicts.filter((v) => v.pass).length;
+  const firstFail = verdicts.findIndex((v) => !v.pass);
+  const fail = verdicts[firstFail];
+  const test = tests[firstFail];
+  const block = "m-0 mt-1 max-h-48 overflow-auto rounded-lg border bg-background px-3 py-2 whitespace-pre-wrap";
+  return (
+    <div className="grid gap-3 font-sans">
+      <p className={cn("my-0 flex items-center gap-2 font-semibold", fail ? "text-foreground" : "text-success")}>
+        {!fail && <CircleCheck className="size-5" aria-hidden />}
+        {fill(fail ? labels.someFailed : labels.allPassed, { passed, total: verdicts.length })}
+      </p>
+      <ol className="my-0 flex flex-wrap gap-1.5 pl-0" aria-label={labels.test}>
+        {verdicts.map((v, i) => (
+          <li
+            key={i}
+            className={cn(
+              "inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[0.78rem] font-semibold",
+              v.pass ? "bg-success/12 text-success" : "bg-destructive/10 text-destructive",
+            )}
+          >
+            {v.pass ? <Check className="size-3.5" aria-hidden /> : <X className="size-3.5" aria-hidden />}
+            {fill(labels.test, { n: i + 1 })}
+          </li>
+        ))}
+      </ol>
+      {fail && !fail.pass && test && (
+        <div className="grid gap-2 text-[0.88rem]">
+          <p className="my-0 font-semibold">{fill(labels.test, { n: firstFail + 1 })}</p>
+          <p className="my-0 text-muted-foreground">
+            {labels.input}:{" "}
+            {test.input?.length ? (
+              <code className="rounded bg-background px-1.5 py-0.5 font-mono text-foreground">
+                {test.input.join(" ⏎ ")}
+              </code>
+            ) : (
+              labels.noInput
+            )}
+          </p>
+          <div>
+            <p className="my-0 text-muted-foreground">{labels.expected}</p>
+            <pre className={block}>{test.output}</pre>
+          </div>
+          <div>
+            <p className="my-0 text-muted-foreground">{labels.got}</p>
+            {fail.reason === "output" || fail.reason === "error" ? (
+              <pre className={cn(block, fail.reason === "error" && "text-destructive")}>
+                {fail.got || labels.nothingPrinted}
+              </pre>
+            ) : (
+              <p className="my-0 mt-1 text-destructive">
+                {fail.reason === "input" ? labels.needsInput : runnerLabels[endNotice[fail.reason] ?? "crash"]}
+              </p>
+            )}
+          </div>
         </div>
       )}
     </div>

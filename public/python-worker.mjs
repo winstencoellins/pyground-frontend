@@ -13,7 +13,7 @@ class _TooMuch(BaseException): pass
 
 _LIMIT = 20000
 
-def _run(code, inputs, seed):
+def _run(code, inputs, seed, echo=True):
     out, size = [], [0]
     def emit(kind, text, check=True):
         size[0] += len(text)
@@ -29,11 +29,14 @@ def _run(code, inputs, seed):
         def flush(self): pass
     queue = list(inputs)
     def fake_input(prompt=""):
-        sys.stdout.write(str(prompt))
+        # Checking an exercise compares printed output only, so prompts and typed answers are not echoed.
+        if echo:
+            sys.stdout.write(str(prompt))
         if not queue:
             raise _NeedInput()
         value = queue.pop(0)
-        sys.stdout.write(value + "\\n")
+        if echo:
+            sys.stdout.write(value + "\\n")
         return value
 
     random.seed(seed)
@@ -72,12 +75,12 @@ ready.then(
 );
 
 onmessage = async (e) => {
-  const { id, code, inputs, seed } = e.data;
+  const { id, code, inputs, seed, echo = true } = e.data;
   const py = await ready;
   const run = py.globals.get("_run");
   const pyInputs = py.toPy(inputs);
   try {
-    postMessage({ type: "result", id, ...JSON.parse(run(code, pyInputs, seed)) });
+    postMessage({ type: "result", id, ...JSON.parse(run(code, pyInputs, seed, echo)) });
   } catch (err) {
     postMessage({ type: "result", id, status: "crash", out: [["err", String(err)]] });
   } finally {

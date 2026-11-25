@@ -173,6 +173,14 @@
   h3 {
     text-wrap: balance;
   }
+  /* JetBrains Mono's ligatures draw >= as ≥ and == as one bar; learners must see the characters they type. */
+  code,
+  pre,
+  kbd,
+  .font-mono,
+  .cm-content {
+    font-variant-ligatures: none;
+  }
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;

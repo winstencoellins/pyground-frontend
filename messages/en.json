@@ -630,5 +630,37 @@
       "EXPIRED": "Expired",
       "REFUNDED": "Refunded"
     }
+  },
+  "Exercise": {
+    "guided": "Guided practice",
+    "challenge": "Solo challenge",
+    "steps": "Steps",
+    "plan": "No steps here. Plan it yourself first: what is the input, what has to be worked out, and what should be printed?",
+    "examples": "Examples",
+    "example": "Example {n}",
+    "input": "Input",
+    "noInput": "none",
+    "output": "Expected output",
+    "hidden": "+{count} hidden tests. Think about other cases that could come up, then try them yourself with Run.",
+    "hint": "Show a hint",
+    "nextHint": "Next hint ({n}/{total})",
+    "hintN": "Hint {n}",
+    "solution": "Show a sample answer",
+    "solutionLocked": "Check your answer once to unlock the sample answer.",
+    "solutionNote": "This is one way to do it. Yours can differ, as long as every test passes.",
+    "reflect": "Think about it",
+    "check": {
+      "check": "Check answer",
+      "checking": "Checking your answer…",
+      "allPassed": "All {total} tests passed. Nice work!",
+      "someFailed": "{passed} of {total} tests passed.",
+      "test": "Test {n}",
+      "input": "Input",
+      "noInput": "none",
+      "expected": "Expected output",
+      "got": "Your program's output",
+      "nothingPrinted": "(nothing was printed)",
+      "needsInput": "Your program asks for more input than this test provides."
+    }
   }
 }

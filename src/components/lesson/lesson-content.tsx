@@ -6,6 +6,7 @@ import type { Locale } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { Callout, FileTree, TerminalBlock } from "./blocks";
 import { AnimatedDiagram, type DiagramLabels } from "./diagrams";
+import { Exercise, type ExerciseLabels } from "./exercise";
 import { Playground, type PlaygroundLabels } from "./playground";
 import { Quiz, type QuizLabels, type QuizQuestion } from "./quiz";
 
@@ -63,6 +64,7 @@ export async function LessonContent({ source, locale, slug }: { source: string; 
   const runnerLabels: PlaygroundLabels = messages.Runner;
   const quizLabels: QuizLabels = messages.Quiz;
   const diagramLabels: DiagramLabels = messages.Diagrams;
+  const exerciseLabels: ExerciseLabels = messages.Exercise;
   return (
     <div className="text-[1.02rem] [overflow-wrap:anywhere] [&>*:first-child]:mt-0">
       <Content
@@ -73,6 +75,9 @@ export async function LessonContent({ source, locale, slug }: { source: string; 
           ),
           Quiz: (p: { questions: QuizQuestion[] }) => <Quiz {...p} slug={slug} labels={quizLabels} />,
           AnimatedDiagram: (p: { name: string; caption?: string }) => <AnimatedDiagram {...p} labels={diagramLabels} />,
+          Exercise: (p: Omit<React.ComponentProps<typeof Exercise>, "labels" | "runnerLabels">) => (
+            <Exercise {...p} labels={exerciseLabels} runnerLabels={runnerLabels} />
+          ),
         }}
       />
     </div>

@@ -630,5 +630,37 @@
       "EXPIRED": "Kedaluwarsa",
       "REFUNDED": "Dikembalikan"
     }
+  },
+  "Exercise": {
+    "guided": "Latihan terpandu",
+    "challenge": "Tantangan mandiri",
+    "steps": "Langkah-langkah",
+    "plan": "Tidak ada langkah di sini. Rencanakan dulu sendiri: apa input-nya, apa yang harus diolah, dan apa yang harus dicetak?",
+    "examples": "Contoh",
+    "example": "Contoh {n}",
+    "input": "Input",
+    "noInput": "tidak ada",
+    "output": "Output yang diharapkan",
+    "hidden": "+{count} tes tersembunyi. Pikirkan kasus lain yang mungkin muncul, lalu uji sendiri dengan Jalankan.",
+    "hint": "Lihat petunjuk",
+    "nextHint": "Petunjuk berikutnya ({n}/{total})",
+    "hintN": "Petunjuk {n}",
+    "solution": "Lihat contoh jawaban",
+    "solutionLocked": "Cek jawabanmu dulu sekali untuk membuka contoh jawaban.",
+    "solutionNote": "Ini salah satu cara. Jawabanmu boleh berbeda, asalkan semua tesnya lulus.",
+    "reflect": "Pikirkan lagi",
+    "check": {
+      "check": "Cek jawaban",
+      "checking": "Mengecek jawaban…",
+      "allPassed": "Semua {total} tes lulus. Mantap!",
+      "someFailed": "{passed} dari {total} tes lulus.",
+      "test": "Tes {n}",
+      "input": "Input",
+      "noInput": "tidak ada",
+      "expected": "Output yang diharapkan",
+      "got": "Output programmu",
+      "nothingPrinted": "(tidak ada yang dicetak)",
+      "needsInput": "Programmu meminta input lebih banyak dari yang disediakan tes ini."
+    }
   }
 }

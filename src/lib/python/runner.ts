@@ -49,13 +49,20 @@ export function runPython(
   inputs: string[],
   seed: number,
   onPhase: (phase: "loading" | "running") => void,
+  echo = true,
 ): Promise<RunResult> {
-  const job = queue.then(() => execute(code, inputs, seed, onPhase));
+  const job = queue.then(() => execute(code, inputs, seed, onPhase, echo));
   queue = job.catch(() => {});
   return job;
 }
 
-async function execute(code: string, inputs: string[], seed: number, onPhase: (p: "loading" | "running") => void) {
+async function execute(
+  code: string,
+  inputs: string[],
+  seed: number,
+  onPhase: (p: "loading" | "running") => void,
+  echo: boolean,
+) {
   warmUp();
   const w = worker!;
   if (!loaded) {
@@ -100,6 +107,6 @@ async function execute(code: string, inputs: string[], seed: number, onPhase: (p
     cancel = stop;
     w.addEventListener("message", onMessage);
     w.addEventListener("error", onError);
-    w.postMessage({ id, code, inputs, seed });
+    w.postMessage({ id, code, inputs, seed, echo });
   });
 }
