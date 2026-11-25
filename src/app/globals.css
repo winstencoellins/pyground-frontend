@@ -179,3 +179,56 @@
     }
   }
 }
+
+/* Landing page motion. All of it is off for prefers-reduced-motion. It animates `transform`, so Tailwind's
+   hover `translate` utilities still compose with it. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes bob {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* Page-load entrance; --i staggers siblings. */
+  .motion-enter {
+    animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms + 60ms);
+  }
+  .motion-grow {
+    transform-origin: left;
+    animation: grow 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 120ms + 500ms);
+  }
+  .motion-float {
+    animation: bob 6s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * -1.7s);
+  }
+  /* Scroll reveals: only where the browser has scroll-driven animations; elsewhere content just shows. */
+  @supports (animation-timeline: view()) {
+    .motion-reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry calc(var(--i, 0) * 7%) entry calc(65% + var(--i, 0) * 7%);
+    }
+    /* Bars inside the overview mock follow the section's timeline (the mock scrolls sideways on phones). */
+    .motion-overview {
+      view-timeline-name: --overview;
+    }
+    .motion-grow-overview {
+      transform-origin: left;
+      animation: grow linear both;
+      animation-timeline: --overview;
+      animation-range: entry calc(25% + var(--i, 0) * 8%) cover calc(45% + var(--i, 0) * 8%);
+    }
+  }
+}

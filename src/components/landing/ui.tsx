@@ -7,6 +7,9 @@ function Anchor({ href, ...props }: React.ComponentProps<"a"> & { href: string }
   return href.startsWith("#") ? <a href={href} {...props} /> : <Link href={href} {...props} />;
 }
 
+/** Stagger position for the motion-* classes in globals.css. */
+export const order = (i: number) => ({ "--i": i }) as React.CSSProperties;
+
 export function Container({ className, ...props }: React.ComponentProps<"div">) {
   return <div className={cn("mx-auto w-full max-w-[1200px] px-4 sm:px-6", className)} {...props} />;
 }
@@ -82,7 +85,7 @@ export function SectionTitle({
   return (
     <div
       className={cn(
-        "grid content-start gap-4",
+        "motion-reveal grid content-start gap-4",
         center ? "mx-auto max-w-[680px] justify-items-center text-center" : "max-w-[640px]",
       )}
     >

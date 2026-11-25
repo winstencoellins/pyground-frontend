@@ -9,7 +9,7 @@ import { stageVisuals, type StageShape, type StageStatus } from "./data";
 import { LearnTicker } from "./learn-ticker";
 import { PassPrice } from "./pass-price";
 import { PlaygroundDemo } from "./playground-demo";
-import { Chip, Container, OutlinePill, PillLink, SectionTitle } from "./ui";
+import { Chip, Container, OutlinePill, order, PillLink, SectionTitle } from "./ui";
 
 // Lists in the message files are read with t.raw(); their shapes are fixed by messages/id.json.
 type Item = { title: string; body: string };
@@ -27,13 +27,19 @@ export function Hero() {
       <Container className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-8">
         {/* left: pitch */}
         <div className="grid min-w-0 content-center gap-6">
-          <Chip tag={t("chipTag")}>{t("chip")}</Chip>
-          <h1 className="text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.02] font-semibold tracking-[-0.04em]">
+          <Chip tag={t("chipTag")} className="motion-enter">
+            {t("chip")}
+          </Chip>
+          <h1 className="motion-enter text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.02] font-semibold tracking-[-0.04em] [--i:1]">
             {t("title")}
           </h1>
-          <p className="max-w-[30em] text-[1.05rem] leading-relaxed text-muted-foreground">{t("body")}</p>
-          <PillLink href="/sign-up">{t("cta")}</PillLink>
-          <ul className="mt-4 grid gap-1.5 text-sm text-muted-foreground">
+          <p className="motion-enter max-w-[30em] text-[1.05rem] leading-relaxed text-muted-foreground [--i:2]">
+            {t("body")}
+          </p>
+          <PillLink href="/sign-up" className="motion-enter [--i:3]">
+            {t("cta")}
+          </PillLink>
+          <ul className="motion-enter mt-4 grid gap-1.5 text-sm text-muted-foreground [--i:4]">
             {points.map((p) => (
               <li key={p} className="flex items-center gap-2">
                 <Check className="size-4 text-highlight" aria-hidden />
@@ -44,7 +50,7 @@ export function Hero() {
         </div>
 
         {/* center: the product itself, on a soft glow */}
-        <div className="relative min-w-0">
+        <div className="motion-enter relative min-w-0 [--i:2]">
           <div
             aria-hidden
             className="absolute inset-x-[-10%] top-[8%] bottom-[-6%] -z-10 rounded-full bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--primary)_22%,transparent),transparent)] blur-2xl"
@@ -54,15 +60,17 @@ export function Hero() {
 
         {/* right: floating cards + statement */}
         <div className="grid min-w-0 content-between gap-8 lg:self-stretch lg:py-2">
-          <LearnTicker label={ticker("label")} items={ticker.raw("items") as string[]} />
-          <div className="grid gap-5">
+          <div className="motion-enter [--i:4]">
+            <LearnTicker label={ticker("label")} items={ticker.raw("items") as string[]} />
+          </div>
+          <div className="motion-enter grid gap-5 [--i:6]">
             <div className="rounded-2xl border bg-card p-4 shadow-[0_18px_40px_-24px_rgb(27_29_58/0.45)]">
               <div className="flex items-start justify-between gap-3">
                 <p className="text-[0.8rem] text-muted-foreground">{t("progressLabel")}</p>
                 <p className="text-[1.7rem] leading-none font-semibold tracking-tight tabular-nums">64%</p>
               </div>
               <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-muted">
-                <div className="h-full w-[64%] rounded-full bg-primary" />
+                <div className="motion-grow h-full w-[64%] rounded-full bg-primary [--i:6]" />
               </div>
               <p className="mt-2 flex items-center justify-end gap-1 text-[0.75rem] font-semibold text-highlight">
                 <Flame className="size-3.5" aria-hidden /> {t("streak", { days: 5 })}
@@ -89,10 +97,12 @@ export function TopicStrip() {
           {t("label")}
         </p>
         <ul className="grid w-full max-w-[860px] grid-cols-2 overflow-hidden rounded-2xl border bg-card sm:grid-cols-4 md:grid-cols-7">
-          {(t.raw("items") as string[]).map((item) => (
+          {(t.raw("items") as string[]).map((item, i) => (
             <li
               key={item}
-              className="flex items-center justify-center gap-2 border-r border-b px-3 py-3.5 text-[0.85rem] font-semibold whitespace-nowrap md:border-b-0 md:last:border-r-0"
+              // Half steps: seven chips at full steps would push the last one's reveal past its range.
+              style={order(i / 2)}
+              className="motion-reveal flex items-center justify-center gap-2 border-r border-b px-3 py-3.5 text-[0.85rem] font-semibold whitespace-nowrap md:border-b-0 md:last:border-r-0"
             >
               <Terminal className="size-3.5 shrink-0 text-primary-text" aria-hidden />
               {item}
@@ -137,7 +147,11 @@ export function Why() {
           {(t.raw("features") as Item[]).map((f, i) => {
             const Icon = featureIcons[i]!;
             return (
-              <article key={f.title} className="grid content-start gap-14 rounded-[20px] border bg-card p-5">
+              <article
+                key={f.title}
+                style={order(i)}
+                className="motion-reveal grid content-start gap-14 rounded-[20px] border bg-card p-5 transition-[translate,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_24px_40px_-28px_rgb(27_29_58/0.45)]"
+              >
                 <span className={cn("grid size-11 place-items-center rounded-xl", iconTint[i])}>
                   <Icon className="size-5" aria-hidden />
                 </span>
@@ -159,7 +173,7 @@ export function Why() {
 export function Overview() {
   const t = useTranslations("Overview");
   return (
-    <section className="overflow-x-clip py-16">
+    <section className="motion-overview overflow-x-clip py-16">
       <Container className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
         <div className="grid gap-7">
           <SectionTitle tag={t("tag")} label={t("label")} title={t("title")}>
@@ -178,7 +192,7 @@ export function Overview() {
           </ul>
         </div>
         {/* Bleeds past the right edge on wide screens; scrolls sideways inside its own box on phones. */}
-        <div className="-mr-4 overflow-x-auto pb-4 sm:-mr-6 lg:overflow-visible lg:pb-0">
+        <div className="motion-reveal -mr-4 overflow-x-auto pb-4 [--i:1] sm:-mr-6 lg:overflow-visible lg:pb-0">
           <DashboardMock />
         </div>
       </Container>
@@ -259,8 +273,8 @@ export function Stages() {
             return (
               <article
                 key={s.title}
-                className="grid gap-4 rounded-[20px] border bg-card p-5"
-                style={{ marginTop: `calc(var(--stagger, 0px) * ${i})` }}
+                className="motion-reveal grid gap-4 rounded-[20px] border bg-card p-5 transition-[translate,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_24px_40px_-28px_rgb(27_29_58/0.45)]"
+                style={{ ...order(i), marginTop: `calc(var(--stagger, 0px) * ${i})` }}
               >
                 <div className="grid gap-1">
                   <div className="flex items-center justify-between gap-2">
@@ -280,7 +294,9 @@ export function Stages() {
                   <p className="text-[0.85rem] leading-relaxed text-muted-foreground">{s.summary}</p>
                 </div>
                 <div className="grid aspect-[4/3] place-items-center rounded-2xl bg-muted bg-[radial-gradient(circle_at_50%_35%,var(--card),var(--muted))]">
-                  <Shape kind={v.shape} />
+                  <div className="motion-float" style={order(i)}>
+                    <Shape kind={v.shape} />
+                  </div>
                 </div>
                 <p className="text-[0.82rem] text-muted-foreground tabular-nums">{s.meta}</p>
               </article>
@@ -299,7 +315,7 @@ export function Showcase() {
   return (
     <section className="py-16">
       <Container className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_minmax(0,0.6fr)]">
-        <div className="overflow-hidden rounded-[20px] bg-[#15172f] p-5 font-mono text-[0.78rem] leading-relaxed text-[#d9dbf5] shadow-[0_30px_60px_-30px_rgb(27_29_58/0.6)]">
+        <div className="motion-reveal overflow-hidden rounded-[20px] bg-[#15172f] p-5 font-mono text-[0.78rem] leading-relaxed text-[#d9dbf5] shadow-[0_30px_60px_-30px_rgb(27_29_58/0.6)]">
           <p className="mb-3 flex items-center gap-2 font-sans text-[0.72rem] font-semibold tracking-[0.08em] text-[#a0a3c6] uppercase">
             <span className="size-2 rounded-full bg-[#ff7a6b]" /> {t("terminalLabel")}
           </p>
@@ -313,8 +329,8 @@ export function Showcase() {
           <p className="text-[0.9rem] text-muted-foreground">{t("projects")}</p>
         </div>
         <dl className="grid grid-cols-3 gap-6 lg:grid-cols-1">
-          {(t.raw("stats") as { value: string; label: string }[]).map((s) => (
-            <div key={s.label}>
+          {(t.raw("stats") as { value: string; label: string }[]).map((s, i) => (
+            <div key={s.label} className="motion-reveal" style={order(i + 1)}>
               <dt className="sr-only">{s.label}</dt>
               <dd className="text-[clamp(1.5rem,2.6vw,2rem)] font-semibold tracking-tight tabular-nums">{s.value}</dd>
               <dd className="text-[0.85rem] text-muted-foreground">{s.label}</dd>
@@ -350,7 +366,7 @@ export function Pricing() {
           <p className="rounded-full border bg-card px-4 py-2 text-[0.8rem] text-muted-foreground">{t("methods")}</p>
         </div>
         <div className="mt-12 grid max-w-[860px] items-start gap-5 md:grid-cols-2">
-          <div className="grid gap-6 rounded-[22px] border bg-card p-7 md:mt-8">
+          <div className="motion-reveal grid gap-6 rounded-[22px] border bg-card p-7 md:mt-8">
             <div>
               <h3 className="font-semibold">{t("free.name")}</h3>
               <p className="mt-3 flex items-baseline gap-1.5">
@@ -367,7 +383,7 @@ export function Pricing() {
             <OutlinePill href="/sign-up">{t("free.cta")}</OutlinePill>
           </div>
 
-          <div className="overflow-hidden rounded-[22px] border-2 border-highlight">
+          <div className="motion-reveal overflow-hidden rounded-[22px] border-2 border-highlight [--i:1]">
             <p className="bg-highlight py-1.5 text-center text-[0.75rem] font-semibold text-highlight-foreground">
               {t("pass.badge")}
             </p>
@@ -437,7 +453,7 @@ export function FinalCta() {
     <section className="py-16">
       <Container>
         {/* Fixed colors: this panel looks the same in light and dark mode. */}
-        <div className="grid overflow-hidden rounded-[28px] lg:grid-cols-2">
+        <div className="motion-reveal grid overflow-hidden rounded-[28px] lg:grid-cols-2">
           <div className="grid content-center gap-6 bg-[#15172f] p-8 text-white sm:p-12">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/20 py-0.5 pr-3 pl-0.5 text-[0.68rem] font-semibold tracking-[0.06em] uppercase">
               <span className="rounded-full bg-[#ff7a6b] px-2 py-0.5 text-[#15172f]">{t("tag")}</span>
@@ -464,19 +480,19 @@ export function FinalCta() {
             className="relative grid min-h-[340px] content-center justify-items-center gap-4 p-8"
             style={{ background: "linear-gradient(160deg, #2f3380 0%, #6b4a9e 55%, #e0705f 100%)" }}
           >
-            <div className="max-w-[320px] rounded-2xl bg-[#15172f] p-4 text-[0.9rem] text-white shadow-xl">
+            <div className="motion-float max-w-[320px] rounded-2xl bg-[#15172f] p-4 text-[0.9rem] text-white shadow-xl">
               <p className="flex items-center gap-2 font-mono text-[0.75rem] text-[#a0a3c6]">
                 <Play className="size-3" aria-hidden /> {t("ran")}
               </p>
               <p className="mt-1.5 font-mono">Total Rp 59,500</p>
             </div>
-            <div className="max-w-[320px] translate-x-6 rounded-2xl bg-white p-4 text-[0.9rem] text-[#1b1d3a] shadow-xl">
+            <div className="motion-float max-w-[320px] translate-x-6 rounded-2xl bg-white p-4 text-[0.9rem] text-[#1b1d3a] shadow-xl [--i:1]">
               <p className="flex items-center gap-2 font-semibold">
                 <Check className="size-4 text-[#1f8a5b]" aria-hidden /> {t("quizDone")}
               </p>
               <p className="mt-1 text-[#5e6283]">{t("quizBody")}</p>
             </div>
-            <div className="flex items-center gap-2 rounded-full bg-[#15172f] px-4 py-2 text-[0.82rem] text-white shadow-xl">
+            <div className="motion-float flex items-center gap-2 rounded-full bg-[#15172f] px-4 py-2 text-[0.82rem] text-white shadow-xl [--i:2]">
               <Flame className="size-4 text-[#ff7a6b]" aria-hidden /> {t("streak")}
             </div>
           </div>

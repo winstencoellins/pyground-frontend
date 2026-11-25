@@ -1,7 +1,7 @@
 "use client";
 
 import { Play } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useRef, useState } from "react";
 
 export type Tok = ["k" | "s" | "n" | "c" | "f" | "t", string];
 
@@ -24,10 +24,9 @@ export function PlaygroundView({
   output: string[];
   labels: { region: string; lesson: string; run: string; output: string };
 }) {
-  const [shown, setShown] = useState(output.length); // complete at rest
+  // Starts empty (a blinking cursor) and "runs" itself once the hero has come in; Run replays it.
+  const [shown, setShown] = useState(0);
   const timer = useRef<ReturnType<typeof setInterval>>(undefined);
-  useEffect(() => () => clearInterval(timer.current), []);
-
   const run = () => {
     clearInterval(timer.current);
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return setShown(output.length);
@@ -39,6 +38,15 @@ export function PlaygroundView({
       });
     }, 380);
   };
+
+  const autoRun = useEffectEvent(() => run());
+  useEffect(() => {
+    const id = setTimeout(autoRun, 1100);
+    return () => {
+      clearTimeout(id);
+      clearInterval(timer.current);
+    };
+  }, []);
 
   return (
     <div
