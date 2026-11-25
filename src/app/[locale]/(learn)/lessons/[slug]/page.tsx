@@ -82,10 +82,17 @@ async function Lesson({ params }: { params: Params }) {
       <div className="grid gap-4 rounded-[22px] border bg-card p-7">
         <Lock className="size-6 text-highlight" aria-hidden />
         <h1 className="text-[1.6rem] font-semibold tracking-[-0.02em]">{t("lockedTitle")}</h1>
-        <p className="leading-relaxed text-muted-foreground">{t("lockedBody")}</p>
+        {/* Signed in (progress loaded) but no pass: buying is the next step, not signing in. */}
+        <p className="leading-relaxed text-muted-foreground">{completed ? t("lockedBodySignedIn") : t("lockedBody")}</p>
         <div className="flex flex-wrap gap-3">
-          <PillLink href={`/sign-in?next=${encodeURIComponent(`/lessons/${slug}`)}`}>{t("signIn")}</PillLink>
-          <OutlinePill href="/#harga">{t("seePricing")}</OutlinePill>
+          {completed ? (
+            <PillLink href="/billing">{t("getAccess")}</PillLink>
+          ) : (
+            <>
+              <PillLink href={`/sign-in?next=${encodeURIComponent(`/lessons/${slug}`)}`}>{t("signIn")}</PillLink>
+              <OutlinePill href="/#harga">{t("seePricing")}</OutlinePill>
+            </>
+          )}
         </div>
       </div>,
     );

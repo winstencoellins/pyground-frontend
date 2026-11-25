@@ -397,7 +397,9 @@
     "saving": "Menyimpan…",
     "completeFailed": "Progres belum tersimpan. Coba lagi.",
     "signInToTrack": "Masuk untuk menyimpan progres belajarmu",
-    "doneLabel": "selesai"
+    "doneLabel": "selesai",
+    "lockedBodySignedIn": "Tahap 1 gratis untuk semua. Untuk membuka pelajaran ini, aktifkan akses 30 hari.",
+    "getAccess": "Beli akses"
   },
   "Runner": {
     "run": "Jalankan",

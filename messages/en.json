@@ -397,7 +397,9 @@
     "saving": "Saving…",
     "completeFailed": "Progress wasn't saved. Try again.",
     "signInToTrack": "Sign in to save your progress",
-    "doneLabel": "done"
+    "doneLabel": "done",
+    "lockedBodySignedIn": "Stage 1 is free for everyone. To open this lesson, get 30-day access.",
+    "getAccess": "Get access"
   },
   "Runner": {
     "run": "Run",
