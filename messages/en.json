@@ -341,7 +341,8 @@
   "App": {
     "nav": {
       "dashboard": "Dashboard",
-      "curriculum": "Curriculum"
+      "curriculum": "Curriculum",
+      "billing": "Access"
     },
     "navLabel": "App navigation",
     "loading": "Loading…",
@@ -490,5 +491,70 @@
         "The browser shows the page from that HTML."
       ]
     }
+  },
+  "Billing": {
+    "title": "Access & payments",
+    "body": "Buy 30-day access to unlock every stage. Not a subscription: nothing is charged automatically.",
+    "statusActive": "Full access is active until {date}.",
+    "statusExpired": "Your full access ended on {date}.",
+    "statusFree": "You're on free access: Stage 1 is open.",
+    "statusAdmin": "Admin account: every lesson is open.",
+    "passName": "30-day access",
+    "period": "/ 30 days",
+    "buy": "Buy 30-day access",
+    "extend": "Extend by 30 days",
+    "extendNote": "Remaining days aren't lost: 30 days are added to your access end date.",
+    "redirecting": "Opening the payment page…",
+    "checkoutFailed": "The payment page couldn't be opened. Please try again shortly.",
+    "processedBy": "Payments are processed by Trixync through Midtrans.",
+    "ordersTitle": "Payment history",
+    "noOrders": "No payments yet.",
+    "colDate": "Date",
+    "colOrder": "Order number",
+    "colAmount": "Amount",
+    "colMethod": "Method",
+    "colStatus": "Status",
+    "status": {
+      "PENDING": "Pending",
+      "PAID": "Paid",
+      "FAILED": "Failed",
+      "EXPIRED": "Expired",
+      "REFUNDED": "Refunded"
+    }
+  },
+  "PaymentResult": {
+    "title": "Payment status",
+    "checking": "Checking your payment…",
+    "order": "Order {id}",
+    "PAID": {
+      "title": "Payment successful!",
+      "body": "Full access is active until {date}.",
+      "receipt": "A receipt was sent to your email."
+    },
+    "PENDING": {
+      "title": "Waiting for payment",
+      "body": "Finish paying with the instructions on the Midtrans page (for example QRIS or a virtual account). This page updates automatically once the payment arrives."
+    },
+    "FAILED": {
+      "title": "Payment didn't go through",
+      "body": "The payment for this order wasn't completed. You can try again."
+    },
+    "EXPIRED": {
+      "title": "Payment expired",
+      "body": "The time to pay has passed. Please start a new payment."
+    },
+    "REFUNDED": {
+      "title": "Payment refunded",
+      "body": "The money for this order has been refunded."
+    },
+    "notFound": {
+      "title": "Order not found",
+      "body": "Check your payment history on the Access page."
+    },
+    "stillPending": "No confirmation yet. If you've already paid, wait a moment and check again.",
+    "checkAgain": "Check again",
+    "startLearning": "Continue learning",
+    "tryAgain": "Try again",
+    "toBilling": "Payment history"
   }
 }

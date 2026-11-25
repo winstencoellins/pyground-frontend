@@ -80,6 +80,16 @@ checkout, and the next request tries again.
 - `src/app/[locale]/opengraph-image.tsx` renders the share card per language.
 - `NEXT_PUBLIC_SITE_URL` must be the public origin in production: canonical, hreflang, sitemap and share-card URLs use it.
 
+## Billing
+
+`/{locale}/billing` (signed in): access status, the pass price, a buy / extend button and the order history (pending
+orders link to their status page). The button calls `POST /api/payments/checkout` and sends the learner to Midtrans'
+hosted Snap page (`redirectUrl`), so this app needs no Midtrans key or script. Snap returns to
+`/payment/result?orderId=…`, which calls `POST /api/payments/orders/:orderId/sync` (the API asks Midtrans and applies
+the result) and polls while the order is pending. The query string Snap appends (`transaction_status=…`) is ignored.
+
+Sandbox test card: `4811 1111 1111 1114`, any future expiry, CVV `123`, 3-D Secure OTP `112233`.
+
 ## Dashboard
 
 `/{locale}/dashboard` (signed in): greeting and access status, a "continue learning" card (the first unfinished lesson

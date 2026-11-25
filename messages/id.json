@@ -341,7 +341,8 @@
   "App": {
     "nav": {
       "dashboard": "Dashboard",
-      "curriculum": "Kurikulum"
+      "curriculum": "Kurikulum",
+      "billing": "Akses"
     },
     "navLabel": "Navigasi aplikasi",
     "loading": "Memuat…",
@@ -490,5 +491,70 @@
         "Browser menampilkan halaman dari HTML itu."
       ]
     }
+  },
+  "Billing": {
+    "title": "Akses & pembayaran",
+    "body": "Beli akses 30 hari untuk membuka semua tahap. Bukan langganan: tidak ada tagihan otomatis.",
+    "statusActive": "Akses penuh aktif sampai {date}.",
+    "statusExpired": "Akses penuhmu berakhir pada {date}.",
+    "statusFree": "Kamu memakai akses gratis: Tahap 1 terbuka.",
+    "statusAdmin": "Akun admin: semua pelajaran terbuka.",
+    "passName": "Akses 30 hari",
+    "period": "/ 30 hari",
+    "buy": "Beli akses 30 hari",
+    "extend": "Perpanjang 30 hari",
+    "extendNote": "Sisa hari tidak hangus: 30 hari ditambahkan ke tanggal akhir aksesmu.",
+    "redirecting": "Membuka halaman pembayaran…",
+    "checkoutFailed": "Halaman pembayaran gagal dibuka. Coba lagi sebentar lagi.",
+    "processedBy": "Pembayaran diproses oleh Trixync melalui Midtrans.",
+    "ordersTitle": "Riwayat pembayaran",
+    "noOrders": "Belum ada pembayaran.",
+    "colDate": "Tanggal",
+    "colOrder": "Nomor pesanan",
+    "colAmount": "Jumlah",
+    "colMethod": "Metode",
+    "colStatus": "Status",
+    "status": {
+      "PENDING": "Menunggu",
+      "PAID": "Lunas",
+      "FAILED": "Gagal",
+      "EXPIRED": "Kedaluwarsa",
+      "REFUNDED": "Dikembalikan"
+    }
+  },
+  "PaymentResult": {
+    "title": "Status pembayaran",
+    "checking": "Mengecek status pembayaran…",
+    "order": "Nomor pesanan {id}",
+    "PAID": {
+      "title": "Pembayaran berhasil!",
+      "body": "Akses penuh aktif sampai {date}.",
+      "receipt": "Struk pembayaran dikirim ke emailmu."
+    },
+    "PENDING": {
+      "title": "Menunggu pembayaran",
+      "body": "Selesaikan pembayaran sesuai instruksi di halaman Midtrans (misalnya QRIS atau virtual account). Halaman ini diperbarui otomatis setelah pembayaran diterima."
+    },
+    "FAILED": {
+      "title": "Pembayaran tidak berhasil",
+      "body": "Pembayaran untuk pesanan ini tidak selesai. Kamu bisa mencoba lagi."
+    },
+    "EXPIRED": {
+      "title": "Pembayaran kedaluwarsa",
+      "body": "Batas waktu pembayaran sudah lewat. Silakan buat pembayaran baru."
+    },
+    "REFUNDED": {
+      "title": "Pembayaran dikembalikan",
+      "body": "Dana untuk pesanan ini sudah dikembalikan."
+    },
+    "notFound": {
+      "title": "Pesanan tidak ditemukan",
+      "body": "Cek riwayat pembayaran di halaman Akses."
+    },
+    "stillPending": "Belum ada konfirmasi. Kalau kamu sudah membayar, tunggu sebentar lalu cek lagi.",
+    "checkAgain": "Cek lagi",
+    "startLearning": "Lanjut belajar",
+    "tryAgain": "Coba lagi",
+    "toBilling": "Riwayat pembayaran"
   }
 }

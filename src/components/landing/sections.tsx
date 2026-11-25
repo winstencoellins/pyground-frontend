@@ -391,7 +391,7 @@ export function Pricing() {
                   <CheckItem key={f}>{f}</CheckItem>
                 ))}
               </ul>
-              <PillLink href="/sign-up">{t("pass.cta")}</PillLink>
+              <PillLink href="/billing">{t("pass.cta")}</PillLink>
             </div>
           </div>
         </div>

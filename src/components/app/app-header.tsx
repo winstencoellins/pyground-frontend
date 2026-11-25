@@ -15,6 +15,7 @@ export function AppHeader() {
   const items = [
     { href: "/dashboard", label: t("nav.dashboard") },
     { href: "/lessons", label: t("nav.curriculum") },
+    { href: "/billing", label: t("nav.billing") },
   ];
   return (
     <header className="sticky top-0 z-20 border-b bg-background/85 backdrop-blur">
