@@ -13,7 +13,14 @@
     "test": "bun test src"
   },
   "dependencies": {
+    "@codemirror/autocomplete": "6.20.4",
+    "@codemirror/commands": "6.11.1",
+    "@codemirror/lang-python": "6.2.1",
+    "@codemirror/language": "6.13.1",
+    "@codemirror/state": "6.7.6",
+    "@codemirror/view": "6.43.15",
     "@elysiajs/eden": "1.4.9",
+    "@lezer/highlight": "1.2.5",
     "@mdx-js/mdx": "3.1.0",
     "better-auth": "1.7.27",
     "class-variance-authority": "^0.7.1",

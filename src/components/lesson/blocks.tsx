@@ -1,8 +1,8 @@
 import { AlertTriangle, Info, Lightbulb, Terminal } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/* Lesson components from content/README.md. Playground, Quiz, AnimatedDiagram and VideoEmbed are
-   simple read-only versions here; #14, #15 and #16 replace them with the interactive ones. */
+/* Lesson components from content/README.md. Quiz, AnimatedDiagram and VideoEmbed are
+   simple read-only versions here; #15 and #16 replace them with the interactive ones. */
 
 const calloutStyle = {
   tip: { icon: Lightbulb, className: "border-primary/25 bg-primary/5", iconClass: "text-primary-text" },
@@ -40,24 +40,6 @@ export function FileTree({ children }: { children: React.ReactNode }) {
     <pre className="my-6 overflow-x-auto rounded-2xl border bg-muted px-4 py-3 font-mono text-[0.85rem] leading-relaxed">
       {children}
     </pre>
-  );
-}
-
-/** Read-only code until the Pyodide playground (#14). */
-export function Playground({ initialCode, expectError }: { initialCode: string; expectError?: boolean }) {
-  return (
-    <div className="my-6 overflow-hidden rounded-2xl border bg-card">
-      <div className="flex items-center justify-between gap-2 border-b px-4 py-2 font-mono text-[0.78rem] text-muted-foreground">
-        <span>main.py</span>
-        {expectError && (
-          <span className="font-sans text-[0.72rem] font-semibold text-highlight">
-            <AlertTriangle className="mr-1 inline size-3.5 align-[-2px]" aria-hidden />
-            error
-          </span>
-        )}
-      </div>
-      <pre className="overflow-x-auto px-4 py-3 font-mono text-[0.85rem] leading-relaxed">{initialCode.trim()}</pre>
-    </div>
   );
 }
 

@@ -368,5 +368,24 @@
     "notFoundTitle": "Lesson not found",
     "notFoundBody": "Its name may have changed. Find it in the lesson list.",
     "loading": "Loading lesson…"
+  },
+  "Runner": {
+    "run": "Run",
+    "stop": "Stop",
+    "reset": "Reset",
+    "output": "Output",
+    "editor": "Python code editor",
+    "hint": "Ctrl/⌘ + Enter to run",
+    "loading": "Getting Python ready… (the first time can take up to a minute, then it's quick)",
+    "running": "Running…",
+    "noOutput": "The program finished with no output.",
+    "inputLabel": "Type your answer",
+    "inputSend": "Send",
+    "expectError": "This code has a deliberate error, try fixing it",
+    "timeout": "Stopped after 10 seconds. Is there a loop that never ends?",
+    "limit": "Too much output, so the program was stopped. Is there a loop that never ends?",
+    "stopped": "Program stopped.",
+    "crash": "Python stopped unexpectedly (maybe recursion went too deep). Try running it again.",
+    "offline": "Python couldn't load. Check your internet connection and try again."
   }
 }

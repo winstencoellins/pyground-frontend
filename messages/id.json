@@ -368,5 +368,24 @@
     "notFoundTitle": "Pelajaran tidak ditemukan",
     "notFoundBody": "Mungkin namanya berubah. Cari dari daftar pelajaran.",
     "loading": "Memuat pelajaran…"
+  },
+  "Runner": {
+    "run": "Jalankan",
+    "stop": "Hentikan",
+    "reset": "Ulang",
+    "output": "Output",
+    "editor": "Editor kode Python",
+    "hint": "Ctrl/⌘ + Enter untuk menjalankan",
+    "loading": "Menyiapkan Python… (pertama kali bisa sampai satu menit, setelahnya cepat)",
+    "running": "Menjalankan…",
+    "noOutput": "Program selesai tanpa output.",
+    "inputLabel": "Ketik jawabanmu",
+    "inputSend": "Kirim",
+    "expectError": "Kode ini sengaja error, coba perbaiki",
+    "timeout": "Dihentikan setelah 10 detik. Mungkin ada perulangan yang tidak pernah berhenti?",
+    "limit": "Output terlalu panjang, jadi program dihentikan. Mungkin ada perulangan yang tidak pernah berhenti?",
+    "stopped": "Program dihentikan.",
+    "crash": "Python berhenti mendadak (mungkin rekursi terlalu dalam). Coba jalankan lagi.",
+    "offline": "Python gagal dimuat. Periksa koneksi internet, lalu coba lagi."
   }
 }

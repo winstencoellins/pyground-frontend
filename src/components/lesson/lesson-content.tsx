@@ -1,8 +1,11 @@
 import { evaluate } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime";
+import { getMessages } from "next-intl/server";
 import remarkGfm from "remark-gfm";
+import type { Locale } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
-import { AnimatedDiagram, Callout, FileTree, Playground, Quiz, TerminalBlock, VideoEmbed } from "./blocks";
+import { AnimatedDiagram, Callout, FileTree, Quiz, TerminalBlock, VideoEmbed } from "./blocks";
+import { Playground, type PlaygroundLabels } from "./playground";
 
 type Props<T extends keyof React.JSX.IntrinsicElements> = React.ComponentProps<T>;
 
@@ -41,7 +44,6 @@ const components = {
   Callout,
   TerminalBlock,
   FileTree,
-  Playground,
   Quiz,
   AnimatedDiagram,
   VideoEmbed,
@@ -51,13 +53,23 @@ const components = {
  * Compiles a lesson's MDX on the server. The source is our own /content served by pyground-api, so running
  * its expressions is trusted (it is code we review in the backend repo, never user input).
  */
-export async function LessonContent({ source }: { source: string }) {
+export async function LessonContent({ source, locale }: { source: string; locale: Locale }) {
   // Every lesson opens with "# <title>"; the page header already shows the title, so drop that first line.
   const body = source.replace(/^\s*# [^\n]*\n/, "");
-  const { default: Content } = await evaluate(body, { ...runtime, remarkPlugins: [remarkGfm] });
+  const [{ default: Content }, messages] = await Promise.all([
+    evaluate(body, { ...runtime, remarkPlugins: [remarkGfm] }),
+    getMessages({ locale }),
+  ]);
+  // The UI follows the site locale even when the lesson text falls back to Indonesian.
+  const labels: PlaygroundLabels = messages.Runner;
   return (
     <div className="text-[1.02rem] [overflow-wrap:anywhere] [&>*:first-child]:mt-0">
-      <Content components={components} />
+      <Content
+        components={{
+          ...components,
+          Playground: (p: { initialCode: string; expectError?: boolean }) => <Playground {...p} labels={labels} />,
+        }}
+      />
     </div>
   );
 }

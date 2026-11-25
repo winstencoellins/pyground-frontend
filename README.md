@@ -66,9 +66,24 @@ Free lessons stay public; the API decides which lessons need a pass. New protect
 
 `/{locale}/lessons` lists the curriculum and `/{locale}/lessons/[slug]` renders one lesson. The API serves the MDX
 source (`src/lib/lessons.ts`); `src/components/lesson/lesson-content.tsx` compiles it on the server with MDX 3 + GFM and
-maps elements to Pyground typography. Lesson components live in `src/components/lesson/blocks.tsx`. Playground, Quiz,
-AnimatedDiagram and VideoEmbed are read-only stand-ins until #14, #15 and #16. Free lessons are public; locked ones
+maps elements to Pyground typography. Lesson components live in `src/components/lesson/blocks.tsx`. Quiz,
+AnimatedDiagram and VideoEmbed are read-only stand-ins until #15 and #16. Free lessons are public; locked ones
 show a sign-in / pricing panel.
+
+### Playground (Python in the browser)
+
+`src/components/lesson/playground.tsx` is a CodeMirror 6 editor; `src/lib/python/runner.ts` runs code in
+[Pyodide](https://pyodide.org) inside one shared Web Worker, `public/python-worker.mjs`.
+
+- The worker is a static module file, not bundled: Turbopack only builds classic workers, and Pyodide 314 needs a module
+  worker. Pyodide itself loads from `cdn.jsdelivr.net` (~12 MB the first time, then from the browser cache). Python is
+  fetched on the first Run or when an editor gets focus, never on page load.
+- `input()` works without `SharedArrayBuffer` (which would need COOP/COEP headers that break YouTube embeds and Midtrans
+  Snap): when the program asks for input, the run stops, the page shows an answer box, and the program is run again from
+  the start with all answers so far. `random` is seeded once per Run so the replays match.
+- Runs stop after 10 s (the worker is killed and Python reloads from cache) or after 20,000 characters of output.
+  Tracebacks only show the learner's `main.py` lines. Ctrl/⌘ + Enter runs; Reset restores the lesson's code.
+- To upgrade Pyodide, change the version in `public/python-worker.mjs` (both URLs) and `src/lib/python/config.ts`.
 
 ## Environment
 
