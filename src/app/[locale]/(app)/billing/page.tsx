@@ -87,7 +87,7 @@ export default async function BillingPage({ params }: PageProps<"/[locale]/billi
         </p>
         <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           <div className="grid content-start gap-3">
-            <h2 className="font-semibold text-highlight">{t("passName")}</h2>
+            <h2 className="font-semibold text-highlight-text">{t("passName")}</h2>
             <p className="flex items-baseline gap-1.5">
               <b className="text-[2.4rem] leading-none font-semibold tracking-tight tabular-nums">
                 <Suspense

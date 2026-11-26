@@ -97,7 +97,7 @@ export function Exercise({
       <p
         className={cn(
           "mt-0 mb-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[0.75rem] font-semibold",
-          guided ? "bg-primary/10 text-primary-text" : "bg-highlight/10 text-highlight",
+          guided ? "bg-primary/10 text-primary-text" : "bg-highlight/10 text-highlight-text",
         )}
       >
         <Icon className="size-3.5" aria-hidden /> {label}
@@ -172,7 +172,7 @@ export function Exercise({
         <ol className="mt-0 mb-3 grid gap-2 pl-0">
           {hints.slice(0, hintsShown).map((h, i) => (
             <li key={h} className="flex gap-2 rounded-xl bg-card px-3 py-2 text-[0.92rem]">
-              <Lightbulb className="mt-0.5 size-4 shrink-0 text-highlight" aria-hidden />
+              <Lightbulb className="mt-0.5 size-4 shrink-0 text-highlight-text" aria-hidden />
               <span>
                 <b className="font-semibold">{fill(labels.hintN, { n: i + 1 })}:</b> <Text>{h}</Text>
               </span>

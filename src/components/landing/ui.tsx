@@ -46,7 +46,7 @@ export function PillLink({
       href={href}
       className={cn(
         "group inline-flex h-12 w-fit items-center gap-3 rounded-full py-1.5 pr-1.5 pl-5 text-[0.95rem] font-semibold shadow-[0_12px_24px_-12px_rgb(0_0_0/0.35)] transition-transform outline-none hover:-translate-y-0.5 focus-visible:ring-4 focus-visible:ring-ring/50",
-        tone === "ink" ? "bg-foreground text-background" : "bg-white text-[#15172f]",
+        tone === "ink" ? "bg-foreground text-background" : "bg-white text-ink",
         className,
       )}
     >

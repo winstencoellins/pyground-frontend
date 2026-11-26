@@ -212,7 +212,7 @@ export function Playground({
         <div className="flex min-w-0 items-center gap-3 pl-1 font-mono text-[0.78rem] text-muted-foreground">
           <span>main.py</span>
           {expectError && (
-            <span className="font-sans text-[0.75rem] font-semibold text-highlight">
+            <span className="font-sans text-[0.75rem] font-semibold text-highlight-text">
               <AlertTriangle className="mr-1 inline size-3.5 align-[-2px]" aria-hidden />
               {labels.expectError}
             </span>

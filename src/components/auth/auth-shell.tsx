@@ -12,10 +12,10 @@ export function AuthShell({ children }: { children: React.ReactNode }) {
       {/* Fixed colors: the same panel in light and dark mode, like the landing CTA. */}
       <aside
         className="relative hidden flex-col justify-between overflow-hidden p-10 text-white lg:flex"
-        style={{ background: "linear-gradient(160deg, #15172f 0%, #2f3380 55%, #6b4a9e 100%)" }}
+        style={{ background: "var(--gradient-ink)" }}
       >
         <Link href="/" className="flex w-fit items-center gap-2.5 text-lg font-semibold tracking-tight">
-          <span className="grid size-9 place-items-center rounded-full bg-white font-mono text-[0.78rem] font-semibold text-[#15172f]">
+          <span className="grid size-9 place-items-center rounded-full bg-white font-mono text-[0.78rem] font-semibold text-ink">
             py
           </span>
           {brand.name}
@@ -25,19 +25,19 @@ export function AuthShell({ children }: { children: React.ReactNode }) {
           <p className="text-white/70">{t("asideBody")}</p>
         </div>
         <div aria-hidden className="grid max-w-sm gap-3">
-          <div className="rounded-2xl bg-[#15172f]/80 p-4 text-[0.88rem] shadow-xl">
-            <p className="flex items-center gap-2 font-mono text-[0.75rem] text-[#a0a3c6]">
+          <div className="rounded-2xl bg-ink/80 p-4 text-[0.88rem] shadow-xl">
+            <p className="flex items-center gap-2 font-mono text-[0.75rem] text-ink-muted">
               <Play className="size-3" /> {cta("ran")}
             </p>
             <p className="mt-1.5 font-mono">Total Rp 59,500</p>
           </div>
-          <div className="ml-8 rounded-2xl bg-white p-4 text-[0.88rem] text-[#1b1d3a] shadow-xl">
+          <div className="ml-8 rounded-2xl bg-white p-4 text-[0.88rem] text-[#0f172a] shadow-xl">
             <p className="flex items-center gap-2 font-semibold">
-              <Check className="size-4 text-[#1f8a5b]" /> {cta("quizDone")}
+              <Check className="size-4 text-[#15803d]" /> {cta("quizDone")}
             </p>
           </div>
-          <div className="flex w-fit items-center gap-2 rounded-full bg-[#15172f]/80 px-4 py-2 text-[0.82rem] shadow-xl">
-            <Flame className="size-4 text-[#ff7a6b]" /> {cta("streak")}
+          <div className="flex w-fit items-center gap-2 rounded-full bg-ink/80 px-4 py-2 text-[0.82rem] shadow-xl">
+            <Flame className="size-4 text-ink-accent" /> {cta("streak")}
           </div>
         </div>
       </aside>

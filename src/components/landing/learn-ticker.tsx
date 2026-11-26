@@ -14,7 +14,7 @@ export function LearnTicker({ label, items }: { label: string; items: string[] }
 
   return (
     <div className="grid gap-2.5">
-      <div className="flex items-center gap-3 rounded-2xl border bg-card p-2.5 pr-4 shadow-[0_18px_40px_-24px_rgb(27_29_58/0.45)]">
+      <div className="flex items-center gap-3 rounded-2xl border bg-card p-2.5 pr-4 shadow-[0_18px_40px_-24px_rgb(10_31_28/0.45)]">
         <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary font-mono text-[0.8rem] font-semibold text-primary-foreground">
           py
         </span>

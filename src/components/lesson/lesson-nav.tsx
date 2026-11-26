@@ -52,7 +52,7 @@ export async function StageNav({
         aria-label={t("stageProgress", { done, total: lessons.length })}
         className="h-1.5 overflow-hidden rounded-full bg-muted"
       >
-        <div className="h-full rounded-full bg-success" style={{ width: `${(done / lessons.length) * 100}%` }} />
+        <div className="bg-brand-gradient h-full rounded-full" style={{ width: `${(done / lessons.length) * 100}%` }} />
       </div>
       <p className="text-[0.78rem] text-muted-foreground">{t("stageProgress", { done, total: lessons.length })}</p>
     </div>

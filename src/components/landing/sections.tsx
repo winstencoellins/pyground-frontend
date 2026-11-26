@@ -30,7 +30,7 @@ export function Hero() {
           <Chip tag={t("chipTag")} className="motion-enter">
             {t("chip")}
           </Chip>
-          <h1 className="motion-enter text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.02] font-semibold tracking-[-0.04em] [--i:1]">
+          <h1 className="motion-enter text-brand-gradient text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.02] font-semibold tracking-[-0.04em] [--i:1]">
             {t("title")}
           </h1>
           <p className="motion-enter max-w-[30em] text-[1.05rem] leading-relaxed text-muted-foreground [--i:2]">
@@ -42,7 +42,7 @@ export function Hero() {
           <ul className="motion-enter mt-4 grid gap-1.5 text-sm text-muted-foreground [--i:4]">
             {points.map((p) => (
               <li key={p} className="flex items-center gap-2">
-                <Check className="size-4 text-highlight" aria-hidden />
+                <Check className="size-4 text-highlight-text" aria-hidden />
                 {p}
               </li>
             ))}
@@ -53,7 +53,7 @@ export function Hero() {
         <div className="motion-enter relative min-w-0 [--i:2]">
           <div
             aria-hidden
-            className="absolute inset-x-[-10%] top-[8%] bottom-[-6%] -z-10 rounded-full bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--primary)_22%,transparent),transparent)] blur-2xl"
+            className="absolute inset-x-[-10%] top-[8%] bottom-[-6%] -z-10 rounded-full bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--primary)_22%,transparent),transparent),radial-gradient(circle_at_85%_80%,color-mix(in_srgb,var(--highlight)_28%,transparent),transparent_45%)] blur-2xl"
           />
           <PlaygroundDemo />
         </div>
@@ -64,15 +64,15 @@ export function Hero() {
             <LearnTicker label={ticker("label")} items={ticker.raw("items") as string[]} />
           </div>
           <div className="motion-enter grid gap-5 [--i:6]">
-            <div className="rounded-2xl border bg-card p-4 shadow-[0_18px_40px_-24px_rgb(27_29_58/0.45)]">
+            <div className="rounded-2xl border bg-card p-4 shadow-[0_18px_40px_-24px_rgb(10_31_28/0.45)]">
               <div className="flex items-start justify-between gap-3">
                 <p className="text-[0.8rem] text-muted-foreground">{t("progressLabel")}</p>
                 <p className="text-[1.7rem] leading-none font-semibold tracking-tight tabular-nums">64%</p>
               </div>
               <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-muted">
-                <div className="motion-grow h-full w-[64%] rounded-full bg-primary [--i:6]" />
+                <div className="motion-grow bg-brand-gradient h-full w-[64%] rounded-full [--i:6]" />
               </div>
-              <p className="mt-2 flex items-center justify-end gap-1 text-[0.75rem] font-semibold text-highlight">
+              <p className="mt-2 flex items-center justify-end gap-1 text-[0.75rem] font-semibold text-highlight-text">
                 <Flame className="size-3.5" aria-hidden /> {t("streak", { days: 5 })}
               </p>
             </div>
@@ -119,9 +119,9 @@ export function TopicStrip() {
 const featureIcons = [Play, Languages, ListChecks, Flame];
 const iconTint = [
   "bg-primary/10 text-primary-text",
-  "bg-highlight/10 text-highlight",
+  "bg-highlight/10 text-highlight-text",
   "bg-primary/10 text-primary-text",
-  "bg-highlight/10 text-highlight",
+  "bg-highlight/10 text-highlight-text",
 ];
 
 export function Why() {
@@ -150,7 +150,7 @@ export function Why() {
               <article
                 key={f.title}
                 style={order(i)}
-                className="motion-reveal grid content-start gap-14 rounded-[20px] border bg-card p-5 transition-[translate,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_24px_40px_-28px_rgb(27_29_58/0.45)]"
+                className="motion-reveal grid content-start gap-14 rounded-[20px] border bg-card p-5 transition-[translate,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_24px_40px_-28px_rgb(10_31_28/0.45)]"
               >
                 <span className={cn("grid size-11 place-items-center rounded-xl", iconTint[i])}>
                   <Icon className="size-5" aria-hidden />
@@ -203,7 +203,7 @@ export function Overview() {
 /* ---------------------------------------------------------------- stages */
 
 function Shape({ kind }: { kind: StageShape }) {
-  const base = "drop-shadow-[0_18px_18px_rgb(27_29_58/0.25)]";
+  const base = "drop-shadow-[0_18px_18px_rgb(10_31_28/0.25)]";
   if (kind === "sphere")
     return (
       <div
@@ -273,7 +273,7 @@ export function Stages() {
             return (
               <article
                 key={s.title}
-                className="motion-reveal grid gap-4 rounded-[20px] border bg-card p-5 transition-[translate,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_24px_40px_-28px_rgb(27_29_58/0.45)]"
+                className="motion-reveal grid gap-4 rounded-[20px] border bg-card p-5 transition-[translate,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_24px_40px_-28px_rgb(10_31_28/0.45)]"
                 style={{ ...order(i), marginTop: `calc(var(--stagger, 0px) * ${i})` }}
               >
                 <div className="grid gap-1">
@@ -315,9 +315,9 @@ export function Showcase() {
   return (
     <section className="py-16">
       <Container className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_minmax(0,0.6fr)]">
-        <div className="motion-reveal overflow-hidden rounded-[20px] bg-[#15172f] p-5 font-mono text-[0.78rem] leading-relaxed text-[#d9dbf5] shadow-[0_30px_60px_-30px_rgb(27_29_58/0.6)]">
-          <p className="mb-3 flex items-center gap-2 font-sans text-[0.72rem] font-semibold tracking-[0.08em] text-[#a0a3c6] uppercase">
-            <span className="size-2 rounded-full bg-[#ff7a6b]" /> {t("terminalLabel")}
+        <div className="motion-reveal overflow-hidden rounded-[20px] bg-ink p-5 font-mono text-[0.78rem] leading-relaxed text-ink-foreground shadow-[0_30px_60px_-30px_rgb(10_31_28/0.6)]">
+          <p className="mb-3 flex items-center gap-2 font-sans text-[0.72rem] font-semibold tracking-[0.08em] text-ink-muted uppercase">
+            <span className="size-2 rounded-full bg-ink-accent" /> {t("terminalLabel")}
           </p>
           <pre className="whitespace-pre-wrap">{(t.raw("terminal") as string[]).join("\n")}</pre>
         </div>
@@ -347,7 +347,7 @@ export function Showcase() {
 function CheckItem({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex gap-2.5">
-      <Check className="mt-1 size-4 shrink-0 text-highlight" aria-hidden />
+      <Check className="mt-1 size-4 shrink-0 text-highlight-text" aria-hidden />
       <span>{children}</span>
     </li>
   );
@@ -389,7 +389,7 @@ export function Pricing() {
             </p>
             <div className="grid gap-6 bg-card p-7">
               <div>
-                <h3 className="font-semibold text-highlight">{t("pass.name")}</h3>
+                <h3 className="font-semibold text-highlight-text">{t("pass.name")}</h3>
                 <p className="mt-3 flex items-baseline gap-1.5">
                   <b className="text-[2.6rem] leading-none font-semibold tracking-tight tabular-nums">
                     <Suspense
@@ -454,9 +454,9 @@ export function FinalCta() {
       <Container>
         {/* Fixed colors: this panel looks the same in light and dark mode. */}
         <div className="motion-reveal grid overflow-hidden rounded-[28px] lg:grid-cols-2">
-          <div className="grid content-center gap-6 bg-[#15172f] p-8 text-white sm:p-12">
+          <div className="grid content-center gap-6 bg-ink p-8 text-white sm:p-12">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/20 py-0.5 pr-3 pl-0.5 text-[0.68rem] font-semibold tracking-[0.06em] uppercase">
-              <span className="rounded-full bg-[#ff7a6b] px-2 py-0.5 text-[#15172f]">{t("tag")}</span>
+              <span className="rounded-full bg-ink-accent px-2 py-0.5 text-ink">{t("tag")}</span>
               <span className="text-white/70">{t("label")}</span>
             </span>
             <h2 className="text-[clamp(2rem,4vw,3rem)] leading-[1.05] font-semibold tracking-[-0.035em]">
@@ -478,22 +478,22 @@ export function FinalCta() {
 
           <div
             className="relative grid min-h-[340px] content-center justify-items-center gap-4 p-8"
-            style={{ background: "linear-gradient(160deg, #2f3380 0%, #6b4a9e 55%, #e0705f 100%)" }}
+            style={{ background: "var(--gradient-vivid)" }}
           >
-            <div className="motion-float max-w-[320px] rounded-2xl bg-[#15172f] p-4 text-[0.9rem] text-white shadow-xl">
-              <p className="flex items-center gap-2 font-mono text-[0.75rem] text-[#a0a3c6]">
+            <div className="motion-float max-w-[320px] rounded-2xl bg-ink p-4 text-[0.9rem] text-white shadow-xl">
+              <p className="flex items-center gap-2 font-mono text-[0.75rem] text-ink-muted">
                 <Play className="size-3" aria-hidden /> {t("ran")}
               </p>
               <p className="mt-1.5 font-mono">Total Rp 59,500</p>
             </div>
-            <div className="motion-float max-w-[320px] translate-x-6 rounded-2xl bg-white p-4 text-[0.9rem] text-[#1b1d3a] shadow-xl [--i:1]">
+            <div className="motion-float max-w-[320px] translate-x-6 rounded-2xl bg-white p-4 text-[0.9rem] text-[#0f172a] shadow-xl [--i:1]">
               <p className="flex items-center gap-2 font-semibold">
-                <Check className="size-4 text-[#1f8a5b]" aria-hidden /> {t("quizDone")}
+                <Check className="size-4 text-[#15803d]" aria-hidden /> {t("quizDone")}
               </p>
-              <p className="mt-1 text-[#5e6283]">{t("quizBody")}</p>
+              <p className="mt-1 text-[#556070]">{t("quizBody")}</p>
             </div>
-            <div className="motion-float flex items-center gap-2 rounded-full bg-[#15172f] px-4 py-2 text-[0.82rem] text-white shadow-xl [--i:2]">
-              <Flame className="size-4 text-[#ff7a6b]" aria-hidden /> {t("streak")}
+            <div className="motion-float flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-[0.82rem] text-white shadow-xl [--i:2]">
+              <Flame className="size-4 text-ink-accent" aria-hidden /> {t("streak")}
             </div>
           </div>
         </div>

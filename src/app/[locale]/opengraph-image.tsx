@@ -26,8 +26,8 @@ export default async function OpengraphImage({ params }: { params: Promise<{ loc
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background: "#23265e",
-          color: "#ecedf8",
+          background: "linear-gradient(160deg, #0a1f1c 0%, #0f5f58 55%, #3f6212 100%)",
+          color: "#ecfdf5",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
@@ -39,8 +39,8 @@ export default async function OpengraphImage({ params }: { params: Promise<{ loc
               width: 72,
               height: 72,
               borderRadius: 999,
-              background: "#ecedf8",
-              color: "#23265e",
+              background: "#ecfdf5",
+              color: "#0a1f1c",
               fontSize: 30,
               fontWeight: 700,
             }}
@@ -51,10 +51,10 @@ export default async function OpengraphImage({ params }: { params: Promise<{ loc
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div style={{ fontSize: 76, fontWeight: 700, lineHeight: 1.05, letterSpacing: -2 }}>{hero("title")}</div>
-          <div style={{ fontSize: 32, color: "#b9bce0", lineHeight: 1.35, maxWidth: 940 }}>{hero("body")}</div>
+          <div style={{ fontSize: 32, color: "#b5d6cf", lineHeight: 1.35, maxWidth: 940 }}>{hero("body")}</div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 26, color: "#b9bce0" }}>
-          <div style={{ width: 40, height: 6, borderRadius: 3, background: "#c4473b" }} />
+        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 26, color: "#b5d6cf" }}>
+          <div style={{ width: 40, height: 6, borderRadius: 3, background: "#a3e635" }} />
           {common("supportedBy", { name: brand.supportedBy })}
         </div>
       </div>

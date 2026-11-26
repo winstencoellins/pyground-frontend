@@ -70,7 +70,7 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/das
 
       <div className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
         {/* Continue where you left off */}
-        <section className="grid content-between gap-6 rounded-[24px] bg-band p-6 text-band-foreground sm:p-8">
+        <section className="grid content-between gap-6 rounded-[24px] bg-band bg-[image:var(--gradient-band)] p-6 text-band-foreground sm:p-8">
           {next && nextStage && nextModule ? (
             <>
               <div className="grid gap-2">
@@ -122,7 +122,7 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/das
           </h2>
           <p className="flex items-center gap-2.5 text-[2rem] leading-none font-semibold tracking-[-0.03em]">
             <Flame
-              className={cn("size-8", streak.current > 0 ? "text-highlight" : "text-muted-foreground")}
+              className={cn("size-8", streak.current > 0 ? "text-highlight-text" : "text-muted-foreground")}
               aria-hidden
             />
             {t("streakDays", { count: streak.current })}
@@ -178,7 +178,7 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/das
                     className="h-1.5 overflow-hidden rounded-full bg-muted"
                   >
                     <span
-                      className="block h-full rounded-full bg-success"
+                      className="bg-brand-gradient block h-full rounded-full"
                       style={{ width: `${(count / lessons.length) * 100}%` }}
                     />
                   </span>

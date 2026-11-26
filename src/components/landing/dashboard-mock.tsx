@@ -13,7 +13,7 @@ export function DashboardMock() {
   return (
     <div
       aria-label={t("label")}
-      className="w-[760px] max-w-none rounded-[22px] border bg-card p-5 shadow-[0_40px_80px_-40px_rgb(27_29_58/0.45)]"
+      className="w-[760px] max-w-none rounded-[22px] border bg-card p-5 shadow-[0_40px_80px_-40px_rgb(10_31_28/0.45)]"
     >
       <div className="flex items-center justify-between gap-4">
         <span className="flex items-center gap-2 text-[0.95rem] font-semibold">
@@ -44,7 +44,7 @@ export function DashboardMock() {
             <p className="font-semibold">{t("lesson")}</p>
           </div>
           <div className="h-2 overflow-hidden rounded-full bg-muted">
-            <div className="motion-bar h-full w-[42%] rounded-full bg-primary" />
+            <div className="motion-bar bg-brand-gradient h-full w-[42%] rounded-full" />
           </div>
           <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-foreground px-3 py-1.5 text-[0.75rem] font-semibold text-background">
             <Play className="size-3" aria-hidden /> {t("resume")}
@@ -53,7 +53,7 @@ export function DashboardMock() {
 
         <div className="grid content-start gap-3 rounded-2xl border bg-background p-4">
           <p className="flex items-center gap-1.5 text-[0.72rem] font-semibold tracking-[0.06em] text-muted-foreground uppercase">
-            <Flame className="size-3.5 text-highlight" aria-hidden /> {t("streak")}
+            <Flame className="size-3.5 text-highlight-text" aria-hidden /> {t("streak")}
           </p>
           <p className="text-[1.8rem] leading-none font-semibold tracking-tight">
             6 <span className="text-[0.9rem] font-medium text-muted-foreground">{t("days")}</span>
@@ -83,7 +83,7 @@ export function DashboardMock() {
               <span>{label}</span>
               <span className="h-2 overflow-hidden rounded-full bg-muted">
                 <span
-                  className="motion-bar block h-full rounded-full bg-primary"
+                  className="motion-bar bg-brand-gradient block h-full rounded-full"
                   style={{ width: `${stagePct[i]}%`, "--i": i + 1 } as React.CSSProperties}
                 />
               </span>

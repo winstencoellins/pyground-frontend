@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const calloutStyle = {
   tip: { icon: Lightbulb, className: "border-primary/25 bg-primary/5", iconClass: "text-primary-text" },
   info: { icon: Info, className: "bg-muted", iconClass: "text-primary-text" },
-  warning: { icon: AlertTriangle, className: "border-highlight/30 bg-highlight/5", iconClass: "text-highlight" },
+  warning: { icon: AlertTriangle, className: "border-warning/30 bg-warning/5", iconClass: "text-warning" },
 } as const;
 
 export function Callout({ type = "info", children }: { type?: keyof typeof calloutStyle; children: React.ReactNode }) {
@@ -21,12 +21,12 @@ export function Callout({ type = "info", children }: { type?: keyof typeof callo
 
 export function TerminalBlock({ command, output }: { command: string; output?: string }) {
   return (
-    <div className="my-6 overflow-hidden rounded-2xl bg-[#15172f] font-mono text-[0.85rem] text-[#d9dbf5]">
-      <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2 font-sans text-[0.72rem] font-semibold tracking-[0.08em] text-[#a0a3c6] uppercase">
+    <div className="my-6 overflow-hidden rounded-2xl bg-ink font-mono text-[0.85rem] text-ink-foreground">
+      <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2 font-sans text-[0.72rem] font-semibold tracking-[0.08em] text-ink-muted uppercase">
         <Terminal className="size-3.5" aria-hidden /> Terminal
       </div>
       <pre className="overflow-x-auto px-4 py-3 leading-relaxed">
-        <span className="text-[#ff7a6b] select-none">$ </span>
+        <span className="text-ink-accent select-none">$ </span>
         {command}
         {output ? `\n${output}` : ""}
       </pre>

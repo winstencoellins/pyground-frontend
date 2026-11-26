@@ -51,7 +51,7 @@ export function PlaygroundView({
   return (
     <div
       aria-label={labels.region}
-      className="min-w-0 overflow-hidden rounded-[22px] border bg-card shadow-[0_40px_80px_-40px_rgb(27_29_58/0.5)]"
+      className="min-w-0 overflow-hidden rounded-[22px] border bg-card shadow-[0_40px_80px_-40px_rgb(10_31_28/0.5)]"
     >
       <div className="flex items-center justify-between gap-2.5 border-b py-2.5 pr-3 pl-4">
         <span className="flex min-w-0 items-center gap-2 font-mono text-[0.8rem] text-muted-foreground">

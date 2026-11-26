@@ -13,6 +13,12 @@
   --color-primary-text: var(--primary-text);
   --color-highlight: var(--highlight);
   --color-highlight-foreground: var(--highlight-foreground);
+  --color-highlight-text: var(--highlight-text);
+  --color-warning: var(--warning);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-accent: var(--ink-accent);
   --color-success: var(--success);
   --color-band: var(--band);
   --color-band-foreground: var(--band-foreground);
@@ -59,98 +65,121 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Pyground palette "Nila & Merah". Every color in the app comes from these tokens.
-   shadcn names (primary, muted, accent...) keep shadcn components working; the brand red is
-   "highlight" because shadcn's "accent" means a subtle hover background. */
+/* Pyground palette "Teal & Lime". Every color in the app comes from these tokens.
+   shadcn names (primary, muted, accent...) keep shadcn components working; the brand lime is
+   "highlight" because shadcn's "accent" means a subtle hover background. Lime is too light for text
+   on light surfaces, so lime-colored text and icons use highlight-text. */
 :root {
-  --background: #f7f7fb;
-  --foreground: #1b1d3a;
+  --background: #f8fafc;
+  --foreground: #0f172a;
   --card: #ffffff;
-  --card-foreground: #1b1d3a;
+  --card-foreground: #0f172a;
   --popover: #ffffff;
-  --popover-foreground: #1b1d3a;
-  --primary: #3a3f99;
+  --popover-foreground: #0f172a;
+  --primary: #0f766e;
   --primary-foreground: #ffffff;
-  --primary-text: #3a3f99; /* primary used as text/links */
-  --secondary: #eff0fa;
-  --secondary-foreground: #1b1d3a;
-  --muted: #eff0fa;
-  --muted-foreground: #5e6283;
-  --accent: #eff0fa;
-  --accent-foreground: #1b1d3a;
-  --highlight: #c4473b; /* merah: small marks only (badges, underline), never error states */
-  --highlight-foreground: #ffffff;
+  --primary-text: #0f766e; /* primary used as text/links */
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --muted: #f1f5f9;
+  --muted-foreground: #556070;
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+  --highlight: #a3e635; /* lime: fills (badges, chips, marks) with highlight-foreground on top */
+  --highlight-foreground: #1a2e05;
+  --highlight-text: #4d7c0f; /* lime as text/icons on light surfaces */
+  --warning: #b45309;
   --destructive: #b42318;
-  --success: #1f8a5b;
-  --border: #e0e1ee;
-  --input: #e0e1ee;
-  --ring: #3a3f99;
-  --band: #23265e;
-  --band-foreground: #ecedf8;
-  --band-muted: #b9bce0;
-  --code-keyword: #3a3f99;
+  --success: #137333;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #0f766e;
+  --band: #0b2421;
+  --band-foreground: #ecfdf5;
+  --band-muted: #a7c4bd;
+  --code-keyword: #0f766e;
   --code-string: #9a4a12;
-  --code-number: #c23f33;
-  --code-comment: #6d7193;
-  --chart-1: #3a3f99;
-  --chart-2: #c4473b;
-  --chart-3: #6d7193;
-  --chart-4: #9ea6ff;
-  --chart-5: #1f8a5b;
+  --code-number: #b42318;
+  --code-comment: #64748b;
+  --chart-1: #0f766e;
+  --chart-2: #65a30d;
+  --chart-3: #64748b;
+  --chart-4: #5eead4;
+  --chart-5: #137333;
   --radius: 0.75rem;
   --sidebar: #ffffff;
-  --sidebar-foreground: #1b1d3a;
-  --sidebar-primary: #3a3f99;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #0f766e;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #eff0fa;
-  --sidebar-accent-foreground: #1b1d3a;
-  --sidebar-border: #e0e1ee;
-  --sidebar-ring: #3a3f99;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #0f766e;
+
+  /* Brand gradient: bars and decorative fills (never behind text). */
+  --gradient-brand: linear-gradient(90deg, var(--primary), #14b8a6 55%, #a3e635);
+  /* Gradient text that stays readable on light surfaces (both ends pass 4.5:1 on white). */
+  --gradient-text: linear-gradient(100deg, #0f766e 20%, #4d7c0f);
+  --gradient-band: linear-gradient(135deg, #0b2421 0%, #0e3b36 60%, #134e2a 100%);
+
+  /* Fixed panels that look the same in light and dark mode (landing CTA, auth aside, terminal). */
+  --ink: #0a1f1c;
+  --ink-foreground: #d7f0ea;
+  --ink-muted: #8fb3ab;
+  --ink-accent: #bef264;
+  --gradient-ink: linear-gradient(160deg, #0a1f1c 0%, #0f5f58 55%, #3f6212 100%);
+  --gradient-vivid: linear-gradient(150deg, #0f766e 0%, #14b8a6 50%, #a3e635 100%);
 }
 
 .dark {
-  --background: #12132a;
-  --foreground: #ecedf8;
-  --card: #1b1d3d;
-  --card-foreground: #ecedf8;
-  --popover: #1b1d3d;
-  --popover-foreground: #ecedf8;
-  --primary: #9ea6ff;
-  --primary-foreground: #12132a;
-  --primary-text: #aeb4ff;
-  --secondary: #222553;
-  --secondary-foreground: #ecedf8;
-  --muted: #222553;
-  --muted-foreground: #a0a3c6;
-  --accent: #222553;
-  --accent-foreground: #ecedf8;
-  --highlight: #ff7a6b;
-  --highlight-foreground: #12132a;
+  --background: #0a1413;
+  --foreground: #e6f2ef;
+  --card: #101e1c;
+  --card-foreground: #e6f2ef;
+  --popover: #101e1c;
+  --popover-foreground: #e6f2ef;
+  --primary: #2dd4bf;
+  --primary-foreground: #042f2e;
+  --primary-text: #5eead4;
+  --secondary: #162926;
+  --secondary-foreground: #e6f2ef;
+  --muted: #162926;
+  --muted-foreground: #94aca7;
+  --accent: #162926;
+  --accent-foreground: #e6f2ef;
+  --highlight: #bef264;
+  --highlight-foreground: #1a2e05;
+  --highlight-text: #bef264;
+  --warning: #fbbf24;
   --destructive: #ff8c7f;
-  --success: #4cc38a;
-  --border: #2c2f5a;
-  --input: #2c2f5a;
-  --ring: #9ea6ff;
-  --band: #1b1d3d;
-  --band-foreground: #ecedf8;
-  --band-muted: #a0a3c6;
-  --code-keyword: #aeb4ff;
-  --code-string: #ffb27a;
+  --success: #4ade80;
+  --border: #223a36;
+  --input: #223a36;
+  --ring: #2dd4bf;
+  --band: #101e1c;
+  --band-foreground: #e6f2ef;
+  --band-muted: #94aca7;
+  --code-keyword: #5eead4;
+  --code-string: #fdba74;
   --code-number: #ff8c7f;
-  --code-comment: #8a8db4;
-  --chart-1: #9ea6ff;
-  --chart-2: #ff7a6b;
-  --chart-3: #a0a3c6;
-  --chart-4: #6c74e0;
-  --chart-5: #4cc38a;
-  --sidebar: #1b1d3d;
-  --sidebar-foreground: #ecedf8;
-  --sidebar-primary: #9ea6ff;
-  --sidebar-primary-foreground: #12132a;
-  --sidebar-accent: #222553;
-  --sidebar-accent-foreground: #ecedf8;
-  --sidebar-border: #2c2f5a;
-  --sidebar-ring: #9ea6ff;
+  --code-comment: #7f9893;
+  --chart-1: #2dd4bf;
+  --chart-2: #bef264;
+  --chart-3: #94aca7;
+  --chart-4: #0d9488;
+  --chart-5: #4ade80;
+  --sidebar: #101e1c;
+  --sidebar-foreground: #e6f2ef;
+  --sidebar-primary: #2dd4bf;
+  --sidebar-primary-foreground: #042f2e;
+  --sidebar-accent: #162926;
+  --sidebar-accent-foreground: #e6f2ef;
+  --sidebar-border: #223a36;
+  --sidebar-ring: #2dd4bf;
+
+  --gradient-brand: linear-gradient(90deg, #14b8a6, #2dd4bf 50%, #bef264);
+  --gradient-text: linear-gradient(100deg, #5eead4, #99f6e4 45%, #bef264);
+  --gradient-band: linear-gradient(135deg, #0f2421 0%, #12332f 60%, #1a3a1c 100%);
 }
 
 @layer base {
@@ -252,4 +281,15 @@
     opacity: 1;
     transform: none;
   }
+}
+
+/* Brand gradient helpers. */
+.bg-brand-gradient {
+  background-image: var(--gradient-brand);
+}
+.text-brand-gradient {
+  background-image: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
