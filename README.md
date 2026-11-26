@@ -168,9 +168,12 @@ Set in `next.config.ts` for every page (the proxied `/api/*` keeps the API's own
 
 ## Design
 
-- **Palette "Nila & Merah"**: every color is a CSS variable in `src/app/globals.css` (light in `:root`, dark in
+- **Palette "Teal & Lime"**: every color is a CSS variable in `src/app/globals.css` (light in `:root`, dark in
   `.dark`). Components use the token names (`bg-primary`, `text-muted-foreground`, `bg-highlight`…), never raw hex.
-  `highlight` (merah) is for small marks like badges and underlines only, never for errors (`destructive`).
+  `highlight` (lime) is a fill for small marks like badges, with `highlight-foreground` on top; lime text or icons use
+  `text-highlight-text`, which stays readable on light surfaces. Warnings use `warning` (amber), errors `destructive`.
+  Gradients: `bg-brand-gradient` (bars), `text-brand-gradient` (hero heading), `--gradient-vivid`/`--gradient-ink`
+  for the fixed panels, which use the `ink` tokens so they look the same in both modes.
 - **Fonts**: Plus Jakarta Sans (text) and JetBrains Mono (code), self-hosted through `next/font` in `src/app/layout.tsx`.
 - **Dark mode**: `next-themes` toggles the `.dark` class; default follows the system.
 - **Brand constants**: `src/config/brand.ts`.

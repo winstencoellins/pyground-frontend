@@ -4,7 +4,7 @@ import { ImageResponse } from "next/og";
 import { brand } from "@/config/brand";
 import { routing } from "@/i18n/routing";
 
-// Share card for every page under /[locale] (link previews on WhatsApp, X, Facebook…). Nila & Merah palette.
+// Share card for every page under /[locale] (link previews on WhatsApp, X, Facebook…). Teal & Lime palette.
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = "Pyground";
