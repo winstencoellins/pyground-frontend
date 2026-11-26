@@ -118,8 +118,6 @@
 
   /* Brand gradient: bars and decorative fills (never behind text). */
   --gradient-brand: linear-gradient(90deg, var(--primary), #14b8a6 55%, #a3e635);
-  /* Gradient text that stays readable on light surfaces (both ends pass 4.5:1 on white). */
-  --gradient-text: linear-gradient(100deg, #0f766e 20%, #4d7c0f);
   --gradient-band: linear-gradient(135deg, #0b2421 0%, #0e3b36 60%, #134e2a 100%);
 
   /* Fixed panels that look the same in light and dark mode (landing CTA, auth aside, terminal). */
@@ -178,7 +176,6 @@
   --sidebar-ring: #2dd4bf;
 
   --gradient-brand: linear-gradient(90deg, #14b8a6, #2dd4bf 50%, #bef264);
-  --gradient-text: linear-gradient(100deg, #5eead4, #99f6e4 45%, #bef264);
   --gradient-band: linear-gradient(135deg, #0f2421 0%, #12332f 60%, #1a3a1c 100%);
 }
 
@@ -286,10 +283,4 @@
 /* Brand gradient helpers. */
 .bg-brand-gradient {
   background-image: var(--gradient-brand);
-}
-.text-brand-gradient {
-  background-image: var(--gradient-text);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }

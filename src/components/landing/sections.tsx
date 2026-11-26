@@ -30,7 +30,7 @@ export function Hero() {
           <Chip tag={t("chipTag")} className="motion-enter">
             {t("chip")}
           </Chip>
-          <h1 className="motion-enter text-brand-gradient text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.02] font-semibold tracking-[-0.04em] [--i:1]">
+          <h1 className="motion-enter text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.02] font-semibold tracking-[-0.04em] [--i:1]">
             {t("title")}
           </h1>
           <p className="motion-enter max-w-[30em] text-[1.05rem] leading-relaxed text-muted-foreground [--i:2]">
