@@ -15,5 +15,6 @@ describe("authErrorKey", () => {
     expect(authErrorKey({})).toBe("NETWORK");
     expect(authErrorKey({ status: 500, error: { code: "WHATEVER" } })).toBe("UNKNOWN");
     expect(authErrorKey(null)).toBe("UNKNOWN");
+    expect(authErrorKey({ status: 400, error: { code: "INVALID_PASSWORD" } })).toBe("INVALID_PASSWORD");
   });
 });

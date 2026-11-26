@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Clock, Loader2, RotateCcw, XCircle } from "lucide-react";
+import { CheckCircle2, Clock, CreditCard, Loader2, RotateCcw, XCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { api } from "@/lib/api";
@@ -23,6 +23,8 @@ export function PaymentResult({ orderId, locale, labels }: { orderId: string; lo
   const [accessUntil, setAccessUntil] = useState<string | null>(null);
   const [gaveUp, setGaveUp] = useState(false);
   const [round, setRound] = useState(0); // "Check again" starts a new round of polling
+  // The Snap page to finish paying, while the order is PENDING and its payment window is open.
+  const [pay, setPay] = useState<{ url: string; until: string } | null>(null);
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined;
@@ -38,6 +40,7 @@ export function PaymentResult({ orderId, locale, labels }: { orderId: string; lo
         // Network or server trouble: keep what we show and try again.
       } else if (data) {
         setStatus(data.status);
+        setPay(data.paymentUrl ? { url: data.paymentUrl, until: String(data.payUntil) } : null);
         if (data.status === "PAID") {
           const me = await api.api.me.get().catch(() => null);
           if (!cancelled && me?.data?.accessUntil) setAccessUntil(String(me.data.accessUntil));
@@ -94,12 +97,28 @@ export function PaymentResult({ orderId, locale, labels }: { orderId: string; lo
           <p className="font-mono text-[0.8rem] text-muted-foreground">{fill(labels.order, { id: orderId })}</p>
         )}
       </div>
+      {status === "PENDING" && pay && (
+        <p className="text-[0.92rem] font-semibold">
+          {fill(labels.payBefore, {
+            date: new Intl.DateTimeFormat(locale === "id" ? "id-ID" : "en-US", {
+              dateStyle: "medium",
+              timeStyle: "short",
+              timeZone: "Asia/Jakarta",
+            }).format(new Date(pay.until)),
+          })}
+        </p>
+      )}
       {status === "PENDING" && gaveUp && <p className="text-[0.9rem]">{labels.stillPending}</p>}
       <div className="flex flex-wrap gap-3">
         {status === "PAID" && (
           <Link href="/dashboard" className={cn(pill, "bg-primary text-primary-foreground")}>
             {labels.startLearning}
           </Link>
+        )}
+        {status === "PENDING" && pay && (
+          <a href={pay.url} className={cn(pill, "bg-primary text-primary-foreground")}>
+            <CreditCard className="size-4" aria-hidden /> {labels.continue}
+          </a>
         )}
         {status === "PENDING" && gaveUp && (
           <button
@@ -108,7 +127,7 @@ export function PaymentResult({ orderId, locale, labels }: { orderId: string; lo
               setGaveUp(false);
               setRound((r) => r + 1);
             }}
-            className={cn(pill, "bg-primary text-primary-foreground")}
+            className={cn(pill, pay ? "border hover:border-foreground/40" : "bg-primary text-primary-foreground")}
           >
             <RotateCcw className="size-4" aria-hidden /> {labels.checkAgain}
           </button>

@@ -334,7 +334,9 @@
       "INVALID_TOKEN": "This link has expired or isn't valid.",
       "RATE_LIMITED": "Too many attempts. Wait a moment, then try again.",
       "NETWORK": "Can't reach the server. Check your connection and try again.",
-      "UNKNOWN": "Something went wrong. Try again in a moment."
+      "UNKNOWN": "Something went wrong. Try again in a moment.",
+      "INVALID_PASSWORD": "Your current password is incorrect.",
+      "INVALID_NAME": "Enter a name of up to 80 characters."
     }
   },
   "Account": {
@@ -346,7 +348,8 @@
     "nav": {
       "dashboard": "Dashboard",
       "curriculum": "Curriculum",
-      "billing": "Access"
+      "billing": "Access",
+      "profile": "Profile"
     },
     "navLabel": "App navigation",
     "loading": "Loading…",
@@ -526,6 +529,11 @@
       "FAILED": "Failed",
       "EXPIRED": "Expired",
       "REFUNDED": "Refunded"
+    },
+    "unfinished": {
+      "title": "You have an unfinished payment",
+      "body": "{amount} for 30 days of access. Finish before {date} (WIB).",
+      "continue": "Continue payment"
     }
   },
   "PaymentResult": {
@@ -561,7 +569,9 @@
     "checkAgain": "Check again",
     "startLearning": "Continue learning",
     "tryAgain": "Try again",
-    "toBilling": "Payment history"
+    "toBilling": "Payment history",
+    "continue": "Continue payment",
+    "payBefore": "Finish before {date} (WIB). After that this payment link stops working."
   },
   "Admin": {
     "title": "Admin",
@@ -667,6 +677,36 @@
       "got": "Your program's output",
       "nothingPrinted": "(nothing was printed)",
       "needsInput": "Your program asks for more input than this test provides."
+    }
+  },
+  "Profile": {
+    "title": "Profile",
+    "body": "Manage your name, language and password.",
+    "account": {
+      "title": "Account details",
+      "name": "Name",
+      "nameHint": "Shown on your dashboard, emails and payment receipts.",
+      "email": "Email",
+      "emailHint": "You sign in with this email; it can't be changed here.",
+      "save": "Save name",
+      "saved": "Name saved."
+    },
+    "language": {
+      "title": "Language",
+      "body": "The language for lessons, the interface and emails from Pyground."
+    },
+    "password": {
+      "title": "Change password",
+      "current": "Current password",
+      "new": "New password",
+      "signOutOthers": "Sign this account out on other devices",
+      "save": "Change password",
+      "saved": "Password changed.",
+      "forgot": "Forgot your password?"
+    },
+    "access": {
+      "title": "Access",
+      "manage": "See your access and payment history"
     }
   }
 }

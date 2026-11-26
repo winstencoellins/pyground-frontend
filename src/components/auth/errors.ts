@@ -6,6 +6,8 @@ export type AuthErrorKey =
   | "PASSWORD_TOO_SHORT"
   | "PASSWORD_TOO_LONG"
   | "INVALID_TOKEN"
+  | "INVALID_PASSWORD"
+  | "INVALID_NAME"
   | "RATE_LIMITED"
   | "NETWORK"
   | "UNKNOWN";
@@ -17,6 +19,8 @@ const known = new Set<string>([
   "PASSWORD_TOO_SHORT",
   "PASSWORD_TOO_LONG",
   "INVALID_TOKEN",
+  "INVALID_PASSWORD",
+  "INVALID_NAME",
 ]);
 
 type ClientError = { code?: string; status?: number; error?: { code?: string } };

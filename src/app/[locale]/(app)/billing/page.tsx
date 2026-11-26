@@ -1,4 +1,4 @@
-import { Check, ShieldCheck } from "lucide-react";
+import { Check, CreditCard, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
 import { getFormatter, getTranslations } from "next-intl/server";
 import { Suspense } from "react";
@@ -45,6 +45,8 @@ export default async function BillingPage({ params }: PageProps<"/[locale]/billi
           ? t("statusExpired", { date: date(accessUntil) })
           : t("statusFree");
   const list = orders.data ?? [];
+  // An order whose Snap page can still be paid (newest first, so the latest one).
+  const open = list.find((o) => o.status === "PENDING" && o.paymentUrl);
   const rupiah = (n: number) => `Rp${n.toLocaleString(locale === "id" ? "id-ID" : "en-US")}`;
   const badge = (o: (typeof list)[number]) =>
     o.status === "PENDING" ? (
@@ -75,6 +77,35 @@ export default async function BillingPage({ params }: PageProps<"/[locale]/billi
         <h1 className="text-[clamp(2rem,4vw,2.6rem)] leading-tight font-semibold tracking-[-0.035em]">{t("title")}</h1>
         <p className="text-muted-foreground">{t("body")}</p>
       </header>
+
+      {open?.paymentUrl && (
+        <section
+          aria-labelledby="unfinished-title"
+          className="flex flex-wrap items-center justify-between gap-4 rounded-[20px] border border-highlight/50 bg-highlight/10 p-5 sm:px-6"
+        >
+          <div className="grid gap-1">
+            <h2 id="unfinished-title" className="font-semibold">
+              {t("unfinished.title")}
+            </h2>
+            <p className="text-[0.92rem] text-muted-foreground">
+              {t("unfinished.body", {
+                amount: rupiah(open.amount),
+                date: format.dateTime(new Date(open.payUntil), {
+                  dateStyle: "medium",
+                  timeStyle: "short",
+                  timeZone: "Asia/Jakarta",
+                }),
+              })}
+            </p>
+          </div>
+          <a
+            href={open.paymentUrl}
+            className="inline-flex h-11 shrink-0 items-center gap-2 rounded-full bg-primary px-5 text-[0.92rem] font-semibold text-primary-foreground outline-none focus-visible:ring-4 focus-visible:ring-ring/50"
+          >
+            <CreditCard className="size-4" aria-hidden /> {t("unfinished.continue")}
+          </a>
+        </section>
+      )}
 
       <section className="grid gap-6 rounded-[24px] border bg-card p-6 sm:p-8">
         <p

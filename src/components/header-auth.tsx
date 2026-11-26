@@ -17,7 +17,12 @@ export function HeaderAuth({ labels, inApp = false }: { labels: Labels; inApp?: 
     return (
       <div className="flex items-center gap-2">
         {inApp ? (
-          <span className="hidden max-w-[10rem] truncate text-[0.9rem] font-semibold lg:block">{first}</span>
+          <Link
+            href="/profile"
+            className="hidden max-w-[10rem] truncate rounded-full px-1.5 text-[0.9rem] font-semibold outline-none hover:underline focus-visible:ring-4 focus-visible:ring-ring/50 lg:block"
+          >
+            {first}
+          </Link>
         ) : (
           <Link
             href="/dashboard"

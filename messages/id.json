@@ -334,7 +334,9 @@
       "INVALID_TOKEN": "Link sudah kedaluwarsa atau tidak valid.",
       "RATE_LIMITED": "Terlalu banyak percobaan. Tunggu sebentar, lalu coba lagi.",
       "NETWORK": "Tidak bisa terhubung ke server. Periksa koneksimu, lalu coba lagi.",
-      "UNKNOWN": "Terjadi kesalahan. Coba lagi sebentar lagi."
+      "UNKNOWN": "Terjadi kesalahan. Coba lagi sebentar lagi.",
+      "INVALID_PASSWORD": "Kata sandi saat ini salah.",
+      "INVALID_NAME": "Nama harus diisi, maksimal 80 karakter."
     }
   },
   "Account": {
@@ -346,7 +348,8 @@
     "nav": {
       "dashboard": "Dashboard",
       "curriculum": "Kurikulum",
-      "billing": "Akses"
+      "billing": "Akses",
+      "profile": "Profil"
     },
     "navLabel": "Navigasi aplikasi",
     "loading": "Memuat…",
@@ -526,6 +529,11 @@
       "FAILED": "Gagal",
       "EXPIRED": "Kedaluwarsa",
       "REFUNDED": "Dikembalikan"
+    },
+    "unfinished": {
+      "title": "Ada pembayaran yang belum selesai",
+      "body": "{amount} untuk akses 30 hari. Selesaikan sebelum {date} WIB.",
+      "continue": "Lanjutkan pembayaran"
     }
   },
   "PaymentResult": {
@@ -561,7 +569,9 @@
     "checkAgain": "Cek lagi",
     "startLearning": "Lanjut belajar",
     "tryAgain": "Coba lagi",
-    "toBilling": "Riwayat pembayaran"
+    "toBilling": "Riwayat pembayaran",
+    "continue": "Lanjutkan pembayaran",
+    "payBefore": "Selesaikan sebelum {date} WIB. Setelah itu tautan pembayaran ini tidak berlaku."
   },
   "Admin": {
     "title": "Admin",
@@ -667,6 +677,36 @@
       "got": "Output programmu",
       "nothingPrinted": "(tidak ada yang dicetak)",
       "needsInput": "Programmu meminta input lebih banyak dari yang disediakan tes ini."
+    }
+  },
+  "Profile": {
+    "title": "Profil",
+    "body": "Atur nama, bahasa, dan kata sandi akunmu.",
+    "account": {
+      "title": "Data akun",
+      "name": "Nama",
+      "nameHint": "Dipakai di dashboard, email, dan struk pembayaran.",
+      "email": "Email",
+      "emailHint": "Email dipakai untuk masuk dan tidak bisa diubah di sini.",
+      "save": "Simpan nama",
+      "saved": "Nama tersimpan."
+    },
+    "language": {
+      "title": "Bahasa",
+      "body": "Bahasa untuk pelajaran, tampilan, dan email dari Pyground."
+    },
+    "password": {
+      "title": "Ganti kata sandi",
+      "current": "Kata sandi saat ini",
+      "new": "Kata sandi baru",
+      "signOutOthers": "Keluarkan akun ini dari perangkat lain",
+      "save": "Ganti kata sandi",
+      "saved": "Kata sandi berhasil diganti.",
+      "forgot": "Lupa kata sandi?"
+    },
+    "access": {
+      "title": "Akses",
+      "manage": "Lihat akses dan riwayat pembayaran"
     }
   }
 }
