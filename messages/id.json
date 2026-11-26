@@ -127,7 +127,7 @@
       {
         "title": "Dasar-Dasar",
         "summary": "Variabel, input, string, percabangan, dan proyek kasir warung.",
-        "meta": "14 pelajaran · ±3 jam"
+        "meta": "14 pelajaran + 5 uji kemampuan · ±4 jam"
       },
       {
         "title": "Inti Pemula",
@@ -187,7 +187,11 @@
       "price": "Rp0",
       "period": "selamanya",
       "body": "Untuk mencoba cara belajar di Pyground.",
-      "features": ["Seluruh Tahap 1 (14 pelajaran)", "Playground dan kuis", "Progres dan streak tersimpan"],
+      "features": [
+        "Seluruh Tahap 1 (14 pelajaran + 5 uji kemampuan)",
+        "Playground dan kuis",
+        "Progres dan streak tersimpan"
+      ],
       "cta": "Buat akun gratis"
     },
     "pass": {
@@ -634,6 +638,7 @@
   "Exercise": {
     "guided": "Latihan terpandu",
     "challenge": "Tantangan mandiri",
+    "apply": "Uji kemampuan",
     "steps": "Langkah-langkah",
     "plan": "Tidak ada langkah di sini. Rencanakan dulu sendiri: apa input-nya, apa yang harus diolah, dan apa yang harus dicetak?",
     "examples": "Contoh",
@@ -647,6 +652,7 @@
     "hintN": "Petunjuk {n}",
     "solution": "Lihat contoh jawaban",
     "solutionLocked": "Cek jawabanmu dulu sekali untuk membuka contoh jawaban.",
+    "solutionLockedApply": "Contoh jawaban terbuka setelah semua tes lulus. Kamu pasti bisa!",
     "solutionNote": "Ini salah satu cara. Jawabanmu boleh berbeda, asalkan semua tesnya lulus.",
     "reflect": "Pikirkan lagi",
     "check": {

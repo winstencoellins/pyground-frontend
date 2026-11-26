@@ -1,6 +1,6 @@
 "use client";
 
-import { Compass, Lightbulb, ListChecks, Lock, MessageCircleQuestion, Mountain } from "lucide-react";
+import { Compass, Crosshair, Lightbulb, ListChecks, Lock, MessageCircleQuestion, Mountain } from "lucide-react";
 import { useState } from "react";
 import type { ExerciseTest } from "@/lib/python/grade";
 import { cn, fill } from "@/lib/utils";
@@ -22,6 +22,7 @@ function Text({ children }: { children: string }) {
 export type ExerciseLabels = {
   guided: string;
   challenge: string;
+  apply: string;
   steps: string;
   plan: string;
   examples: string;
@@ -35,6 +36,7 @@ export type ExerciseLabels = {
   hintN: string;
   solution: string;
   solutionLocked: string;
+  solutionLockedApply: string;
   solutionNote: string;
   reflect: string;
   check: CheckLabels;
@@ -44,6 +46,7 @@ export type ExerciseLabels = {
  * A hands-on problem checked against test cases in the browser.
  * guided: steps + starter code, every test shown. challenge: the problem only, one example shown and the
  * rest hidden, so the learner has to think about other cases. The model answer unlocks after one check.
+ * apply: like challenge with an empty editor and no hints, and the model answer only unlocks once every test passes.
  */
 export function Exercise({
   type,
@@ -59,7 +62,7 @@ export function Exercise({
   labels,
   runnerLabels,
 }: {
-  type: "guided" | "challenge";
+  type: "guided" | "challenge" | "apply";
   title: string;
   steps?: string[];
   starter?: string;
@@ -77,14 +80,18 @@ export function Exercise({
   const [passed, setPassed] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
   const guided = type === "guided";
-  const Icon = guided ? Compass : Mountain;
+  const apply = type === "apply";
+  const label = labels[type];
+  const Icon = guided ? Compass : apply ? Crosshair : Mountain;
+  const unlocked = apply ? passed : attempted;
+  const locked = apply ? labels.solutionLockedApply : labels.solutionLocked;
   const shown = tests.slice(0, examples);
   const hidden = tests.length - shown.length;
 
   return (
     <section
       data-exercise={type}
-      aria-label={`${guided ? labels.guided : labels.challenge}: ${title}`}
+      aria-label={`${label}: ${title}`}
       className="my-8 rounded-[22px] border bg-muted/40 p-5 sm:p-6"
     >
       <p
@@ -93,7 +100,7 @@ export function Exercise({
           guided ? "bg-primary/10 text-primary-text" : "bg-highlight/10 text-highlight",
         )}
       >
-        <Icon className="size-3.5" aria-hidden /> {guided ? labels.guided : labels.challenge}
+        <Icon className="size-3.5" aria-hidden /> {label}
       </p>
       <h3 className="mt-0 mb-2 text-[1.2rem] font-semibold tracking-tight">{title}</h3>
       <div className="[&>p:first-child]:mt-0">{children}</div>
@@ -175,7 +182,7 @@ export function Exercise({
       )}
 
       <div className="flex flex-wrap items-center gap-2">
-        {hintsShown < hints.length && (
+        {!apply && hintsShown < hints.length && (
           <button
             type="button"
             onClick={() => setHintsShown((n) => n + 1)}
@@ -188,17 +195,17 @@ export function Exercise({
         <button
           type="button"
           onClick={() => setShowSolution((v) => !v)}
-          disabled={!attempted}
+          disabled={!unlocked}
           aria-expanded={showSolution}
-          title={attempted ? undefined : labels.solutionLocked}
+          title={unlocked ? undefined : locked}
           className="inline-flex h-9 items-center gap-1.5 rounded-full border bg-card px-4 text-[0.82rem] font-semibold outline-none hover:border-foreground/40 focus-visible:ring-4 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:border-border"
         >
-          {!attempted && <Lock className="size-3.5" aria-hidden />}
+          {!unlocked && <Lock className="size-3.5" aria-hidden />}
           {labels.solution}
         </button>
-        {!attempted && <span className="text-[0.8rem] text-muted-foreground">{labels.solutionLocked}</span>}
+        {!unlocked && <span className="text-[0.8rem] text-muted-foreground">{locked}</span>}
       </div>
-      {showSolution && (
+      {showSolution && unlocked && (
         <div className="mt-3">
           <pre className="m-0 overflow-x-auto rounded-xl border bg-card px-4 py-3 font-mono text-[0.85rem] leading-relaxed">
             {solution.trim()}

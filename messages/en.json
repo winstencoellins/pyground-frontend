@@ -127,7 +127,7 @@
       {
         "title": "Foundations",
         "summary": "Variables, input, strings, conditionals, and a cashier project.",
-        "meta": "14 lessons · ~3 hours"
+        "meta": "14 lessons + 5 skill checks · ~4 hours"
       },
       {
         "title": "Beginner Core",
@@ -187,7 +187,11 @@
       "price": "Rp0",
       "period": "forever",
       "body": "To try how learning on Pyground works.",
-      "features": ["All of Stage 1 (14 lessons)", "Playground and quizzes", "Progress and streaks saved"],
+      "features": [
+        "All of Stage 1 (14 lessons + 5 skill checks)",
+        "Playground and quizzes",
+        "Progress and streaks saved"
+      ],
       "cta": "Create a free account"
     },
     "pass": {
@@ -634,6 +638,7 @@
   "Exercise": {
     "guided": "Guided practice",
     "challenge": "Solo challenge",
+    "apply": "Skill check",
     "steps": "Steps",
     "plan": "No steps here. Plan it yourself first: what is the input, what has to be worked out, and what should be printed?",
     "examples": "Examples",
@@ -647,6 +652,7 @@
     "hintN": "Hint {n}",
     "solution": "Show a sample answer",
     "solutionLocked": "Check your answer once to unlock the sample answer.",
+    "solutionLockedApply": "The sample answer unlocks once every test passes. You can do this!",
     "solutionNote": "This is one way to do it. Yours can differ, as long as every test passes.",
     "reflect": "Think about it",
     "check": {
