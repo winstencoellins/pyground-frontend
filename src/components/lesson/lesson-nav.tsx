@@ -58,11 +58,11 @@ export async function StageNav({
     </div>
   );
   const list = (
-    <div className="grid gap-4">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
       {stage.modules.map((mod) => (
-        <div key={mod.id} className="grid gap-1">
+        <div key={mod.id} className="grid grid-cols-[minmax(0,1fr)] gap-1">
           <p className="px-2 text-[0.75rem] font-semibold text-muted-foreground">{mod.title}</p>
-          <ol className="grid gap-0.5">
+          <ol className="grid grid-cols-[minmax(0,1fr)] gap-0.5">
             {mod.lessons.map((lesson) => {
               const current = lesson.slug === slug;
               const isDone = completed?.has(lesson.slug);
@@ -85,7 +85,7 @@ export async function StageNav({
                     >
                       {isDone && <Check className="size-2.5" strokeWidth={3.5} aria-label={t("doneLabel")} />}
                     </span>
-                    <span className="min-w-0 flex-1 truncate">{lesson.title}</span>
+                    <span className="min-w-0 flex-1 leading-snug break-words">{lesson.title}</span>
                     {lesson.locked && (
                       <Lock className="size-3.5 shrink-0 text-muted-foreground" aria-label={t("locked")} />
                     )}
@@ -103,7 +103,7 @@ export async function StageNav({
     <>
       <aside
         data-stage-nav
-        className="hidden content-start gap-5 lg:sticky lg:top-24 lg:grid lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto lg:pr-2"
+        className="hidden grid-cols-[minmax(0,1fr)] content-start gap-5 lg:sticky lg:top-24 lg:grid lg:max-h-[calc(100vh-7.5rem)] lg:overflow-x-hidden lg:overflow-y-auto lg:pr-2"
       >
         {heading}
         {progress}
